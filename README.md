@@ -126,7 +126,7 @@ python ablation_study.py               # Shows which component matters
 
 ---
 
-## What We Proved
+## What I Proved
 
 Everything below is backed by reproducible benchmarks on **1,077 real PubMed articles** across 10 biomedical domains. Every script is included.
 
