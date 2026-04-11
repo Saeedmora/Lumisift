@@ -1,0 +1,208 @@
+{
+  "metadata": {
+    "date": "2026-04-11T15:07:14.776431",
+    "model": "gemini-3-flash-preview",
+    "format": "PubMedQA-style yes/no/maybe",
+    "articles": 15,
+    "selection_ratio": "50%"
+  },
+  "accuracy": {
+    "full_context": {
+      "correct": 14,
+      "total": 15,
+      "pct": 93.3
+    },
+    "embedding_similarity": {
+      "correct": 14,
+      "total": 15,
+      "pct": 93.3
+    },
+    "lumisift": {
+      "correct": 7,
+      "total": 15,
+      "pct": 46.7
+    }
+  },
+  "per_article": [
+    {
+      "pmid": "40628259",
+      "title": "Advancing protein evolution with inverse folding models inte",
+      "question": "Does the AiCE approach aim to reduce the dependence on human heuristics in protein engineering?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "32557882",
+      "title": "A mechanistic view of enzyme evolution.",
+      "question": "Does the review discuss how mutations alter the molecular architecture of enzymes to enhance their activities?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "27826849",
+      "title": "Engineering and Directed Evolution of DNA Methyltransferases",
+      "question": "Are bacterial DNA methyltransferases useful for the selection of large gene libraries?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "maybe",
+      "similarity_correct": false,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "40773556",
+      "title": "An orthogonal T7 replisome for continuous hypermutation and ",
+      "question": "Is the T7-ORACLE system based on an orthogonal DNA replication system in Escherichia coli?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "30069054",
+      "title": "CRISPR-guided DNA polymerases enable diversification of all ",
+      "question": "Do CRISPR-guided DNA polymerases allow for the diversification of nucleotides within a tunable genomic window?",
+      "correct": "yes",
+      "full": "maybe",
+      "full_correct": false,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "yes",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "27410729",
+      "title": "Using Evolution to Guide Protein Engineering: The Devil IS i",
+      "question": "Is predictably fine-tuning a protein's function (such as ligand affinity) described as a current challenge in the field?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "29413956",
+      "title": "Structural heterogeneity and dynamics in protein evolution a",
+      "question": "Does the author suggest that proteins are static entities and do not rely on dynamical mechanisms for function?",
+      "correct": "no",
+      "full": "no",
+      "full_correct": true,
+      "similarity": "no",
+      "similarity_correct": true,
+      "lumisift": "no",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "36562723",
+      "title": "Protein engineering via Bayesian optimization-guided evoluti",
+      "question": "Has the capacity of robotics for rapid iterations been well exploited in existing machine learning-assisted directed evolution according to the abstract?",
+      "correct": "no",
+      "full": "no",
+      "full_correct": true,
+      "similarity": "no",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "28255874",
+      "title": "Directed Evolution of Protein Thermal Stability Using Yeast ",
+      "question": "Can thermally stable protein variants be detected by flow cytometry using yeast surface display and conformationally specific ligands?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "15026190",
+      "title": "CYP51--the omnipotent P450.",
+      "question": "Is the CYP51 gene family found in all biological kingdoms?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "yes",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "19367473",
+      "title": "Protein and genome evolution in Mammalian cells for biotechn",
+      "question": "Are directed evolution techniques in mammalian cells currently described as less laborious and time-consuming than in bacteria?",
+      "correct": "no",
+      "full": "no",
+      "full_correct": true,
+      "similarity": "no",
+      "similarity_correct": true,
+      "lumisift": "no",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "28052191",
+      "title": "Engineering a Thermostable Keto Acid Decarboxylase Using Dir",
+      "question": "Did the engineered Kivd enzyme show a 10.5-fold increase in residual activity after heat treatment compared to the starting version?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "yes",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "17121498",
+      "title": "Directed evolution and structural analysis of N-carbamoyl-D-",
+      "question": "Were DNA shuffling and error-prone PCR used to identify amino acid sites responsible for the solubility of DCase in E. coli?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "yes",
+      "lumisift_correct": true
+    },
+    {
+      "pmid": "31253675",
+      "title": "Secretory Expression Fine-Tuning and Directed Evolution of D",
+      "question": "Was the YncM signal peptide the most effective for achieving high-level extracellular production of diacetylchitobiose deacetylase in B. subtilis?",
+      "correct": "yes",
+      "full": "yes",
+      "full_correct": true,
+      "similarity": "yes",
+      "similarity_correct": true,
+      "lumisift": "maybe",
+      "lumisift_correct": false
+    },
+    {
+      "pmid": "12880207",
+      "title": "Heterotachy and functional shift in protein evolution.",
+      "question": "Does the author state that rational design is currently more efficient than random mutagenesis for modifying protein function?",
+      "correct": "no",
+      "full": "no",
+      "full_correct": true,
+      "similarity": "no",
+      "similarity_correct": true,
+      "lumisift": "no",
+      "lumisift_correct": true
+    }
+  ]
+}

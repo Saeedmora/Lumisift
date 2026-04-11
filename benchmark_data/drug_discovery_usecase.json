@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "date": "2026-04-11T15:03:40.335993",
+    "use_case": "drug_discovery",
+    "n_cases": 3
+  },
+  "summary": {
+    "avg_embedding_retention_pct": 14.8,
+    "avg_lumisift_retention_pct": 84.1,
+    "delta_pct": 69.3
+  },
+  "cases": [
+    {
+      "case": "Novel EGFR Inhibitor with Selective Kinase Activity",
+      "query": "What is the IC50 of the new EGFR inhibitor?",
+      "embedding_retention": 44.4,
+      "lumisift_retention": 66.7,
+      "facts": [
+        {
+          "fact": "IC50 of 3.2 nM",
+          "embedding": true,
+          "lumisift": true
+        },
+        {
+          "fact": "47-fold improvement",
+          "embedding": true,
+          "lumisift": true
+        },
+        {
+          "fact": "IC50 = 150 nM (osimertinib)",
+          "embedding": true,
+          "lumisift": true
+        },
+        {
+          "fact": "selectivity ratio of 278-fold",
+          "embedding": true,
+          "lumisift": false
+        },
+        {
+          "fact": "TGI of 89.3%",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "p < 0.001",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "48 mm3",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "bioavailability of 67%",
+          "embedding": false,
+          "lumisift": false
+        },
+        {
+          "fact": "half-life of 8.2 hours",
+          "embedding": false,
+          "lumisift": false
+        }
+      ]
+    },
+    {
+      "case": "Directed Evolution of Lipase for Pharmaceutical Intermediate Synthesis",
+      "query": "What enantioselectivity did the evolved lipase achieve?",
+      "embedding_retention": 0.0,
+      "lumisift_retention": 85.7,
+      "facts": [
+        {
+          "fact": "kcat/Km: 4,500 M-1 s-1",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "E-value: >200",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "52-fold improvement",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "half-life at 50C: 48 hours",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "99.5% ee",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "95% conversion",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "costs by 62%",
+          "embedding": false,
+          "lumisift": false
+        }
+      ]
+    },
+    {
+      "case": "mRNA Vaccine Lipid Nanoparticle Optimization",
+      "query": "What transfection efficiency improvement was achieved?",
+      "embedding_retention": 0.0,
+      "lumisift_retention": 100.0,
+      "facts": [
+        {
+          "fact": "340-fold increase",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "18.7% of total expression",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "14 days",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "ED50: 0.005 mg/kg",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "60-fold reduction",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "85 nm",
+          "embedding": false,
+          "lumisift": true
+        },
+        {
+          "fact": "PDI: 0.08",
+          "embedding": false,
+          "lumisift": true
+        }
+      ]
+    }
+  ]
+}

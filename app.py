@@ -175,6 +175,31 @@ def process_article():
         # Build response
         atoms_data = []
         for atom in atoms:
+            # Generate human-readable explanation for selection
+            axes = atom.axes
+            reasons = []
+            specificity = axes.get("specificity", 0)
+            relevance = abs(axes.get("relevance", 0))
+            trust = axes.get("trust", 0)
+            risk = abs(axes.get("risk", 0))
+            causality = abs(axes.get("causality", 0))
+
+            if specificity > 0.5:
+                reasons.append(f"High specificity ({specificity:.2f}): contains quantitative data")
+            if relevance > 0.5:
+                reasons.append(f"High relevance ({relevance:.2f}): strategically important content")
+            if trust > 0.6:
+                reasons.append(f"High trust ({trust:.2f}): verified/authoritative source signals")
+            if risk > 0.3:
+                reasons.append(f"Notable risk ({risk:.2f}): uncertainty or preliminary data flagged")
+            if causality > 0.3:
+                reasons.append(f"Causal signals ({causality:.2f}): cause-effect relationships detected")
+            if specificity > 0.3:
+                s_boost = 1.0 + specificity * 0.8
+                reasons.append(f"Specificity boost: {s_boost:.1f}x priority for numerical data")
+            if not reasons:
+                reasons.append("Low signal strength across all axes")
+
             atoms_data.append({
                 "id": atom.id[:12],
                 "text": atom.text[:200],
@@ -186,6 +211,7 @@ def process_article():
                 "original_tokens": atom.original_tokens,
                 "compressed_tokens": atom.compressed_tokens,
                 "compression_ratio": round(atom.compression_ratio, 3) if atom.compression_ratio > 0 else 0,
+                "explanation": reasons,
             })
 
         # Axes distribution summary
