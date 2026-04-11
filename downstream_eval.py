@@ -1,13 +1,13 @@
 """
-Downstream Quality Evaluation — Logical Rooms (Batch Mode)
+Downstream Quality Evaluation — Lumisift (Batch Mode)
 ===========================================================
-Uses 3 total Gemini API calls to evaluate downstream quality.
-Designed for free-tier rate limits.
+Evaluates downstream answer quality across 50 articles in 5 batches.
+Each batch uses 3 Gemini API calls.
 
-Approach:
-  Call 1: Generate 10 questions for 10 articles (1 API call)
-  Call 2: Answer all questions with full text AND selected text (1 API call)  
-  Call 3: Grade all answer pairs (1 API call)
+Approach per batch (10 articles each):
+  Call 1: Generate questions + answer with full text
+  Call 2: Answer same questions with selected text  
+  Call 3: Grade all answer pairs
 """
 
 import os
@@ -62,9 +62,15 @@ articles_path = os.path.join("benchmark_data", "pubmed_articles.json")
 with open(articles_path, "r", encoding="utf-8") as f:
     all_articles = json.load(f)
 
-# 10 articles with >100 words
-articles = [a for a in all_articles if len(a.get("abstract", "").split()) > 100][:10]
-print(f"Loaded {len(articles)} articles\n")
+# Sample 50 articles (diverse domains), shuffled for variety
+import random
+eligible = [a for a in all_articles if len(a.get("abstract", "").split()) > 100]
+random.seed(42)  # Reproducible
+random.shuffle(eligible)
+articles = eligible[:50]
+print(f"Loaded {len(articles)} articles (from {len(eligible)} eligible)\n")
+
+N_BATCH = 10  # Articles per batch
 
 # ─── Initialize Evaluator ──────────────────────────────────────────────────
 
@@ -137,23 +143,39 @@ for i, article in enumerate(articles):
         "n_chunks": len(chunks),
         "n_selected": n_select,
     })
-    print(f"  [{i+1}] {title}... -> {len(chunks)} chunks, top {n_select} selected ({reduction*100:.0f}% reduction)")
+    safe_title = title.encode('ascii', 'replace').decode()
+    print(f"  [{i+1}] {safe_title}... -> {len(chunks)} chunks, top {n_select} selected ({reduction*100:.0f}% reduction)")
 
 print(f"\n{len(eval_data)} articles processed.\n")
 
-# ─── Mega Call 1: Generate Questions + Answer with FULL text ────────────────
+# ─── Batch Loop: Process 10 articles at a time ──────────────────────────────
 
-print("Step 2: Generating questions and answering with FULL text (1 API call)...")
+all_grades = []
+all_results_raw = []
+n_batches = (len(eval_data) + N_BATCH - 1) // N_BATCH
 
-articles_block = ""
-for d in eval_data:
-    articles_block += f"\n---ARTICLE {d['idx']}---\nPMID: {d['pmid']}\nTitle: {d['title']}\n\nFull Text:\n{d['full_text']}\n"
+for batch_idx in range(n_batches):
+    batch_start = batch_idx * N_BATCH
+    batch_end = min(batch_start + N_BATCH, len(eval_data))
+    batch = eval_data[batch_start:batch_end]
 
-prompt_qa_full = f"""You are a protein engineering expert. For each of the following articles:
+    print(f"\n{'='*50}")
+    print(f"  BATCH {batch_idx+1}/{n_batches} ({len(batch)} articles)")
+    print(f"{'='*50}")
+
+    # ── Call 1: Generate Questions + Answer with FULL text ──────────────
+
+    print("  Generating questions + full-text answers...")
+
+    articles_block = ""
+    for d in batch:
+        articles_block += f"\n---ARTICLE {d['idx']}---\nPMID: {d['pmid']}\nTitle: {d['title']}\n\nFull Text:\n{d['full_text']}\n"
+
+    prompt_qa_full = f"""You are a protein engineering expert. For each of the following articles:
 1. Generate ONE specific scientific question answerable from the text
 2. Answer that question using ONLY the full text provided
 
-Return a JSON array with exactly {len(eval_data)} objects, one per article.
+Return a JSON array with exactly {len(batch)} objects, one per article.
 Each object must have: "idx", "question", "answer_full"
 
 Articles:
@@ -161,36 +183,30 @@ Articles:
 
 Return ONLY the JSON array, no markdown formatting, no code fences."""
 
-time.sleep(5)  # Wait before first call
-response_full = ask_gemini(prompt_qa_full)
+    time.sleep(5)
+    response_full = ask_gemini(prompt_qa_full)
 
-if not response_full:
-    print("ERROR: Failed to generate questions. API quota may be exhausted.")
-    print("Try again in a few minutes.")
-    sys.exit(1)
+    if not response_full:
+        print(f"  WARNING: Batch {batch_idx+1} failed (API quota). Skipping.")
+        continue
 
-# Parse response
-try:
-    # Clean response
-    clean = response_full.strip()
-    if clean.startswith("```"):
-        clean = re.sub(r'^```\w*\n?', '', clean)
-        clean = re.sub(r'\n?```$', '', clean)
-    qa_full = json.loads(clean)
-    print(f"  Got {len(qa_full)} question+answer pairs.\n")
-except Exception as e:
-    print(f"Parse error: {e}")
-    print(f"Raw response:\n{response_full[:500]}")
-    # Try to save what we can
-    qa_full = []
+    try:
+        clean = response_full.strip()
+        if clean.startswith("```"):
+            clean = re.sub(r'^```\w*\n?', '', clean)
+            clean = re.sub(r'\n?```$', '', clean)
+        qa_full = json.loads(clean)
+        print(f"  Got {len(qa_full)} question+answer pairs.")
+    except Exception as e:
+        print(f"  Parse error (batch {batch_idx+1}): {e}")
+        continue
 
-# ─── Mega Call 2: Answer with SELECTED text ─────────────────────────────────
+    # ── Call 2: Answer with SELECTED text ───────────────────────────────
 
-if qa_full:
-    print("Step 3: Answering same questions with SELECTED text (1 API call)...")
+    print("  Answering with selected text...")
 
     selected_block = ""
-    for d in eval_data:
+    for d in batch:
         q = next((qa["question"] for qa in qa_full if qa.get("idx") == d["idx"]), "")
         selected_block += f"\n---ARTICLE {d['idx']}---\nQuestion: {q}\n\nSelected Context (tension-ranked top passages):\n{d['selected_text']}\n"
 
@@ -198,7 +214,7 @@ if qa_full:
 answer the given question using ONLY the selected context provided.
 Be specific and cite details from the text.
 
-Return a JSON array with exactly {len(eval_data)} objects.
+Return a JSON array with exactly {len(batch)} objects.
 Each object must have: "idx", "answer_selected"
 
 Articles:
@@ -206,7 +222,7 @@ Articles:
 
 Return ONLY the JSON array, no markdown formatting, no code fences."""
 
-    time.sleep(10)  # Longer pause between calls
+    time.sleep(10)
     response_sel = ask_gemini(prompt_qa_sel)
 
     try:
@@ -215,18 +231,17 @@ Return ONLY the JSON array, no markdown formatting, no code fences."""
             clean_sel = re.sub(r'^```\w*\n?', '', clean_sel)
             clean_sel = re.sub(r'\n?```$', '', clean_sel)
         qa_sel = json.loads(clean_sel)
-        print(f"  Got {len(qa_sel)} selected-text answers.\n")
+        print(f"  Got {len(qa_sel)} selected-text answers.")
     except Exception as e:
-        print(f"Parse error: {e}")
-        qa_sel = []
+        print(f"  Parse error: {e}")
+        continue
 
-# ─── Mega Call 3: Grade all pairs ───────────────────────────────────────────
+    # ── Call 3: Grade all pairs ─────────────────────────────────────────
 
-if qa_full and qa_sel:
-    print("Step 4: Grading all answer pairs (1 API call)...")
+    print("  Grading answer pairs...")
 
     grade_block = ""
-    for d in eval_data:
+    for d in batch:
         qf = next((qa for qa in qa_full if qa.get("idx") == d["idx"]), {})
         qs = next((qa for qa in qa_sel if qa.get("idx") == d["idx"]), {})
         if qf and qs:
@@ -262,11 +277,27 @@ Return ONLY the JSON array, no markdown formatting, no code fences."""
             clean_grade = re.sub(r'^```\w*\n?', '', clean_grade)
             clean_grade = re.sub(r'\n?```$', '', clean_grade)
         grades = json.loads(clean_grade)
-        print(f"  Got {len(grades)} grade pairs.\n")
+        print(f"  Got {len(grades)} grade pairs.")
+        all_grades.extend(grades)
+
+        # Store per-article results for this batch
+        for g in grades:
+            idx = g.get("idx", -1)
+            d = next((x for x in batch if x["idx"] == idx), None)
+            qf = next((qa for qa in qa_full if qa.get("idx") == idx), {})
+            if d and qf:
+                all_results_raw.append({
+                    "grade": g,
+                    "eval_data": d,
+                    "question": qf.get("question", ""),
+                })
     except Exception as e:
-        print(f"Parse error: {e}")
-        print(f"Raw: {response_grade[:500]}")
-        grades = []
+        print(f"  Parse error: {e}")
+        continue
+
+    print(f"  Batch {batch_idx+1} complete. Total grades: {len(all_grades)}")
+
+grades = all_grades
 
 # ─── Compute Results ────────────────────────────────────────────────────────
 
@@ -284,15 +315,12 @@ full_scores = {d: [] for d in dimensions}
 sel_scores = {d: [] for d in dimensions}
 
 results = []
-for g in grades:
-    idx = g.get("idx", -1)
+for r in all_results_raw:
+    g = r["grade"]
+    d = r["eval_data"]
+    question = r["question"]
     gf = g.get("grade_full", {})
     gs = g.get("grade_selected", {})
-    d = next((x for x in eval_data if x["idx"] == idx), None)
-    qf = next((qa for qa in qa_full if qa.get("idx") == idx), {})
-
-    if not d:
-        continue
 
     for dim in dimensions:
         fv = gf.get(dim, 0)
@@ -304,7 +332,7 @@ for g in grades:
     results.append({
         "pmid": d["pmid"],
         "title": d["title"],
-        "question": qf.get("question", ""),
+        "question": question,
         "full_tokens": d["full_tokens"],
         "selected_tokens": d["sel_tokens"],
         "reduction_pct": round(d["reduction"] * 100, 1),
@@ -312,7 +340,8 @@ for g in grades:
         "grade_selected": gs,
     })
 
-    print(f"  PMID:{d['pmid']} - {d['title']}")
+    safe_t = d['title'].encode('ascii', 'replace').decode()
+    print(f"  PMID:{d['pmid']} - {safe_t}")
     print(f"    FULL:     A={gf.get('accuracy','?')} C={gf.get('completeness','?')} R={gf.get('relevance','?')} Cn={gf.get('conciseness','?')}  [{d['full_tokens']} tok]")
     print(f"    SELECTED: A={gs.get('accuracy','?')} C={gs.get('completeness','?')} R={gs.get('relevance','?')} Cn={gs.get('conciseness','?')}  [{d['sel_tokens']} tok]")
     print()

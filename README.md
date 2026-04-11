@@ -148,26 +148,30 @@ pharmacokinetics, and vaccine development.
 
 | What we measured | Result | What it means |
 |-----------------|--------|---------------|
-| Context reduction | **52% fewer tokens** | You send half the text to the LLM and still get quality answers |
-| Answer quality retained | **60%** perfect score | 6 out of 10 articles lose zero quality after compression |
-| Accuracy (AI judge) | **3.9 / 5.0** | Close to full-text quality |
-| Completeness | **3.9 / 5.0** | Up from 2.8 before we added the specificity boost |
-| Efficiency gain | **+63.2%** quality/token | You get more value per token spent |
+| Context reduction | **49% fewer tokens** | You send half the text to the LLM and still get usable answers |
+| Composite quality | **4.15 / 5.0** (83%) | Selected text retains 83% of full-text answer quality |
+| Accuracy | **3.6 / 5.0** | Some articles lose critical context (see trade-off below) |
+| Relevance | **4.9 / 5.0** | Selected text stays on-topic (TIE with full text) |
+| Conciseness | **4.6 / 5.0** | Shorter context → more focused answers |
+| Efficiency gain | **+64.4%** quality/token | You get 64% more value per token spent |
 | Speed | **4.2 articles/sec** | On CPU. No GPU needed |
 | Training data | **4,400 samples** | Automatically generated for future model training |
+
+**The honest trade-off:** Full text scores 5.0/5.0 (it has everything). Lumisift scores 4.15/5.0 (it sometimes drops explanatory context). But you're sending **49% fewer tokens** -- that's real API cost savings. And for quantitative retrieval, Lumisift preserves 83% of numbers that embeddings would lose.
 
 <details>
 <summary><strong>How we measured this (click to expand)</strong></summary>
 
-1. Generated scientific questions from full abstracts using Gemini 3 Flash Preview
-2. Answered each question twice: once with full text, once with Lumisift-selected text
-3. Blind grading by AI judge on Accuracy, Completeness, Relevance, Conciseness (1-5 each)
-4. "Perfect quality" means 20/20 composite score
+1. Randomly sampled articles from the 1,077-article corpus (seed=42 for reproducibility)
+2. Generated scientific questions from full abstracts using Gemini 3 Flash Preview
+3. Answered each question twice: once with full text, once with Lumisift-selected text
+4. Blind grading by AI judge on Accuracy, Completeness, Relevance, Conciseness (1-5 each)
+5. Run in batches of 10 to respect API rate limits
 
-**Honest limitations of this benchmark:**
+**Honest limitations:**
 - AI judge introduces subjectivity -- human evaluation would be stronger
-- Gemini 3 Flash as evaluator may have biases
-- "Perfect quality" is a high bar (20/20) -- most articles score 16-19/20
+- Free-tier rate limits cap evaluation at ~20 articles per run
+- Accuracy drops (5.0 → 3.6) show that some articles need explanation, not just data
 
 **Reproducible:** `python downstream_eval.py` (requires GEMINI_API_KEY)
 
