@@ -115,6 +115,39 @@ Per-article: Lumisift wins 61%, Embedding wins 4%, Ties 36%.
 
 **Reproducible:** `python numerical_retention_benchmark.py`
 
+### Drug Discovery Use Case
+
+Three real-world pharma scenarios (EGFR inhibitor, lipase evolution, mRNA LNP optimization):
+
+| Scenario | Embedding | Lumisift |
+|----------|-----------|----------|
+| EGFR inhibitor (IC50, TGI, selectivity) | 44% | **67%** |
+| Lipase evolution (kcat/Km, E-value, ee%) | 0% | **86%** |
+| mRNA LNP optimization (fold-change, ED50, PDI) | 0% | **100%** |
+| **Average** | **15%** | **84%** |
+
+**In drug discovery, embedding retrieval retains only 15% of critical data. Lumisift retains 84%.**
+
+**Reproducible:** `python drug_discovery_usecase.py`
+
+### PubMedQA-Style Benchmark (Honest Limitation)
+
+Yes/no/maybe scientific questions (15 articles):
+
+| Method | Accuracy |
+|--------|----------|
+| Full Context (100% tokens) | **93.3%** |
+| Embedding Similarity (50%) | **93.3%** |
+| Lumisift (50%) | **46.7%** |
+
+Lumisift's specificity boost prioritizes quantitative chunks over explanatory context.
+For factual yes/no questions, explanatory text matters more than numbers.
+
+**Takeaway:** Lumisift excels at preserving quantitative data but should be combined with
+similarity retrieval for comprehension tasks. It's a complement, not a replacement.
+
+**Reproducible:** `python pubmedqa_benchmark.py`
+
 ---
 
 ## The 8 Semantic Signals
