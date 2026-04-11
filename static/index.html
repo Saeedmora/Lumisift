@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Rooms — Scientific AI Fine-Tuning Platform</title>
+    <meta name="description" content="7-Axis Semantic Evaluation and Fine-Tuning for Scientific AI. Transform research papers into structured training data.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-0: #030712;
+            --bg-1: #0a0f1e;
+            --bg-2: #111827;
+            --bg-3: #1a2236;
+            --bg-4: #243049;
+            --border: rgba(99,134,255,0.08);
+            --border-h: rgba(99,134,255,0.18);
+            --border-a: rgba(99,134,255,0.35);
+            --t1: #f0f4ff;
+            --t2: #94a3b8;
+            --t3: #4b5563;
+            --blue: #6386FF;
+            --cyan: #22d3ee;
+            --purple: #a78bfa;
+            --green: #34d399;
+            --orange: #fb923c;
+            --red: #f87171;
+            --pink: #f472b6;
+            --yellow: #fbbf24;
+            --g1: linear-gradient(135deg,#6386FF 0%,#a78bfa 50%,#f472b6 100%);
+            --g2: linear-gradient(135deg,#22d3ee 0%,#6386FF 100%);
+            --g3: linear-gradient(135deg,#a78bfa 0%,#f472b6 100%);
+            --glass: rgba(10,15,30,0.65);
+            --glass-b: blur(24px) saturate(180%);
+            --r: 14px;
+            --r-sm: 10px;
+            --r-lg: 20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-0);color:var(--t1);min-height:100vh;overflow-x:hidden}
+
+        /* BG effects */
+        .bg-orbs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+        .bg-orbs::before{content:'';position:absolute;top:-20%;left:10%;width:600px;height:600px;background:radial-gradient(circle,rgba(99,134,255,0.06) 0%,transparent 70%);border-radius:50%;animation:float1 20s ease-in-out infinite}
+        .bg-orbs::after{content:'';position:absolute;bottom:-10%;right:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(167,139,250,0.05) 0%,transparent 70%);border-radius:50%;animation:float2 25s ease-in-out infinite}
+        @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,60px)}}
+        @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-40px)}}
+
+        /* Header */
+        .header{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:var(--glass-b);-webkit-backdrop-filter:var(--glass-b);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+        .header-brand{display:flex;align-items:center;gap:14px}
+        .header-logo{width:38px;height:38px;background:var(--g1);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 0 24px rgba(99,134,255,0.25),inset 0 1px 0 rgba(255,255,255,0.15);transition:transform .3s}
+        .header-logo:hover{transform:scale(1.08) rotate(-2deg)}
+        .header-title{font-size:15px;font-weight:700;letter-spacing:-0.3px}
+        .header-sub{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+        .header-pills{display:flex;gap:8px;align-items:center}
+        .pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:rgba(255,255,255,0.02);color:var(--t2);display:flex;align-items:center;gap:5px;transition:all .25s}
+        .pill .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+        .pill .dot.green{background:var(--green);box-shadow:0 0 8px rgba(52,211,153,0.4)}
+        .pill .dot.yellow{background:var(--yellow);box-shadow:0 0 8px rgba(251,191,36,0.4)}
+        .pill .dot.red{background:var(--red);box-shadow:0 0 8px rgba(248,113,113,0.4)}
+
+        /* Project selector */
+        .proj-select{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);color:var(--t1);border:1px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;outline:none;transition:border-color .2s}
+        .proj-select:hover,.proj-select:focus{border-color:var(--border-a)}
+        .proj-new-btn{font-size:10px;background:none;border:1px solid var(--border);color:var(--t2);border-radius:8px;padding:4px 8px;cursor:pointer;transition:all .2s}
+        .proj-new-btn:hover{border-color:var(--blue);color:var(--blue)}
+
+        /* Search bar */
+        .search-row{display:flex;gap:8px;margin-bottom:12px}
+        .search-input{flex:1;font-family:'Inter',sans-serif;font-size:12px;background:var(--bg-1);color:var(--t1);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 12px;outline:none;transition:border-color .2s}
+        .search-input:focus{border-color:var(--blue)}
+        .search-input::placeholder{color:var(--t3)}
+        .search-btn{font-size:11px;background:var(--bg-3);color:var(--t1);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 14px;cursor:pointer;transition:all .2s;font-weight:500}
+        .search-btn:hover{background:var(--blue);border-color:var(--blue)}
+
+        /* Layout */
+        .main{position:relative;z-index:1;max-width:1480px;margin:0 auto;padding:28px 32px}
+
+        /* Metric strip */
+        .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+        .metric{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+        .metric::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+        .metric:nth-child(1)::before{background:var(--g2)}
+        .metric:nth-child(2)::before{background:var(--g1)}
+        .metric:nth-child(3)::before{background:linear-gradient(90deg,var(--green),var(--cyan))}
+        .metric:nth-child(4)::before{background:var(--g3)}
+        .metric:nth-child(5)::before{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+        .metric:hover{border-color:var(--border-h);transform:translateY(-2px)}.metric:hover::before{opacity:1}
+        .metric-val{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;letter-spacing:-1.5px;line-height:1.1}
+        .metric-lbl{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-weight:600}
+        .c-blue{color:var(--blue)}.c-cyan{color:var(--cyan)}.c-green{color:var(--green)}.c-purple{color:var(--purple)}.c-orange{color:var(--orange)}
+
+        /* Cards */
+        .card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:all .3s}
+        .card:hover{border-color:var(--border-h);box-shadow:0 8px 40px rgba(0,0,0,0.25),0 0 60px rgba(99,134,255,0.04)}
+        .card-h{padding:20px 24px 0;display:flex;align-items:center;justify-content:space-between}
+        .card-t{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t2)}
+        .card-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;background:rgba(99,134,255,0.08);color:var(--blue);border:1px solid rgba(99,134,255,0.12)}
+        .card-b{padding:16px 24px 24px}
+
+        /* Grid */
+        .grid{display:grid;gap:20px}
+        .grid-2{grid-template-columns:1fr 1fr}
+        .grid-full{grid-column:1/-1}
+        .grid-3{grid-template-columns:1fr 1fr 1fr}
+
+        /* Input */
+        .input-card{grid-column:1/-1}
+        .input-row{display:flex;gap:12px;margin-bottom:12px}
+        .field{flex:1;background:var(--bg-1);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 16px;color:var(--t1);font-family:'Inter',sans-serif;font-size:14px;transition:all .25s}
+        .field:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(99,134,255,0.1)}
+        .field::placeholder{color:var(--t3)}
+        select.field{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234b5563' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+        .ta-wrap{position:relative}
+        textarea.field{width:100%;min-height:200px;resize:vertical;line-height:1.7;font-size:14px}
+        .char-ct{position:absolute;bottom:12px;right:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3)}
+
+        /* Buttons */
+        .btn{padding:10px 22px;border:none;border-radius:var(--r-sm);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px;letter-spacing:.2px}
+        .btn-p{background:var(--g1);color:#fff;box-shadow:0 2px 16px rgba(99,134,255,0.25)}
+        .btn-p:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(99,134,255,0.35)}
+        .btn-p:active{transform:translateY(0)}
+        .btn-p:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+        .btn-s{background:rgba(255,255,255,0.04);color:var(--t2);border:1px solid var(--border)}
+        .btn-s:hover{background:rgba(255,255,255,0.07);color:var(--t1);border-color:var(--border-h)}
+        .btn-g{background:linear-gradient(135deg,var(--green),#059669);color:#fff}
+        .btn-g:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(52,211,153,0.25)}
+        .actions{display:flex;gap:10px;margin-top:14px;justify-content:space-between;align-items:center}
+        .actions-l,.actions-r{display:flex;gap:10px}
+
+        /* Pipeline status */
+        .pipeline-status{display:flex;gap:4px;align-items:center;margin-top:14px;padding:10px 14px;background:var(--bg-1);border-radius:var(--r-sm);border:1px solid var(--border)}
+        .pipe-step{flex:1;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);padding:6px 0;border-radius:6px;transition:all .4s;position:relative}
+        .pipe-step.active{color:var(--cyan);background:rgba(34,211,238,0.08)}
+        .pipe-step.done{color:var(--green);background:rgba(52,211,153,0.06)}
+        .pipe-arrow{color:var(--t3);font-size:12px;flex-shrink:0}
+
+        /* Spinner */
+        .spin{width:14px;height:14px;border:2px solid rgba(255,255,255,0.15);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0}
+        @keyframes sp{to{transform:rotate(360deg)}}
+
+        /* Radar chart */
+        .radar-wrap{display:flex;justify-content:center;align-items:center;padding:20px 0}
+        #radarCanvas{max-width:320px;max-height:320px}
+
+        /* Atoms */
+        .atoms-scroll{max-height:520px;overflow-y:auto;padding-right:6px}
+        .atoms-scroll::-webkit-scrollbar{width:3px}.atoms-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:2px}
+        .atom{padding:14px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,0.015);border:1px solid transparent;margin-bottom:8px;cursor:pointer;transition:all .25s}
+        .atom:hover{background:rgba(99,134,255,0.03);border-color:rgba(99,134,255,0.08)}
+        .atom.sel{background:rgba(99,134,255,0.07);border-color:rgba(99,134,255,0.18)}
+        .atom-text{font-size:13px;line-height:1.55;color:var(--t1);margin-bottom:8px}
+        .atom-meta{display:flex;gap:8px;flex-wrap:wrap}
+        .tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:5px;background:rgba(255,255,255,0.03);color:var(--t2);border:1px solid rgba(255,255,255,0.05)}
+        .tag.t-hi{color:var(--red);border-color:rgba(248,113,113,0.15);background:rgba(248,113,113,0.05)}
+        .tag.t-md{color:var(--orange);border-color:rgba(251,146,60,0.15);background:rgba(251,146,60,0.05)}
+        .tag.t-lo{color:var(--green);border-color:rgba(52,211,153,0.15);background:rgba(52,211,153,0.05)}
+
+        /* Feedback */
+        .fb-panel{background:rgba(167,139,250,0.04);border:1px solid rgba(167,139,250,0.1);border-radius:var(--r);padding:18px;margin-top:16px}
+        .fb-title{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+        .fb-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+        .fb-lbl{width:72px;font-size:11px;color:var(--t2);text-transform:capitalize;font-weight:500}
+        .fb-slider{flex:1;-webkit-appearance:none;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;outline:none}
+        .fb-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--purple);border-radius:50%;cursor:pointer;box-shadow:0 0 10px rgba(167,139,250,0.3)}
+        .fb-val{width:38px;font-family:'JetBrains Mono',monospace;font-size:11px;text-align:right;color:var(--t2)}
+
+        /* Training data preview */
+        .jsonl-preview{background:var(--bg-1);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;max-height:320px;overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.8;color:var(--cyan)}
+        .jsonl-preview .jk{color:var(--purple)}.jsonl-preview .jv{color:var(--green)}.jsonl-preview .jn{color:var(--orange)}
+
+        /* Training metrics */
+        .train-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px}
+        .train-m{background:rgba(255,255,255,0.02);border-radius:var(--r-sm);padding:16px;text-align:center}
+        .train-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700}
+        .train-l{font-size:10px;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:.6px}
+
+        /* Compressed output */
+        .compressed{background:var(--bg-1);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.9;color:var(--cyan);max-height:200px;overflow-y:auto;word-break:break-all}
+
+        /* Benchmark Panel */
+        .bench-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+        .bench-stat{background:var(--bg-1);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;text-align:center}
+        .bench-stat-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;letter-spacing:-1px}
+        .bench-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:3px;font-weight:600}
+        .bench-section{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:1.5px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+        .bench-axes{display:grid;gap:6px;margin-bottom:14px}
+        .bench-axis{display:flex;align-items:center;gap:10px;font-size:11px}
+        .bench-axis-name{width:80px;font-family:'JetBrains Mono',monospace;color:var(--t2);font-weight:500;text-align:right}
+        .bench-axis-bar{flex:1;height:14px;background:var(--bg-1);border-radius:7px;overflow:hidden;position:relative;border:1px solid var(--border)}
+        .bench-axis-fill{height:100%;border-radius:7px;transition:width .5s ease;background:var(--g2)}
+        .bench-axis-val{width:55px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);text-align:right}
+        .bench-note{font-size:10px;color:var(--t3);line-height:1.6;padding:10px;background:rgba(99,134,255,0.04);border-radius:var(--r-sm);border:1px solid var(--border);margin-top:10px}
+        .benchmark-panel{max-height:420px;overflow-y:auto;padding-right:4px}
+
+        /* Empty state */
+        .empty{text-align:center;padding:48px 32px;color:var(--t3)}
+        .empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
+        .empty-t{font-size:15px;font-weight:600;color:var(--t2);margin-bottom:6px}
+        .empty-d{font-size:12px;line-height:1.6;max-width:320px;margin:0 auto}
+
+        /* Tabs */
+        .tabs{display:flex;gap:2px;background:rgba(255,255,255,0.02);border-radius:var(--r-sm);padding:3px;margin-bottom:16px}
+        .tab{flex:1;padding:8px 14px;border:none;background:transparent;color:var(--t3);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;border-radius:7px;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.6px}
+        .tab:hover{color:var(--t2)}.tab.on{background:rgba(99,134,255,0.08);color:var(--blue)}
+        .tab-c{display:none}.tab-c.on{display:block}
+
+        /* Toast */
+        .toast{position:fixed;bottom:24px;right:24px;background:var(--bg-3);border:1px solid var(--border-a);border-radius:var(--r);padding:14px 22px;font-size:13px;box-shadow:0 12px 48px rgba(0,0,0,0.5);z-index:9999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.23,1,.32,1);backdrop-filter:var(--glass-b);max-width:380px}
+        .toast.show{transform:translateY(0);opacity:1}
+
+        /* History */
+        .hist{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:var(--r-sm);background:rgba(255,255,255,0.015);margin-bottom:6px;transition:background .15s}
+        .hist:hover{background:rgba(255,255,255,0.03)}
+        .hist-t{font-size:13px;font-weight:500}.hist-m{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace}
+
+        /* Responsive */
+        @media(max-width:1024px){.grid-2,.grid-3{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.header-pills{display:none}.main{padding:16px}}
+        @media(max-width:600px){.metrics{grid-template-columns:1fr}.actions{flex-direction:column}.actions-l,.actions-r{width:100%}.btn{width:100%;justify-content:center}}
+
+        /* Animations */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        .anim{animation:fadeUp .45s cubic-bezier(.23,1,.32,1) forwards;opacity:0}
+    </style>
+</head>
+<body>
+<div class="bg-orbs"></div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="header-brand">
+        <div class="header-logo">LR</div>
+        <div>
+            <div class="header-title">Logical Rooms</div>
+            <div class="header-sub">Scientific AI Fine-Tuning Platform</div>
+        </div>
+    </div>
+    <div class="header-pills" id="sys-pills">
+        <select class="proj-select" id="proj-sel" onchange="switchProject(this.value)" title="Active Project">
+            <option value="default">default</option>
+        </select>
+        <button class="proj-new-btn" onclick="createProject()" title="New Project">+ New</button>
+        <div class="pill"><span class="dot green"></span>Loading...</div>
+    </div>
+</header>
+
+<!-- Main -->
+<div class="main">
+
+    <!-- Metrics -->
+    <div class="metrics" id="metrics-row">
+        <div class="metric anim" style="animation-delay:.05s">
+            <div class="metric-val c-blue" id="m-atoms">0</div>
+            <div class="metric-lbl">Total Atoms</div>
+        </div>
+        <div class="metric anim" style="animation-delay:.1s">
+            <div class="metric-val c-cyan" id="m-sel">0%</div>
+            <div class="metric-lbl">Context Reduction</div>
+        </div>
+        <div class="metric anim" style="animation-delay:.15s">
+            <div class="metric-val c-green" id="m-ds">0</div>
+            <div class="metric-lbl">Training Samples</div>
+        </div>
+        <div class="metric anim" style="animation-delay:.2s">
+            <div class="metric-val c-purple" id="m-fb">0</div>
+            <div class="metric-lbl">Corrections</div>
+        </div>
+        <div class="metric anim" style="animation-delay:.25s">
+            <div class="metric-val c-orange" id="m-ms">0ms</div>
+            <div class="metric-lbl">Avg Processing</div>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="grid grid-2">
+        <div class="card input-card anim" style="animation-delay:.3s">
+            <div class="card-h">
+                <span class="card-t">Scientific Article Input</span>
+                <span class="card-badge">7-Axis Pipeline</span>
+            </div>
+            <div class="card-b">
+                <div class="input-row">
+                    <input type="text" class="field" id="in-title" placeholder="Article title (e.g. 'Attention Is All You Need')">
+                    <select class="field" id="in-domain" style="max-width:180px">
+                        <option value="general">General</option>
+                        <option value="biotech">Biotech / Protein Eng.</option>
+                        <option value="clinical">Clinical Trials</option>
+                        <option value="ai_ml">AI / ML</option>
+                        <option value="medical">Medical</option>
+                        <option value="biology">Biology</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="physics">Physics</option>
+                        <option value="security">Cybersecurity</option>
+                        <option value="finance">Finance</option>
+                        <option value="computer_science">Computer Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="neuroscience">Neuroscience</option>
+                        <option value="materials_science">Materials Science</option>
+                    </select>
+                </div>
+                <div class="ta-wrap">
+                    <textarea class="field" id="in-text" placeholder="Paste your scientific article, abstract, or research paper here...
+
+The text will be decomposed into semantic Atoms, evaluated across 7 independent axes (Temporal, Relevance, Risk, Ontology, Causality, Visibility, Trust), and used to generate structured fine-tuning data.
+
+Separate paragraphs with blank lines for more granular analysis."></textarea>
+                    <span class="char-ct" id="char-ct">0 chars</span>
+                </div>
+
+                <!-- Pipeline Status -->
+                <div class="pipeline-status" id="pipe-status" style="display:none">
+                    <div class="pipe-step" id="ps-embed">Embed</div>
+                    <span class="pipe-arrow">&#x2192;</span>
+                    <div class="pipe-step" id="ps-eval">7-Axis Eval</div>
+                    <span class="pipe-arrow">&#x2192;</span>
+                    <div class="pipe-step" id="ps-atom">Atoms</div>
+                    <span class="pipe-arrow">&#x2192;</span>
+                    <div class="pipe-step" id="ps-surf">Surfaces</div>
+                    <span class="pipe-arrow">&#x2192;</span>
+                    <div class="pipe-step" id="ps-done">Complete</div>
+                </div>
+
+                <div class="actions">
+                    <div class="actions-l">
+                        <button class="btn btn-p" id="btn-go" onclick="processArticle()">
+                            <span id="btn-go-t">Analyze &amp; Evaluate</span>
+                        </button>
+                        <button class="btn btn-s" onclick="loadSample()">Load Sample</button>
+                        <button class="btn btn-s" onclick="clearInput()">Clear</button>
+                    </div>
+                    <div class="actions-r">
+                        <button class="btn btn-g" id="btn-train" onclick="trainModel()" disabled>Train Fine-Tuning</button>
+                        <button class="btn btn-s" onclick="exportDataset()">Export JSONL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div class="grid grid-2" style="margin-top:20px" id="results" style="display:none">
+
+        <!-- Left: Atoms -->
+        <div class="card">
+            <div class="card-h">
+                <span class="card-t">Semantic Atoms</span>
+                <span class="card-badge" id="atom-ct">0 atoms</span>
+                <span class="card-badge" id="stored-ct" style="margin-left:4px;opacity:.6">0 stored</span>
+            </div>
+            <div class="card-b">
+                <div class="search-row">
+                    <input type="text" class="search-input" id="search-input" placeholder="Search stored atoms (e.g. 'protein folding')..." onkeydown="if(event.key==='Enter')searchAtoms()">
+                    <button class="search-btn" onclick="searchAtoms()">&#x1F50D; Search</button>
+                </div>
+                <div class="tabs">
+                    <button class="tab on" onclick="stab('atoms',this)">Atoms</button>
+                    <button class="tab" onclick="stab('data',this)">Training Data</button>
+                    <button class="tab" onclick="stab('compressed',this)">Compressed</button>
+                    <button class="tab" onclick="stab('benchmark',this)">PubMed Benchmark</button>
+                    <button class="tab" onclick="stab('history',this)">History</button>
+                </div>
+                <div id="tc-atoms" class="tab-c on">
+                    <div class="atoms-scroll" id="atoms-list">
+                        <div class="empty">
+                            <div class="empty-ico">&#x1F52C;</div>
+                            <div class="empty-t">No Atoms Yet</div>
+                            <div class="empty-d">Paste a scientific article and click "Analyze & Evaluate" to begin.</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tc-data" class="tab-c">
+                    <div class="jsonl-preview" id="jsonl-preview">
+                        <div class="empty">
+                            <div class="empty-ico">&#x1F4BE;</div>
+                            <div class="empty-t">Training Data Preview</div>
+                            <div class="empty-d">Process an article to see JSONL training samples.</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tc-compressed" class="tab-c">
+                    <div class="compressed" id="comp-text">Process an article to see compressed representation...</div>
+                </div>
+                <div id="tc-history" class="tab-c">
+                    <div id="hist-list">
+                        <div class="empty">
+                            <div class="empty-ico">&#x1F4DA;</div>
+                            <div class="empty-t">No History</div>
+                            <div class="empty-d">Processed articles appear here.</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tc-benchmark" class="tab-c">
+                    <div id="benchmark-content" class="benchmark-panel">
+                        <div class="empty">
+                            <div class="empty-ico">&#x1F4CA;</div>
+                            <div class="empty-t">Loading Benchmark...</div>
+                            <div class="empty-d">Fetching PubMed benchmark data from 95 protein engineering articles.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Radar + Feedback -->
+        <div class="card">
+            <div class="card-h">
+                <span class="card-t">7-Axis Semantic Profile</span>
+                <span class="card-badge">Radar Visualization</span>
+            </div>
+            <div class="card-b">
+                <div class="radar-wrap">
+                    <canvas id="radarCanvas" width="320" height="320"></canvas>
+                </div>
+                <!-- Feedback -->
+                <div class="fb-panel" id="fb-panel" style="display:none">
+                    <div class="fb-title">Fine-Tune Axes (Correct the AI)</div>
+                    <div id="fb-sliders"></div>
+                    <div style="margin-top:14px">
+                        <button class="btn btn-p" onclick="submitFeedback()" style="width:100%">Submit Correction</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training panel -->
+        <div class="card grid-full" id="train-panel" style="display:none">
+            <div class="card-h">
+                <span class="card-t">Fine-Tuning Results</span>
+                <span class="card-badge" id="train-badge">Ready</span>
+            </div>
+            <div class="card-b">
+                <div class="train-grid" id="train-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────
+let atoms=[],selIdx=-1,totalAtoms=0,totalFb=0,lastRatio=0;
+const API='';
+const AX_COLORS={temporal:'#6386FF',relevance:'#22d3ee',risk:'#f87171',ontology:'#a78bfa',causality:'#fb923c',visibility:'#34d399',trust:'#f472b6'};
+const BIPOLAR=new Set(['temporal','risk','causality']);
+const AX_LABELS={temporal:'Temporal',relevance:'Relevance',risk:'Risk',ontology:'Ontology',causality:'Causality',visibility:'Visibility',trust:'Trust'};
+
+// ── System Info ──────────────────────────────────────────────────────
+async function loadSysInfo(){
+    try{
+        const r=await fetch(`${API}/api/system`);
+        const d=await r.json();
+        const pills=document.getElementById('sys-pills');
+        // Preserve project selector, only update system pills
+        const projHtml = `<select class="proj-select" id="proj-sel" onchange="switchProject(this.value)" title="Active Project"><option value="default">default</option></select><button class="proj-new-btn" onclick="createProject()" title="New Project">+ New</button>`;
+        pills.innerHTML= projHtml + `
+            <div class="pill"><span class="dot ${d.capabilities.tiktoken?'green':'yellow'}"></span>${d.tokenizer}</div>
+            <div class="pill"><span class="dot ${d.capabilities.embeddings?'green':'red'}"></span>${d.embeddings}</div>
+            <div class="pill"><span class="dot ${d.capabilities.llm_evaluator?'green':'yellow'}"></span>Eval: ${d.evaluator}</div>
+            <div class="pill" style="color:var(--blue)">v${d.version}</div>
+        `;
+    }catch(e){console.warn('System info unavailable:',e)}
+}
+
+// ── Radar Chart ──────────────────────────────────────────────────────
+function drawRadar(values,labels,colors){
+    const canvas=document.getElementById('radarCanvas');
+    const ctx=canvas.getContext('2d');
+    const W=canvas.width,H=canvas.height;
+    const cx=W/2,cy=H/2,R=Math.min(W,H)/2-40;
+    ctx.clearRect(0,0,W,H);
+    const n=labels.length;
+    const angleStep=2*Math.PI/n;
+    const startAngle=-Math.PI/2;
+
+    // Grid rings
+    for(let ring=1;ring<=5;ring++){
+        const rr=R*ring/5;
+        ctx.beginPath();
+        for(let i=0;i<=n;i++){
+            const a=startAngle+i*angleStep;
+            const x=cx+rr*Math.cos(a),y=cy+rr*Math.sin(a);
+            i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle=`rgba(99,134,255,${ring===5?0.12:0.05})`;
+        ctx.lineWidth=1;
+        ctx.stroke();
+    }
+
+    // Axis lines + labels
+    for(let i=0;i<n;i++){
+        const a=startAngle+i*angleStep;
+        const ex=cx+R*Math.cos(a),ey=cy+R*Math.sin(a);
+        ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(ex,ey);
+        ctx.strokeStyle='rgba(99,134,255,0.06)';ctx.stroke();
+
+        // Label
+        const lx=cx+(R+22)*Math.cos(a),ly=cy+(R+22)*Math.sin(a);
+        ctx.font='600 10px Inter';
+        ctx.fillStyle=colors[i]||'#94a3b8';
+        ctx.textAlign=Math.abs(Math.cos(a))<0.1?'center':Math.cos(a)>0?'left':'right';
+        ctx.textBaseline=Math.abs(Math.sin(a))<0.1?'middle':Math.sin(a)>0?'top':'bottom';
+        ctx.fillText(labels[i],lx,ly);
+    }
+
+    // Value polygon (filled)
+    ctx.beginPath();
+    for(let i=0;i<=n;i++){
+        const idx=i%n;
+        const v=Math.max(0,Math.min(1,(values[idx]+1)/2));  // normalize -1..1 to 0..1
+        const a=startAngle+idx*angleStep;
+        const x=cx+R*v*Math.cos(a),y=cy+R*v*Math.sin(a);
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.fillStyle='rgba(99,134,255,0.12)';ctx.fill();
+    ctx.strokeStyle='rgba(99,134,255,0.6)';ctx.lineWidth=2;ctx.stroke();
+
+    // Value dots
+    for(let i=0;i<n;i++){
+        const v=Math.max(0,Math.min(1,(values[i]+1)/2));
+        const a=startAngle+i*angleStep;
+        const x=cx+R*v*Math.cos(a),y=cy+R*v*Math.sin(a);
+        ctx.beginPath();ctx.arc(x,y,4,0,2*Math.PI);
+        ctx.fillStyle=colors[i]||'#6386FF';ctx.fill();
+        ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.lineWidth=1;ctx.stroke();
+    }
+
+    // Center dot
+    ctx.beginPath();ctx.arc(cx,cy,2,0,2*Math.PI);ctx.fillStyle='rgba(99,134,255,0.3)';ctx.fill();
+}
+
+function drawEmptyRadar(){
+    const labels=Object.values(AX_LABELS);
+    const colors=Object.values(AX_COLORS);
+    drawRadar([0,0.5,0,0.5,0,0.5,0.5],labels,colors);
+}
+
+// ── Pipeline Status Animation ────────────────────────────────────────
+function showPipe(step){
+    const el=document.getElementById('pipe-status');
+    el.style.display='flex';
+    ['ps-embed','ps-eval','ps-atom','ps-surf','ps-done'].forEach((id,i)=>{
+        const s=document.getElementById(id);
+        s.className='pipe-step'+(i<step?' done':'')+(i===step?' active':'');
+    });
+}
+function hidePipe(){document.getElementById('pipe-status').style.display='none'}
+
+// ── Process Article ──────────────────────────────────────────────────
+async function processArticle(){
+    const text=document.getElementById('in-text').value.trim();
+    const title=document.getElementById('in-title').value.trim()||'Untitled';
+    const domain=document.getElementById('in-domain').value;
+    if(!text){showToast('Please paste an article first');return}
+
+    const btn=document.getElementById('btn-go'),btxt=document.getElementById('btn-go-t');
+    btn.disabled=true;
+    btxt.innerHTML='<span class="spin"></span>Analyzing...';
+
+    // Animated pipeline
+    showPipe(0);
+    const pipeTimer=setInterval(()=>{
+        const cur=document.querySelector('.pipe-step.active');
+        if(cur){
+            const idx=['ps-embed','ps-eval','ps-atom','ps-surf','ps-done'].indexOf(cur.id);
+            if(idx<4)showPipe(idx+1);else clearInterval(pipeTimer);
+        }
+    },400);
+
+    try{
+        const res=await fetch(`${API}/api/process`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,title,domain})});
+        const data=await res.json();
+        clearInterval(pipeTimer);showPipe(4);setTimeout(hidePipe,2000);
+
+        if(data.error){showToast(data.error);return}
+
+        atoms=data.atoms;
+        totalAtoms+=data.atoms.length;
+        lastRatio=data.compression.ratio;
+
+        // Metrics
+        document.getElementById('m-atoms').textContent=totalAtoms;
+        const pct=Math.round(data.compression.ratio*100);
+        document.getElementById('m-sel').textContent=(pct>=0?pct:0)+'%';
+        document.getElementById('m-ds').textContent=data.dataset_size;
+        document.getElementById('m-ms').textContent=Math.round(data.processing_time_ms)+'ms';
+        document.getElementById('btn-train').disabled=false;
+
+        renderAtoms(data.atoms);
+        renderJSONL(data.atoms);
+        renderAxesSummary(data.axes_distribution);
+        document.getElementById('comp-text').textContent=data.compression.compressed_text;
+        document.getElementById('atom-ct').textContent=data.atoms.length+' atoms';
+        loadStoreStats(); // Refresh persistent count
+        loadProjects();   // Refresh project atom counts
+        document.getElementById('results').style.display='';
+        updateHistory(data);
+        showToast(`Processed: ${data.atoms.length} atoms | ${data.domain} | ${Math.round(data.processing_time_ms)}ms`);
+    }catch(err){clearInterval(pipeTimer);hidePipe();showToast('Error: '+err.message)}
+    finally{btn.disabled=false;btxt.textContent='Analyze & Evaluate'}
+}
+
+// ── Render Atoms ─────────────────────────────────────────────────────
+function renderAtoms(list){
+    const el=document.getElementById('atoms-list');
+    if(!list.length)return;
+    el.innerHTML=list.map((a,i)=>{
+        const tc=a.tension>.3?'t-hi':a.tension>.1?'t-md':'t-lo';
+        return`<div class="atom anim" onclick="selectAtom(${i})" style="animation-delay:${i*25}ms">
+            <div class="atom-text">${esc(a.text)}</div>
+            <div class="atom-meta">
+                <span class="tag">${a.category}</span>
+                <span class="tag ${tc}">T:${a.tension.toFixed(2)}</span>
+                <span class="tag">${a.domain}</span>
+                <span class="tag">${a.original_tokens} tok</span>
+                <span class="tag">conf:${a.confidence.toFixed(2)}</span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ── Render JSONL Preview ─────────────────────────────────────────────
+function renderJSONL(list){
+    const el=document.getElementById('jsonl-preview');
+    if(!list.length){el.innerHTML='<div class="empty"><div class="empty-t">No samples yet</div></div>';return}
+    el.innerHTML=list.slice(0,10).map(a=>{
+        const obj={text:a.text.substring(0,80)+'...',axes:a.axes,domain:a.domain,tension:a.tension,category:a.category};
+        return colorJSON(JSON.stringify(obj));
+    }).join('\n');
+    if(list.length>10)el.innerHTML+=`\n<span style="color:var(--t3)">... and ${list.length-10} more samples</span>`;
+}
+
+function colorJSON(s){
+    return s.replace(/"([^"]+)":/g,'<span class="jk">"$1"</span>:')
+            .replace(/:(\d+\.?\d*)/g,':<span class="jn">$1</span>')
+            .replace(/:("([^"]*)")/g,':<span class="jv">$1</span>');
+}
+
+// ── Select Atom ──────────────────────────────────────────────────────
+function selectAtom(idx){
+    selIdx=idx;
+    const a=atoms[idx];
+    document.querySelectorAll('.atom').forEach((el,i)=>el.classList.toggle('sel',i===idx));
+
+    // Draw radar for this atom
+    const keys=Object.keys(a.axes);
+    const vals=keys.map(k=>a.axes[k]);
+    const labels=keys.map(k=>AX_LABELS[k]||k);
+    const colors=keys.map(k=>AX_COLORS[k]||'#6386FF');
+    drawRadar(vals,labels,colors);
+
+    // Feedback sliders
+    const panel=document.getElementById('fb-panel');
+    panel.style.display='block';
+    const sl=document.getElementById('fb-sliders');
+    sl.innerHTML=Object.entries(a.axes).map(([axis,val])=>{
+        const mn=BIPOLAR.has(axis)?-1:0;
+        return`<div class="fb-row">
+            <span class="fb-lbl">${axis}</span>
+            <input type="range" class="fb-slider" id="fb-${axis}" min="${mn}" max="1" step="0.05" value="${val}"
+                   oninput="document.getElementById('fv-${axis}').textContent=this.value">
+            <span class="fb-val" id="fv-${axis}">${val.toFixed(2)}</span>
+        </div>`;
+    }).join('');
+}
+
+// ── Render Axes Summary (radar) ──────────────────────────────────────
+function renderAxesSummary(dist){
+    if(selIdx>=0)return;
+    const keys=Object.keys(dist);
+    const vals=keys.map(k=>dist[k].mean);
+    const labels=keys.map(k=>AX_LABELS[k]||k);
+    const colors=keys.map(k=>AX_COLORS[k]||'#6386FF');
+    drawRadar(vals,labels,colors);
+}
+
+// ── Feedback ─────────────────────────────────────────────────────────
+async function submitFeedback(){
+    if(selIdx<0)return;
+    const a=atoms[selIdx];
+    const corrected={};
+    for(const axis of Object.keys(a.axes)){
+        const el=document.getElementById(`fb-${axis}`);
+        if(el)corrected[axis]=parseFloat(el.value);
+    }
+    try{
+        const res=await fetch(`${API}/api/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({atom_id:a.id,text:a.text,predicted_axes:a.axes,corrected_axes:corrected,domain:a.domain})});
+        const data=await res.json();
+        totalFb++;
+        document.getElementById('m-fb').textContent=totalFb;
+        document.getElementById('btn-train').disabled=false;
+        showToast(`Correction recorded (${data.feedback_count} total)`);
+    }catch(err){showToast('Error: '+err.message)}
+}
+
+// ── Train ────────────────────────────────────────────────────────────
+async function trainModel(){
+    const btn=document.getElementById('btn-train');
+    btn.disabled=true;btn.innerHTML='<span class="spin"></span>Training...';
+    try{
+        const res=await fetch(`${API}/api/train`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({epochs:5})});
+        const data=await res.json();
+        const panel=document.getElementById('train-panel');
+        panel.style.display='';
+        document.getElementById('train-badge').textContent=`${data.epochs_completed} epochs`;
+        const last=data.results[data.results.length-1];
+        document.getElementById('train-results').innerHTML=`
+            <div class="train-m"><div class="train-v" style="color:var(--blue)">${last.error_before.toFixed(4)}</div><div class="train-l">Error Before</div></div>
+            <div class="train-m"><div class="train-v" style="color:var(--green)">${last.error_after.toFixed(4)}</div><div class="train-l">Error After</div></div>
+            <div class="train-m"><div class="train-v" style="color:var(--cyan)">${last.improvement_pct.toFixed(1)}%</div><div class="train-l">Improvement</div></div>
+            <div class="train-m"><div class="train-v" style="color:var(--purple)">${last.samples}</div><div class="train-l">Samples Used</div></div>`;
+        showToast(`Training complete: ${last.improvement_pct.toFixed(1)}% improvement`);
+    }catch(err){showToast('Training error: '+err.message)}
+    finally{btn.disabled=false;btn.innerHTML='Train Fine-Tuning'}
+}
+
+// ── Export ────────────────────────────────────────────────────────────
+async function exportDataset(){
+    try{const res=await fetch(`${API}/api/export`);const data=await res.json();showToast(`Exported ${data.exported} samples to ${data.path}`)}
+    catch(err){showToast('Export error: '+err.message)}
+}
+
+// ── History ──────────────────────────────────────────────────────────
+function updateHistory(data){
+    const list=document.getElementById('hist-list');
+    const item=`<div class="hist anim"><div class="hist-t">${esc(data.title)}</div>
+        <div class="hist-m">${data.atoms.length} atoms | ${data.domain} | ${Math.round(data.processing_time_ms)}ms</div></div>`;
+    if(list.querySelector('.empty'))list.innerHTML='';
+    list.insertAdjacentHTML('afterbegin',item);
+}
+
+// ── Tabs ─────────────────────────────────────────────────────────────
+function stab(name,el){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+    document.querySelectorAll('.tab-c').forEach(t=>t.classList.remove('on'));
+    el.classList.add('on');
+    document.getElementById('tc-'+name).classList.add('on');
+    if(name==='benchmark' && !window._benchLoaded) loadBenchmark();
+}
+
+// ── Benchmark ────────────────────────────────────────────────────────
+let _benchLoaded = false;
+async function loadBenchmark(){
+    const el = document.getElementById('benchmark-content');
+    try {
+        const r = await fetch('/api/benchmark');
+        if(!r.ok) throw new Error('No benchmark data');
+        const b = await r.json();
+        if(b.error){ el.innerHTML=`<div class="empty"><div class="empty-ico">&#x26A0;</div><div class="empty-t">${b.error}</div></div>`; return; }
+        _benchLoaded = true;
+        renderBenchmark(b, el);
+    } catch(e) {
+        el.innerHTML=`<div class="empty"><div class="empty-ico">&#x26A0;</div><div class="empty-t">No Benchmark Data</div><div class="empty-d">Run <code>python pubmed_benchmark.py</code> to generate benchmark from 100 PubMed articles.</div></div>`;
+    }
+}
+
+function renderBenchmark(b, el){
+    const cs = b.corpus_stats || {};
+    const cb = b.compression_benchmark || {};
+    const sb = b.selection_benchmark || {};
+    const pf = b.performance || {};
+    const qi = b.quality_indicators || {};
+    const axes = b.axes_distribution || {};
+    const meta = b.metadata || {};
+
+    const pct = v => v != null ? (v*100).toFixed(1)+'%' : 'N/A';
+    const axisColors = {
+        temporal:'#22d3ee',relevance:'#6386FF',risk:'#f87171',
+        ontology:'#a78bfa',causality:'#34d399',visibility:'#fb923c',trust:'#fbbf24'
+    };
+
+    let html = `
+    <div class="bench-section">&#x1F4CA; PubMed Corpus — ${meta.query||'protein engineering'}</div>
+    <div class="bench-grid">
+        <div class="bench-stat"><div class="bench-stat-val c-blue">${cs.total_articles||0}</div><div class="bench-stat-lbl">Articles</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-cyan">${cs.total_atoms||0}</div><div class="bench-stat-lbl">Atoms Created</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-green">${(cs.total_original_tokens||0).toLocaleString()}</div><div class="bench-stat-lbl">Total Tokens</div></div>
+    </div>
+    <div class="bench-grid">
+        <div class="bench-stat"><div class="bench-stat-val c-purple">${cs.avg_abstract_tokens||0}</div><div class="bench-stat-lbl">Avg Tokens/Article</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-orange">${cs.avg_atoms_per_article||0}</div><div class="bench-stat-lbl">Avg Atoms/Article</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-green">${cs.total_surfaces||0}</div><div class="bench-stat-lbl">Surfaces Built</div></div>
+    </div>
+
+    <div class="bench-section">&#x1F4E6; Compression Benchmark</div>
+    <div class="bench-grid">
+        <div class="bench-stat"><div class="bench-stat-val c-cyan">${pct(cb.overall_ratio)}</div><div class="bench-stat-lbl">Overall Compression</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-blue">${pct(cb.median_ratio)}</div><div class="bench-stat-lbl">Median per Article</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-green">${pct(cb.best_ratio)}</div><div class="bench-stat-lbl">Best Case</div></div>
+    </div>
+
+    <div class="bench-section">&#x1F3AF; Axes-Driven Selection</div>
+    <div class="bench-grid">
+        <div class="bench-stat"><div class="bench-stat-val c-purple">${pct(sb.overall_ratio)}</div><div class="bench-stat-lbl">Context Reduction</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-orange">${pct(sb.median_ratio)}</div><div class="bench-stat-lbl">Median Selection</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-green">${pct(sb.best_ratio)}</div><div class="bench-stat-lbl">Best Selection</div></div>
+    </div>
+
+    <div class="bench-section">&#x1F9EC; 7-Axis Distribution (${cs.total_atoms||0} atoms)</div>
+    <div class="bench-axes">`;
+
+    for(const [axis, stats] of Object.entries(axes)){
+        // Normalize mean to 0-100% for display (axes range [-1, 1], map to [0, 100])
+        const normVal = ((stats.mean + 1) / 2) * 100;
+        const color = axisColors[axis] || 'var(--cyan)';
+        html += `
+        <div class="bench-axis">
+            <div class="bench-axis-name">${axis}</div>
+            <div class="bench-axis-bar">
+                <div class="bench-axis-fill" style="width:${normVal.toFixed(1)}%;background:${color}"></div>
+            </div>
+            <div class="bench-axis-val" style="color:${color}">${stats.mean>=0?'+':''}${stats.mean.toFixed(3)}</div>
+        </div>`;
+    }
+
+    html += `</div>
+
+    <div class="bench-section">&#x26A1; Performance</div>
+    <div class="bench-grid">
+        <div class="bench-stat"><div class="bench-stat-val c-cyan">${(pf.total_processing_ms/1000).toFixed(1)}s</div><div class="bench-stat-lbl">Total Time</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-blue">${Math.round(pf.avg_per_article_ms||0)}ms</div><div class="bench-stat-lbl">Avg per Article</div></div>
+        <div class="bench-stat"><div class="bench-stat-val c-green">${pf.throughput_articles_per_sec||0}</div><div class="bench-stat-lbl">Articles/sec</div></div>
+    </div>
+
+    <div class="bench-note">
+        <strong>Source:</strong> ${meta.source||'N/A'} &bull;
+        <strong>Tokenizer:</strong> ${meta.tokenizer||'N/A'} &bull;
+        <strong>Evaluator:</strong> ${meta.evaluator||'N/A'} &bull;
+        <strong>Date:</strong> ${meta.date ? new Date(meta.date).toLocaleDateString() : 'N/A'}
+    </div>`;
+
+    el.innerHTML = html;
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000)}
+function clearInput(){document.getElementById('in-text').value='';document.getElementById('in-title').value='';document.getElementById('char-ct').textContent='0 chars'}
+
+function loadSample(){
+    document.getElementById('in-title').value='Attention Is All You Need';
+    document.getElementById('in-domain').value='ai_ml';
+    document.getElementById('in-text').value=`The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism.
+
+We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train.
+
+Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.0 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature.
+
+The Transformer follows an encoder-decoder structure using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder. The encoder maps an input sequence of symbol representations to a sequence of continuous representations.
+
+Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this capability. We found it beneficial to linearly project the queries, keys and values multiple times with different, learned linear projections.
+
+We employ residual connections around each of the two sub-layers, followed by layer normalization. The output of each sub-layer is LayerNorm(x + Sublayer(x)). To facilitate these residual connections, all sub-layers in the model produce outputs of dimension d_model = 512.`;
+    updCC();
+}
+
+function updCC(){
+    const t=document.getElementById('in-text').value;
+    const w=t.trim()?t.trim().split(/\s+/).length:0;
+    document.getElementById('char-ct').textContent=`${t.length} chars / ${w} words`;
+}
+
+document.getElementById('in-text').addEventListener('input',updCC);
+
+// ── Projects ─────────────────────────────────────────────────────────
+async function loadProjects(){
+    try{
+        const r=await fetch('/api/projects');
+        const d=await r.json();
+        const sel=document.getElementById('proj-sel');
+        sel.innerHTML='';
+        (d.projects||[]).forEach(p=>{
+            const opt=document.createElement('option');
+            opt.value=p.name;
+            opt.textContent=`${p.name} (${p.atoms||0})`;
+            if(p.name===d.active) opt.selected=true;
+            sel.appendChild(opt);
+        });
+        loadStoreStats();
+    }catch(e){console.log('Projects not available:',e)}
+}
+
+async function switchProject(name){
+    try{
+        const r=await fetch('/api/projects/switch',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});
+        const d=await r.json();
+        if(d.active) showToast(`Project: ${d.active} (${d.atoms} atoms)`);
+        loadStoreStats();
+    }catch(e){showToast('Failed to switch project')}
+}
+
+async function createProject(){
+    const name=prompt('Project name:');
+    if(!name) return;
+    const domain=document.getElementById('in-domain').value;
+    try{
+        const r=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,domain})});
+        const d=await r.json();
+        showToast(`Created project: ${d.active}`);
+        loadProjects();
+    }catch(e){showToast('Failed to create project')}
+}
+
+async function loadStoreStats(){
+    try{
+        const r=await fetch('/api/store/stats');
+        const d=await r.json();
+        document.getElementById('stored-ct').textContent=`${d.atoms||0} stored`;
+    }catch(e){}
+}
+
+// ── Vector Search ────────────────────────────────────────────────────
+async function searchAtoms(){
+    const query=document.getElementById('search-input').value.trim();
+    if(!query){showToast('Enter a search query');return}
+
+    try{
+        const r=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,top_k:10})});
+        const d=await r.json();
+        if(d.results && d.results.length>0){
+            // Switch to atoms tab and show results
+            stab('atoms',document.querySelector('.tab'));
+            const list=document.getElementById('atoms-list');
+            list.innerHTML='';
+            d.results.forEach((a,i)=>{
+                const axisHtml=Object.entries(a.axes||{}).map(([k,v])=>`<span class="axis-tag" style="color:${v>0.5?'var(--green)':v<-0.2?'var(--red)':'var(--t2)'}">${k}: ${v>=0?'+':''}${v.toFixed(2)}</span>`).join(' ');
+                list.innerHTML+=`<div class="atom-item">
+                    <div class="atom-head">
+                        <div class="atom-id">#${i+1} — ${(a.similarity*100).toFixed(0)}% match</div>
+                        <span class="atom-cat">${a.category||'unknown'}</span>
+                    </div>
+                    <div class="atom-text">${esc(a.text)}</div>
+                    <div class="atom-axes">${axisHtml}</div>
+                </div>`;
+            });
+            document.getElementById('atom-ct').textContent=`${d.results.length} results`;
+            showToast(`Found ${d.results.length} matches in ${d.total_searched} atoms`);
+        }else{
+            showToast('No matching atoms found');
+        }
+    }catch(e){showToast('Search failed: '+e.message)}
+}
+
+// ── Init ─────────────────────────────────────────────────────────────
+drawEmptyRadar();
+loadSysInfo();
+loadProjects();
+</script>
+</body>
+</html>

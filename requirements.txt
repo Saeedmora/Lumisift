@@ -1,0 +1,4 @@
+# Core dependencies (minimal install)
+numpy>=1.24
+sentence-transformers>=2.2
+python-dotenv>=1.0

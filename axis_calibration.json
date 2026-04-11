@@ -1,0 +1,25 @@
+{
+  "calibration": {
+    "bias": {
+      "temporal": 0.0,
+      "relevance": 0.0,
+      "risk": 0.011310953125,
+      "ontology": 0.0,
+      "causality": 0.0,
+      "visibility": 0.0,
+      "trust": 0.0
+    },
+    "scale": {
+      "temporal": 1.0,
+      "relevance": 1.0,
+      "risk": 1.0,
+      "ontology": 1.0,
+      "causality": 1.0,
+      "visibility": 1.0,
+      "trust": 1.0
+    }
+  },
+  "training_steps": 5,
+  "feedback_count": 1,
+  "saved_at": "2026-04-11T02:01:41.308600"
+}

@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "date": "2026-04-11T12:56:21.743114",
+    "model": "gemini-3-flash-preview",
+    "methodology": "Batch QA evaluation: generate questions -> answer with full/selected text -> grade by Gemini judge",
+    "articles_evaluated": 10,
+    "api_calls": 3
+  },
+  "token_stats": {
+    "total_full_tokens": 2315,
+    "total_selected_tokens": 1135,
+    "avg_reduction_pct": 51.8
+  },
+  "quality_scores": {
+    "accuracy": {
+      "full": 5.0,
+      "selected": 3.9,
+      "delta": -1.1,
+      "verdict": "FULL+"
+    },
+    "completeness": {
+      "full": 5.0,
+      "selected": 3.9,
+      "delta": -1.1,
+      "verdict": "FULL+"
+    },
+    "relevance": {
+      "full": 5.0,
+      "selected": 4.1,
+      "delta": -0.9,
+      "verdict": "FULL+"
+    },
+    "conciseness": {
+      "full": 5.0,
+      "selected": 4.1,
+      "delta": -0.9,
+      "verdict": "FULL+"
+    }
+  },
+  "composite": {
+    "full_text": 5.0,
+    "selected_text": 4.0,
+    "delta": -1.0,
+    "verdict": "FULL WINS"
+  },
+  "efficiency": {
+    "quality_per_1k_tokens_full": 2.1598,
+    "quality_per_1k_tokens_selected": 3.5242,
+    "efficiency_gain_pct": 63.2
+  },
+  "per_article": [
+    {
+      "pmid": "40628259",
+      "title": "Advancing protein evolution with inverse folding models inte",
+      "question": "What was the maximum fold improvement in mitochondrial activity achieved by the enDdd1-DdCBE base editor developed using the AiCE method?",
+      "full_tokens": 229,
+      "selected_tokens": 131,
+      "reduction_pct": 42.8,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "32557882",
+      "title": "A mechanistic view of enzyme evolution.",
+      "question": "According to the text, through what process do new enzyme functions often evolve?",
+      "full_tokens": 228,
+      "selected_tokens": 95,
+      "reduction_pct": 58.3,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 3,
+        "completeness": 3,
+        "relevance": 4,
+        "conciseness": 3
+      }
+    },
+    {
+      "pmid": "27826849",
+      "title": "Engineering and Directed Evolution of DNA Methyltransferases",
+      "question": "Why do bacterial DNA methyltransferases (MTases) that are part of restriction/modification (R/M) systems facilitate the engineering of large gene libraries?",
+      "full_tokens": 267,
+      "selected_tokens": 125,
+      "reduction_pct": 53.2,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "40773556",
+      "title": "An orthogonal T7 replisome for continuous hypermutation and ",
+      "question": "What was the maximum mutation rate achieved in vivo using the engineered T7 DNA polymerase variants within the T7-ORACLE system?",
+      "full_tokens": 179,
+      "selected_tokens": 92,
+      "reduction_pct": 48.6,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "30069054",
+      "title": "CRISPR-guided DNA polymerases enable diversification of all ",
+      "question": "What is the maximum editing window length achieved by the EvolvR system for diversifying nucleotides at user-defined loci?",
+      "full_tokens": 266,
+      "selected_tokens": 105,
+      "reduction_pct": 60.5,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "27410729",
+      "title": "Using Evolution to Guide Protein Engineering: The Devil IS i",
+      "question": "What method is described in the text as a way to readily transfer protein folds and gross functions from one protein to another?",
+      "full_tokens": 307,
+      "selected_tokens": 199,
+      "reduction_pct": 35.2,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 2,
+        "completeness": 2,
+        "relevance": 2,
+        "conciseness": 3
+      }
+    },
+    {
+      "pmid": "29413956",
+      "title": "Structural heterogeneity and dynamics in protein evolution a",
+      "question": "What factor is suggested to facilitate the coupling of structure and dynamics in protein evolution?",
+      "full_tokens": 165,
+      "selected_tokens": 75,
+      "reduction_pct": 54.5,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 3,
+        "completeness": 3,
+        "relevance": 4,
+        "conciseness": 3
+      }
+    },
+    {
+      "pmid": "36562723",
+      "title": "Protein engineering via Bayesian optimization-guided evoluti",
+      "question": "In the engineering of the RhlA enzyme using the BO-EVO algorithm, what percentage of possible mutants were examined to achieve a 4.8-fold improvement in producing the target rhamnolipid congener?",
+      "full_tokens": 290,
+      "selected_tokens": 151,
+      "reduction_pct": 47.9,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "28255874",
+      "title": "Directed Evolution of Protein Thermal Stability Using Yeast ",
+      "question": "What technological advancement in yeast surface display has allowed for protein engineering at denaturation temperatures up to 85 °C?",
+      "full_tokens": 200,
+      "selected_tokens": 108,
+      "reduction_pct": 46.0,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      }
+    },
+    {
+      "pmid": "15026190",
+      "title": "CYP51--the omnipotent P450.",
+      "question": "How many conserved amino acid residues are found across the entire CYP51 protein gene family?",
+      "full_tokens": 184,
+      "selected_tokens": 54,
+      "reduction_pct": 70.7,
+      "grade_full": {
+        "accuracy": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "conciseness": 5
+      },
+      "grade_selected": {
+        "accuracy": 1,
+        "completeness": 1,
+        "relevance": 1,
+        "conciseness": 2
+      }
+    }
+  ]
+}

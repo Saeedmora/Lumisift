@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "logical-rooms"
+version = "1.0.0"
+description = "Semantic compression framework for LLM context optimization using 7-axis evaluation"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Logical Rooms Contributors"},
+]
+keywords = [
+    "llm",
+    "semantic-compression",
+    "fine-tuning",
+    "context-optimization",
+    "rag",
+    "embeddings",
+    "nlp",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "sentence-transformers>=2.2",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+local = [
+    "llama-cpp-python>=0.2.0",
+    "huggingface-hub>=0.16",
+]
+search = [
+    "faiss-cpu>=1.7",
+]
+cloud = [
+    "openai>=1.0",
+    "google-generativeai>=0.3",
+]
+server = [
+    "flask>=3.0",
+    "flask-cors>=4.0",
+]
+dev = [
+    "pytest>=7.0",
+    "scikit-learn>=1.3",
+    "networkx>=3.0",
+    "pyvis>=0.3",
+]
+all = [
+    "logical-rooms[local,search,cloud,server,dev]",
+]
+
+[project.scripts]
+logical-rooms = "main:main"
+
+[project.urls]
+Homepage = "https://github.com/logical-rooms/logical-rooms"
+Documentation = "https://github.com/logical-rooms/logical-rooms#readme"
+Repository = "https://github.com/logical-rooms/logical-rooms"
+Issues = "https://github.com/logical-rooms/logical-rooms/issues"
+
+[tool.setuptools.packages.find]
+include = ["core*", "visualization*", "tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

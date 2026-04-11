@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logical Rooms - Demo Dashboard</title>
+  <style>
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-secondary: #1a1a2e;
+      --bg-card: #16213e;
+      --accent: #0ea5e9;
+      --accent-glow: rgba(14, 165, 233, 0.3);
+      --success: #22c55e;
+      --warning: #eab308;
+      --danger: #ef4444;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-dim);
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .status-item {
+      background: var(--bg-primary);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .status-item.active {
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 .icon {
+      font-size: 1.5rem;
+    }
+
+    /* Chat Section */
+    .chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      background: var(--bg-primary);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .message {
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .message.user {
+      background: var(--accent);
+      margin-left: 20%;
+    }
+
+    .message.assistant {
+      background: var(--bg-secondary);
+      margin-right: 20%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 12px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--bg-primary);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .chat-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    button {
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), #6366f1);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    /* Axes Visualization */
+    .axes-display {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .axis-item {
+      background: var(--bg-primary);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .axis-item .label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .axis-item .value {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .axis-item .bar {
+      height: 6px;
+      background: var(--bg-secondary);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .axis-item .bar .fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .axis-item.risk .value {
+      color: var(--danger);
+    }
+
+    .axis-item.risk .fill {
+      background: var(--danger);
+    }
+
+    .axis-item.time .value {
+      color: var(--warning);
+    }
+
+    .axis-item.time .fill {
+      background: var(--warning);
+    }
+
+    .axis-item.relevance .value {
+      color: var(--success);
+    }
+
+    .axis-item.relevance .fill {
+      background: var(--success);
+    }
+
+    /* Benchmark Section */
+    .benchmark-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat-box {
+      background: var(--bg-primary);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-box .value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .stat-box .label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .rooms-list {
+      max-height: 200px;
+      overflow-y: auto;
+      background: var(--bg-primary);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .room-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Full Width Card */
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .benchmark-chart {
+      height: 200px;
+      background: var(--bg-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .chart-bar {
+      width: 60px;
+      background: linear-gradient(to top, var(--accent), #a855f7);
+      border-radius: 8px 8px 0 0;
+      text-align: center;
+      position: relative;
+      transition: height 0.5s ease;
+    }
+
+    .chart-bar span {
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      right: 0;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: var(--text-dim);
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .loading.active {
+      animation: pulse 1.5s infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Logical Rooms</h1>
+      <p>Multi-Axial Context Management - Demo Dashboard</p>
+      <div class="status-bar">
+        <div class="status-item active" id="llmStatus">LLM: Loading...</div>
+        <div class="status-item" id="roomsStatus">Rooms: 0</div>
+      </div>
+    </header>
+
+    <div class="main-grid">
+      <!-- Chat Section -->
+      <div class="card">
+        <h2><span class="icon">💬</span> Chat Interface</h2>
+        <div class="chat-messages" id="chatMessages">
+          <div class="message assistant">
+            Willkommen! Stellen Sie Fragen oder fügen Sie neues Wissen hinzu. Das System analysiert automatisch die
+            Achsen (Risk, Time, Relevance).
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Nachricht eingeben..."
+            onkeypress="if(event.key==='Enter')sendMessage()">
+          <button onclick="sendMessage()">Senden</button>
+        </div>
+
+        <h3 style="margin-top: 20px; font-size: 1rem;">Letzte Achsen-Analyse</h3>
+        <div class="axes-display">
+          <div class="axis-item risk">
+            <div class="label">Risk</div>
+            <div class="value" id="axisRisk">0.0</div>
+            <div class="bar">
+              <div class="fill" id="axisRiskBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="axis-item time">
+            <div class="label">Time</div>
+            <div class="value" id="axisTime">0.0</div>
+            <div class="bar">
+              <div class="fill" id="axisTimeBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="axis-item relevance">
+            <div class="label">Relevance</div>
+            <div class="value" id="axisRelevance">0.0</div>
+            <div class="bar">
+              <div class="fill" id="axisRelevanceBar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmark Section -->
+      <div class="card">
+        <h2><span class="icon">📊</span> Benchmark Dashboard</h2>
+        <div class="benchmark-stats">
+          <div class="stat-box">
+            <div class="value" id="tokenReduction">--</div>
+            <div class="label">Token Reduktion %</div>
+          </div>
+          <div class="stat-box">
+            <div class="value" id="processingTime">--</div>
+            <div class="label">Verarbeitung (ms)</div>
+          </div>
+          <div class="stat-box">
+            <div class="value" id="totalRooms">0</div>
+            <div class="label">Logical Rooms</div>
+          </div>
+          <div class="stat-box">
+            <div class="value" id="llmMode">--</div>
+            <div class="label">LLM Modus</div>
+          </div>
+        </div>
+
+        <button onclick="runBenchmark()" style="width: 100%;">Benchmark starten</button>
+
+        <div class="loading" id="benchmarkLoading">Benchmark läuft...</div>
+
+        <h3 style="margin-top: 20px; font-size: 1rem;">Relevante Rooms</h3>
+        <div class="rooms-list" id="roomsList">
+          <div class="room-item">Keine Rooms gefunden. Starten Sie einen Chat.</div>
+        </div>
+      </div>
+
+      <!-- Add Knowledge Section -->
+      <div class="card full-width">
+        <h2><span class="icon">➕</span> Wissen hinzufügen</h2>
+        <div class="chat-input">
+          <input type="text" id="knowledgeInput" placeholder="Neuen Text zur Wissensbasis hinzufügen...">
+          <button onclick="addKnowledge()">Hinzufügen</button>
+        </div>
+
+        <div class="benchmark-chart" id="benchmarkChart">
+          <div class="chart-bar" style="height: 40%"><span>Security</span></div>
+          <div class="chart-bar" style="height: 60%"><span>Financial</span></div>
+          <div class="chart-bar" style="height: 80%"><span>Technical</span></div>
+          <div class="chart-bar" style="height: 50%"><span>News</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = '';
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchStats();
+      setInterval(fetchStats, 5000);
+    });
+
+    async function fetchStats() {
+      try {
+        const res = await fetch(API_BASE + '/api/stats');
+        const data = await res.json();
+
+        document.getElementById('roomsStatus').textContent = 'Rooms: ' + data.total_rooms;
+        document.getElementById('llmStatus').textContent = 'LLM: ' + data.llm_mode;
+        document.getElementById('totalRooms').textContent = data.total_rooms;
+        document.getElementById('llmMode').textContent = data.llm_mode;
+
+        if (data.last_benchmark) {
+          document.getElementById('tokenReduction').textContent = data.last_benchmark.token_reduction_pct + '%';
+          document.getElementById('processingTime').textContent = data.last_benchmark.processing_time_ms;
+        }
+      } catch (e) {
+        console.error('Stats fetch failed:', e);
+      }
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      // Show user message
+      addChatMessage(message, 'user');
+      input.value = '';
+
+      try {
+        const res = await fetch(API_BASE + '/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+
+        // Show response
+        addChatMessage(data.response, 'assistant');
+
+        // Update axes
+        updateAxes(data.axes);
+
+        // Update rooms list
+        updateRoomsList(data.relevant_rooms);
+
+        // Update stats
+        document.getElementById('totalRooms').textContent = data.total_rooms;
+      } catch (e) {
+        addChatMessage('Fehler: ' + e.message, 'assistant');
+      }
+    }
+
+    function addChatMessage(text, role) {
+      const container = document.getElementById('chatMessages');
+      const msg = document.createElement('div');
+      msg.className = 'message ' + role;
+      msg.textContent = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function updateAxes(axes) {
+      if (!axes) return;
+
+      document.getElementById('axisRisk').textContent = axes.risk.toFixed(2);
+      document.getElementById('axisTime').textContent = axes.time.toFixed(2);
+      document.getElementById('axisRelevance').textContent = axes.relevance.toFixed(2);
+
+      document.getElementById('axisRiskBar').style.width = (axes.risk * 100) + '%';
+      document.getElementById('axisTimeBar').style.width = (axes.time * 100) + '%';
+      document.getElementById('axisRelevanceBar').style.width = (axes.relevance * 100) + '%';
+    }
+
+    function updateRoomsList(rooms) {
+      const container = document.getElementById('roomsList');
+      container.innerHTML = '';
+
+      if (!rooms || rooms.length === 0) {
+        container.innerHTML = '<div class="room-item">Keine relevanten Rooms gefunden.</div>';
+        return;
+      }
+
+      rooms.forEach(room => {
+        const item = document.createElement('div');
+        item.className = 'room-item';
+        item.innerHTML = '<strong>' + room.room_name + '</strong>: ' + room.content.substring(0, 80) + '...';
+        container.appendChild(item);
+      });
+    }
+
+    async function addKnowledge() {
+      const input = document.getElementById('knowledgeInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      try {
+        const res = await fetch(API_BASE + '/api/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text })
+        });
+        const data = await res.json();
+
+        input.value = '';
+        addChatMessage('Neues Wissen hinzugefügt: ' + data.room_name, 'assistant');
+        updateAxes(data.axes);
+        fetchStats();
+      } catch (e) {
+        addChatMessage('Fehler beim Hinzufügen: ' + e.message, 'assistant');
+      }
+    }
+
+    async function runBenchmark() {
+      const loading = document.getElementById('benchmarkLoading');
+      loading.classList.add('active');
+
+      try {
+        const res = await fetch(API_BASE + '/api/benchmark', { method: 'POST' });
+        const data = await res.json();
+
+        document.getElementById('tokenReduction').textContent = data.token_reduction_pct + '%';
+        document.getElementById('processingTime').textContent = data.processing_time_ms;
+        document.getElementById('llmMode').textContent = data.llm_mode;
+
+        // Update chart
+        const chart = document.getElementById('benchmarkChart');
+        chart.innerHTML = '';
+        data.processed.forEach((item, i) => {
+          const bar = document.createElement('div');
+          bar.className = 'chart-bar';
+          bar.style.height = Math.max(20, item.axes.relevance * 100) + '%';
+          bar.innerHTML = '<span>Text ' + (i + 1) + '</span>';
+          chart.appendChild(bar);
+        });
+
+        addChatMessage('Benchmark abgeschlossen: ' + data.token_reduction_pct + '% Token-Reduktion in ' + data.processing_time_ms + 'ms', 'assistant');
+      } catch (e) {
+        addChatMessage('Benchmark fehlgeschlagen: ' + e.message, 'assistant');
+      } finally {
+        loading.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+# Development & optional dependencies
+-r requirements.txt
+
+# Local LLM inference
+llama-cpp-python>=0.2.0
+huggingface-hub>=0.16
+
+# Vector search
+faiss-cpu>=1.7
+
+# Cloud APIs
+openai>=1.0
+google-generativeai>=0.3
+
+# Server
+flask>=3.0
+flask-cors>=4.0
+
+# Testing & analysis
+pytest>=7.0
+scikit-learn>=1.3
+networkx>=3.0
+pyvis>=0.3
