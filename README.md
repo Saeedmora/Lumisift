@@ -60,6 +60,31 @@ Lumisift:        text -> embed -> information density score -> select top-k -> L
 
 ---
 
+## The Corpus
+
+All results in this document are based on a single, reproducible benchmark corpus:
+
+**1,077 PubMed articles** across **10 biomedical domains**, fetched via the NCBI E-utilities API with fixed search queries.
+
+| Domain | Articles | Focus |
+|--------|---------|-------|
+| Protein engineering | ~120 | Directed evolution, rational design |
+| Drug discovery | ~120 | Hit-to-lead, SAR, in vivo efficacy |
+| Protein extraction | ~100 | Purification, chromatography, yields |
+| Enzyme optimization | ~110 | Activity, stability, enantioselectivity |
+| mRNA delivery | ~100 | LNP formulation, transfection, expression |
+| Antibody engineering | ~110 | Affinity maturation, humanization |
+| CRISPR gene editing | ~100 | Knock-in/out efficiency, off-target |
+| Biocatalysis | ~100 | Industrial enzymes, process optimization |
+| Pharmacokinetics | ~110 | ADME, bioavailability, half-life |
+| Vaccine development | ~107 | Immunogenicity, adjuvants, efficacy |
+
+After filtering (abstract > 50 words), **1,070 articles** are used in all benchmarks. From these: **6,463 text chunks**, **2,722 numerical facts** (in 584 articles with quantitative data), and **4,400 labeled training samples**.
+
+Every benchmark reads from the same `benchmark_data/pubmed_articles.json`. Regenerate with: `python pubmed_benchmark.py`
+
+---
+
 ## The Core Insight
 
 Every retrieval method we tested -- BM25, ColBERT, embedding similarity, cross-encoder reranking -- produces nearly identical results on information retention. They all lose 56-64% of quantitative data:
