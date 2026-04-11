@@ -42,3 +42,7 @@ skills/
 
 # Archive (old benchmarks)
 archive/
+
+# Static HTML (not public)
+static/index.html
+static/whitepaper.html
