@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "date": "2026-04-11T17:34:59.621331",
+    "articles": 1070,
+    "methodology": "Remove each axis one at a time, measure numerical retention. Also test: no specificity boost, only specificity, only relevance."
+  },
+  "baseline": {
+    "label": "Full Lumisift",
+    "retained": 1976,
+    "total": 2388,
+    "rate": 82.7,
+    "mean_per_article": 81.1,
+    "std": 32.6,
+    "ci95": 2.7,
+    "n_articles": 560
+  },
+  "ablations": [
+    {
+      "label": "Without specificity",
+      "retained": 1155,
+      "total": 2388,
+      "rate": 48.4,
+      "mean_per_article": 45.1,
+      "std": 41.3,
+      "ci95": 3.4,
+      "n_articles": 560
+    },
+    {
+      "label": "Without relevance",
+      "retained": 2116,
+      "total": 2388,
+      "rate": 88.6,
+      "mean_per_article": 87.1,
+      "std": 27.3,
+      "ci95": 2.3,
+      "n_articles": 560
+    },
+    {
+      "label": "Without trust",
+      "retained": 1978,
+      "total": 2388,
+      "rate": 82.8,
+      "mean_per_article": 81.3,
+      "std": 32.5,
+      "ci95": 2.7,
+      "n_articles": 560
+    },
+    {
+      "label": "Without risk",
+      "retained": 2004,
+      "total": 2388,
+      "rate": 83.9,
+      "mean_per_article": 82.9,
+      "std": 31.1,
+      "ci95": 2.6,
+      "n_articles": 560
+    },
+    {
+      "label": "Without causality",
+      "retained": 1976,
+      "total": 2388,
+      "rate": 82.7,
+      "mean_per_article": 81.1,
+      "std": 32.6,
+      "ci95": 2.7,
+      "n_articles": 560
+    },
+    {
+      "label": "Without temporal",
+      "retained": 1976,
+      "total": 2388,
+      "rate": 82.7,
+      "mean_per_article": 81.1,
+      "std": 32.6,
+      "ci95": 2.7,
+      "n_articles": 560
+    },
+    {
+      "label": "Without ontology",
+      "retained": 1976,
+      "total": 2388,
+      "rate": 82.7,
+      "mean_per_article": 81.1,
+      "std": 32.6,
+      "ci95": 2.7,
+      "n_articles": 560
+    },
+    {
+      "label": "Without visibility",
+      "retained": 1976,
+      "total": 2388,
+      "rate": 82.7,
+      "mean_per_article": 81.1,
+      "std": 32.6,
+      "ci95": 2.7,
+      "n_articles": 560
+    },
+    {
+      "label": "No specificity boost",
+      "retained": 1155,
+      "total": 2388,
+      "rate": 48.4,
+      "mean_per_article": 45.1,
+      "std": 41.3,
+      "ci95": 3.4,
+      "n_articles": 560
+    },
+    {
+      "label": "Only specificity",
+      "retained": 2150,
+      "total": 2388,
+      "rate": 90.0,
+      "mean_per_article": 89.0,
+      "std": 25.2,
+      "ci95": 2.1,
+      "n_articles": 560
+    },
+    {
+      "label": "Only relevance",
+      "retained": 1257,
+      "total": 2388,
+      "rate": 52.6,
+      "mean_per_article": 47.9,
+      "std": 41.2,
+      "ci95": 3.4,
+      "n_articles": 560
+    }
+  ],
+  "ranking": [
+    [
+      "Without specificity",
+      -34.3
+    ],
+    [
+      "No specificity boost",
+      -34.3
+    ],
+    [
+      "Only relevance",
+      -30.1
+    ],
+    [
+      "Without causality",
+      0.0
+    ],
+    [
+      "Without temporal",
+      0.0
+    ],
+    [
+      "Without ontology",
+      0.0
+    ],
+    [
+      "Without visibility",
+      0.0
+    ],
+    [
+      "Without trust",
+      0.1
+    ],
+    [
+      "Without risk",
+      1.2
+    ],
+    [
+      "Without relevance",
+      5.9
+    ],
+    [
+      "Only specificity",
+      7.3
+    ]
+  ]
+}

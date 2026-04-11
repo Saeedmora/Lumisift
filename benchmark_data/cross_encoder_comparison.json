@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "date": "2026-04-11T17:38:57.757076",
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "articles": 1070
+  },
+  "results": {
+    "Cross-Encoder": {
+      "rate_pct": 44.2,
+      "mean_pct": 44.8,
+      "std_pct": 41.1,
+      "ci95_pp": 3.4
+    },
+    "BM25": {
+      "rate_pct": 42.6,
+      "mean_pct": 41.7,
+      "std_pct": 41.2,
+      "ci95_pp": 3.4
+    },
+    "Embedding": {
+      "rate_pct": 38.2,
+      "mean_pct": 40.6,
+      "std_pct": 41.0,
+      "ci95_pp": 3.4
+    },
+    "Lumisift": {
+      "rate_pct": 82.8,
+      "mean_pct": 81.2,
+      "std_pct": 32.5,
+      "ci95_pp": 2.7
+    },
+    "Hybrid (a=0.3)": {
+      "rate_pct": 75.5,
+      "mean_pct": 72.0,
+      "std_pct": 37.3,
+      "ci95_pp": 3.1
+    }
+  }
+}

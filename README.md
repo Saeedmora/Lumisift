@@ -111,25 +111,26 @@ Lumisift wins on **all 13 fact types** tested. Per-article: Lumisift wins 61%, e
 
 ---
 
-### 2. Versus Established Baselines -- BM25, ColBERT, Embedding
+### 2. Versus Established Baselines -- BM25, ColBERT, Cross-Encoder
 
-A fair comparison must include the retrieval methods that professionals actually use. We benchmarked against BM25 (the keyword standard), ColBERT (the state-of-the-art late-interaction model), and standard embedding cosine similarity.
+A fair comparison must include the retrieval methods that professionals actually use. We tested against BM25 (the keyword standard), ColBERT (late-interaction token matching), standard embedding cosine similarity, and **cross-encoder reranking** (ms-marco-MiniLM-L-6-v2 -- the strongest traditional baseline).
 
-| Method | Retention | vs BM25 | Significance |
-|--------|-----------|---------|--------------|
-| **Lumisift** | **82.8%** | **+41.0pp** | 2x better than any baseline |
-| **Hybrid (alpha=0.3)** | **75.6%** | **+33.8pp** | Best balanced approach |
-| ColBERT (late interaction) | 43.6% | +1.8pp | Slight improvement |
-| BM25 (Okapi) | 41.8% | baseline | Industry standard |
-| Embedding (MiniLM cosine) | 41.1% | -0.6pp | Equivalent to BM25 |
+| Method | Retention | vs BM25 | 95% CI |
+|--------|-----------|---------|--------|
+| **Lumisift** | **82.8%** | **+41.0pp** | +/-2.7pp |
+| **Hybrid (alpha=0.3)** | **75.5%** | **+33.7pp** | +/-3.1pp |
+| Cross-Encoder (ms-marco) | 44.2% | +2.4pp | +/-3.4pp |
+| ColBERT (late interaction) | 43.6% | +1.8pp | +/-3.4pp |
+| BM25 (Okapi) | 41.8% | baseline | +/-3.4pp |
+| Embedding (MiniLM cosine) | 38.2% | -3.6pp | +/-3.4pp |
 
-**The insight:** BM25, ColBERT, and embedding similarity all cluster around 41-44%. Despite their architectural differences -- keyword matching, late-interaction token scoring, dense retrieval -- they produce nearly identical results on numerical retention. The problem isn't *how* you match. It's that matching alone, regardless of method, ignores whether the selected text actually contains data.
+**The insight:** All four traditional methods -- BM25, ColBERT, embedding, and cross-encoder -- cluster between 38-44%. Despite radically different architectures (keyword matching, late interaction, dense retrieval, joint query-document scoring), they produce near-identical results on numerical retention. The cross-encoder, often cited as the strongest reranker, adds only +2.4pp over BM25.
 
-Lumisift operates on a different principle entirely. It doesn't ask *"Does this text match the query?"* It asks *"Does this text contain information worth preserving?"*
+The problem isn't *how* you match. It's that matching -- regardless of sophistication -- ignores whether the selected text contains data worth preserving.
 
-**IC50 / EC50 retention specifically:** BM25 = 27%, Embedding = 27%, ColBERT = 45%, **Lumisift = 100%**.
+**IC50 / EC50 retention:** BM25 = 27%, Embedding = 27%, Cross-Encoder = N/A, ColBERT = 45%, **Lumisift = 100%** (n=24, see limitations).
 
-`python baseline_comparison.py`
+`python baseline_comparison.py` | `python cross_encoder_benchmark.py`
 
 ---
 
@@ -257,6 +258,57 @@ The current heuristic evaluator uses regex patterns and keyword matching -- effe
 **Current limitation:** Trust and risk axes show low correlation because our training data has limited variance on those dimensions. Expanding to more diverse source materials (clinical trials, regulatory documents) would improve this.
 
 `python learned_scoring.py`
+
+---
+
+### 8. Ablation Study -- Which Axis Actually Matters?
+
+The most important question for credibility: *if we remove an axis, does the result change?*
+
+We systematically zeroed out each axis and re-ran numerical retention on 560 articles:
+
+| Configuration | Retention | Delta | Impact |
+|--------------|-----------|-------|--------|
+| **Full Lumisift** | **82.7%** | baseline | +/-2.7pp CI |
+| Without specificity | 48.4% | **-34.3pp** | **CRITICAL** |
+| No specificity boost | 48.4% | **-34.3pp** | **CRITICAL** |
+| Only specificity (nothing else) | **90.0%** | +7.3pp | Outperforms full system |
+| Only relevance | 52.6% | -30.1pp | **CRITICAL** |
+| Without relevance | 88.6% | +5.9pp | Removing it *helps* |
+| Without trust | 82.8% | +0.1pp | Minimal |
+| Without risk | 83.9% | +1.2pp | Minimal |
+| Without causality | 82.7% | +0.0pp | None |
+| Without temporal | 82.7% | +0.0pp | None |
+| Without ontology | 82.7% | +0.0pp | None |
+| Without visibility | 82.7% | +0.0pp | None |
+
+**What this proves:**
+
+1. **Specificity is everything.** Removing it drops retention by -34.3pp. Using *only* specificity achieves 90.0% -- better than the full system. This is the mechanism that makes Lumisift work.
+2. **Relevance actually hurts numerical retention.** Removing relevance *improves* results (+5.9pp) because the relevance heuristic favors descriptive text over data-dense text.
+3. **Trust, risk, causality, temporal, ontology, visibility contribute nothing** to numerical retention at their current heuristic quality. They exist for downstream comprehension tasks, not data preservation.
+
+**The honest reading:** Lumisift's numerical retention advantage comes from one mechanism -- the specificity boost. The other 7 axes are either neutral or slightly harmful for this specific task. They may prove valuable for comprehension, causality tracking, or domain adaptation -- but for the numerical retention benchmark, specificity does the work.
+
+`python ablation_study.py`
+
+---
+
+### 9. Reproducibility Kit
+
+We export a self-contained dataset for independent verification:
+
+- **200 articles** with pre-computed axis scores for every chunk
+- **818 numerical facts** with retention results
+- **Full methodology documentation** (chunking protocol, scoring formula, query generation)
+- **Selected chunk indices** so anyone can verify which chunks Lumisift picks and why
+
+```bash
+python export_reproducibility_kit.py
+# Outputs: benchmark_data/reproducibility_kit.json (1,073 KB)
+```
+
+The kit includes the exact chunking code, scoring formula, and fact extraction patterns used in all benchmarks. No hidden preprocessing.
 
 ---
 
@@ -409,11 +461,13 @@ We publish what doesn't work alongside what does. This section is as important a
 
 | Limitation | Impact | Status |
 |-----------|--------|--------|
-| **Heuristic ceiling** | Trust, risk, and causality use regex -- they break on irony, implicit meaning, negation | Partially addressed: learned MLP model replaces regex for specificity (0.689 correlation) |
-| **Comprehension weakness** | 46.7% on PubMedQA vs 93.3% for full text | Solved: hybrid mode (alpha=0.3) balances data and comprehension |
-| **AI judge bias** | Gemini 3 Flash evaluator introduces its own preferences | Not yet solved: human evaluation protocol planned |
-| **Domain specificity** | Keyword lexicons tuned for biomedical text | Mitigatable: user feedback loop enables domain adaptation |
-| **Learned model variance** | Trust/risk axes have low training variance (correlation < 0.2) | Next step: diversify training data with clinical trials and regulatory text |
+| **7 of 8 axes don't contribute** to numerical retention | Ablation shows only specificity matters for the core metric. Other axes are neutral or harmful. | Documented: ablation study proves the mechanism is specificity, not multi-axis complexity |
+| **"100% IC50 retention" sample size** | Based on n=24 IC50/EC50 values. Small sample, could overfit. | Documented: we now report sample size alongside claim |
+| **Comprehension weakness** | 46.7% on PubMedQA vs 93.3% for full text | Solved: hybrid mode (alpha=0.3) |
+| **Cross-encoder equivalence** | Cross-encoder (44.2%) doesn't solve the problem either -- same class as BM25 | Fundamental: matching-based methods can't detect data density |
+| **AI judge bias** | Gemini 3 Flash evaluator has its own preferences | Planned: human evaluation protocol |
+| **Domain specificity** | Lexicons tuned for biomedical text | Mitigatable: user feedback loop enables adaptation |
+| **Learned model variance** | Trust/risk correlations < 0.2 due to limited training variance | Next: diversify training data |
 
 ---
 
@@ -423,11 +477,13 @@ We publish what doesn't work alongside what does. This section is as important a
 |--------|-----------|--------|
 | Done | Numerical retention benchmark | 82.9% vs 40.4% across 2,722 facts |
 | Done | Drug discovery validation | 84% vs 15% critical data retention |
-| Done | BM25 / ColBERT comparison | Lumisift +41pp over BM25, +39pp over ColBERT |
+| Done | BM25 / ColBERT / Cross-Encoder comparison | Lumisift +41pp over BM25, +39pp over cross-encoder |
+| Done | Ablation study | Specificity alone = 90.0%. 7 other axes = negligible |
 | Done | Hybrid retrieval mode | Alpha=0.3 retains 72.4% with comprehension signals |
 | Done | 1,077-article validation | 10 domains, 4,400 training samples |
 | Done | Learned scoring model | 133K-param MLP, 0.689 specificity correlation |
-| Done | Honest limitation testing | PubMedQA shows exactly where Lumisift fails |
+| Done | Reproducibility kit | 200 articles exported with full scoring data |
+| Done | Honest limitation testing | PubMedQA + ablation shows exactly what works and what doesn't |
 | Next | LangChain / LlamaIndex plugin | Drop-in re-ranker for existing pipelines |
 | Next | Human evaluation | Expert ratings alongside AI judge |
 | Next | Cross-domain expansion | Clinical trials, legal, cybersecurity |
@@ -454,6 +510,9 @@ Lumisift/
 |-- pubmed_benchmark.py                 # 1,077-article corpus benchmark
 |-- numerical_retention_benchmark.py    # Lumisift vs embedding retrieval
 |-- baseline_comparison.py              # BM25 / ColBERT / Embedding head-to-head
+|-- cross_encoder_benchmark.py          # Cross-encoder reranker vs all methods
+|-- ablation_study.py                   # Systematic axis removal study
+|-- export_reproducibility_kit.py       # Export verifiable benchmark dataset
 |-- drug_discovery_usecase.py           # 3 pharma scenarios
 |-- hybrid_benchmark.py                 # Alpha sweep for hybrid mode
 |-- learned_scoring.py                  # Train MLP axis predictor
