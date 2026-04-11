@@ -92,6 +92,29 @@ Benchmarked on **95 peer-reviewed PubMed protein engineering articles**. This is
 
 </details>
 
+### Head-to-Head: Lumisift vs Embedding Retrieval
+
+First direct comparison. Same articles, same 50% selection ratio, different method.
+
+| Method | Numerical Facts Retained | Rate |
+|--------|------------------------|------|
+| Embedding Similarity (standard RAG) | 28 / 77 | **36.4%** |
+| Lumisift (8-axis + specificity) | 68 / 77 | **88.3%** |
+| **Delta** | **+40 facts** | **+51.9 pp** |
+
+**Standard embedding retrieval loses 63.6% of quantitative data. Lumisift loses 11.7%.**
+
+| Fact Type | Embedding | Lumisift |
+|-----------|-----------|----------|
+| Fold changes (e.g. "1000-fold") | 22.2% | **88.9%** |
+| Precise decimals | 22.2% | **100%** |
+| Concentrations (e.g. "50 mM") | 28.6% | **100%** |
+| Percentages | 60.0% | **80.0%** |
+
+Per-article: Lumisift wins 61%, Embedding wins 4%, Ties 36%.
+
+**Reproducible:** `python numerical_retention_benchmark.py`
+
 ---
 
 ## The 8 Semantic Signals
