@@ -1,5 +1,5 @@
-﻿<p align="center">
-  <strong>ðŸ”¬ Lumisift</strong><br>
+<p align="center">
+  <strong>Lumisift</strong><br>
   <em>Multi-Axis Semantic Intelligence for Scientific Text</em>
 </p>
 
@@ -19,22 +19,22 @@
 
 ## What is Lumisift?
 
-**Lumisift is a pre-analysis layer that evaluates scientific text across 8 semantic dimensions â€” before your AI ever sees it.**
+**Lumisift is a pre-analysis layer that evaluates scientific text across 8 semantic dimensions -- before your AI ever sees it.**
 
-Standard RAG retrieves text by similarity.  
-Lumisift scores every passage on **Relevance, Risk, Trust, Causality, Temporality, Visibility, Ontology, and Specificity** â€” then selects only what matters.
+Standard RAG retrieves text by similarity.
+Lumisift scores every passage on **Relevance, Risk, Trust, Causality, Temporality, Visibility, Ontology, and Specificity** -- then selects only what matters.
 
 ```
-Raw Text â†’ Embedding â†’ 8-Axis Evaluation â†’ Intelligent Selection â†’ LLM
-                              â†‘
-                    Not "what looks similar"
-                    but "what IS important"
+Raw Text --> Embedding --> 8-Axis Evaluation --> Intelligent Selection --> LLM
+                               |
+                     Not "what looks similar"
+                     but "what IS important"
 ```
 
-> _"This is the first step toward the **Autonomous Agentic Scientist** â€” an AI that reads,
-> evaluates, prioritizes, and reasons about scientific literature on its own."_
+> *"This is the first step toward the **Autonomous Agentic Scientist** -- an AI that reads,
+> evaluates, prioritizes, and reasons about scientific literature on its own."*
 >
-> â€” Saeed Moradtalab
+> -- Saeed Moradtalab
 
 ---
 
@@ -44,10 +44,10 @@ Raw Text â†’ Embedding â†’ 8-Axis Evaluation â†’ Intelligent Sele
 |---------|----------------|--------------|
 | Context selection | Similarity only (1 dimension) | **8 semantic axes** |
 | Quantitative data | Often discarded | **Specificity boost** keeps numbers |
-| Text fidelity | Lossy (summarization) | **100% lossless** â€” original text preserved |
+| Text fidelity | Lossy (summarization) | **100% lossless** -- original text preserved |
 | Cost | Full context = full price | **52% fewer tokens** = 52% cheaper |
-| Privacy | Cloud APIs required | **100% local** â€” no data leaves your machine |
-| Customization | None | **Self-calibrating** â€” learns from your corrections |
+| Privacy | Cloud APIs required | **100% local** -- no data leaves your machine |
+| Customization | None | **Self-calibrating** -- learns from your corrections |
 
 ---
 
@@ -71,7 +71,7 @@ Benchmarked on **95 peer-reviewed PubMed protein engineering articles**. All num
 
 1. Generated scientific questions from full abstracts (Gemini 3 Flash Preview)
 2. Answered each question with full text and Lumisift-selected text
-3. Blind grading by AI judge on Accuracy, Completeness, Relevance, Conciseness (1â€“5)
+3. Blind grading by AI judge on Accuracy, Completeness, Relevance, Conciseness (1-5)
 4. **Reproducible:** `python downstream_eval.py`
 
 </details>
@@ -82,22 +82,22 @@ Benchmarked on **95 peer-reviewed PubMed protein engineering articles**. All num
 
 | Axis | What it measures | Range | Example use |
 |------|-----------------|-------|-------------|
-| **Temporal** | Currency of information | âˆ’1 â†’ +1 | Filter outdated findings |
-| **Relevance** | Strategic importance | 0 â†’ 1 | Prioritize key results |
-| **Risk** | Uncertainty level | âˆ’1 â†’ +1 | Flag preliminary data |
-| **Ontology** | Domain category | 0 â†’ 1 | Classify by topic |
-| **Causality** | Cause vs. effect | âˆ’1 â†’ +1 | Map causal chains |
-| **Visibility** | Internal vs. public | 0 â†’ 1 | Control data exposure |
-| **Trust** | Source reliability | 0 â†’ 1 | Weight verified vs. unverified |
-| **Specificity** | Quantitative data density | 0 â†’ 1 | Protect numbers, rates, measurements |
+| **Temporal** | Currency of information | -1 to +1 | Filter outdated findings |
+| **Relevance** | Strategic importance | 0 to 1 | Prioritize key results |
+| **Risk** | Uncertainty level | -1 to +1 | Flag preliminary data |
+| **Ontology** | Domain category | 0 to 1 | Classify by topic |
+| **Causality** | Cause vs. effect | -1 to +1 | Map causal chains |
+| **Visibility** | Internal vs. public | 0 to 1 | Control data exposure |
+| **Trust** | Source reliability | 0 to 1 | Weight verified vs. unverified |
+| **Specificity** | Quantitative data density | 0 to 1 | Protect numbers, rates, measurements |
 
 ### The Selection Formula
 
 ```
-score = relevance Ã— (1 + |risk|) Ã— (0.5 + trust Ã— 0.5) Ã— temporal_boost Ã— specificity_boost
+score = relevance * (1 + |risk|) * (0.5 + trust * 0.5) * temporal_boost * specificity_boost
 ```
 
-Chunks with mutation rates, IC50 values, fold-changes, and p-values get up to **1.8Ã— priority** â€” they won't be discarded.
+Chunks with mutation rates, IC50 values, fold-changes, and p-values get up to **1.8x priority** -- they won't be discarded.
 
 ---
 
@@ -105,7 +105,7 @@ Chunks with mutation rates, IC50 values, fold-changes, and p-values get up to **
 
 ```bash
 # Clone
-git clone https://github.com/your-username/Lumisift.git
+git clone https://github.com/Saeedmora/Lumisift.git
 cd Lumisift
 
 # Setup
@@ -117,7 +117,7 @@ pip install -e .
 
 # Run
 python app.py
-# â†’ http://localhost:5000
+# Open http://localhost:5000
 ```
 
 ### Python API
@@ -166,21 +166,21 @@ python downstream_eval.py         # AI quality evaluation (requires GEMINI_API_K
 ## Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                      Lumisift PIPELINE                         â”‚
-â”‚                                                               â”‚
-â”‚  Raw Text â”€â”€â†’ Embedding â”€â”€â†’ 8-Axis Evaluation â”€â”€â†’ Atom       â”‚
-â”‚               (MiniLM)      (Heuristic / TinyLlama / NF4)    â”‚
-â”‚                                                               â”‚
-â”‚  Atoms â”€â”€â†’ Surface Clustering â”€â”€â†’ Room Assignment             â”‚
-â”‚            (similarity-based)     (self-optimizing)            â”‚
-â”‚                                                               â”‚
-â”‚  Selection: Multi-axis scoring with specificity boost          â”‚
-â”‚             Top-k atoms â†’ Optimized context for LLM           â”‚
-â”‚                                                               â”‚
-â”‚  Calibration: User feedback â†’ Axis weight adjustment           â”‚
-â”‚               JSONL export for LoRA / QLoRA training           â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
++---------------------------------------------------------------+
+|                      LUMISIFT PIPELINE                         |
+|                                                                |
+|  Raw Text --> Embedding --> 8-Axis Evaluation --> Atom         |
+|               (MiniLM)     (Heuristic / TinyLlama / NF4)      |
+|                                                                |
+|  Atoms --> Surface Clustering --> Room Assignment              |
+|            (similarity-based)     (self-optimizing)             |
+|                                                                |
+|  Selection: Multi-axis scoring with specificity boost          |
+|             Top-k atoms -> Optimized context for LLM           |
+|                                                                |
+|  Calibration: User feedback -> Axis weight adjustment          |
+|               JSONL export for LoRA / QLoRA training           |
++---------------------------------------------------------------+
 ```
 
 ### Three Evaluator Modes
@@ -199,10 +199,10 @@ Auto-selects the best available mode. Falls back gracefully.
 
 | User | Use Case |
 |------|----------|
-| **Researchers** | Triage 200+ papers by relevance, trust, and causality â€” not just keyword similarity |
+| **Researchers** | Triage 200+ papers by relevance, trust, and causality -- not just keyword similarity |
 | **Biotech / Pharma** | Protect quantitative data (IC50, fold-changes, mutation rates) during context compression |
 | **AI Engineers** | Generate structured training data (8-axis labels) automatically from any text corpus |
-| **Security Teams** | Triage threat advisories by risk Ã— trust â€” separate zero-days from routine patches |
+| **Security Teams** | Triage threat advisories by risk x trust -- separate zero-days from routine patches |
 | **Legal / Compliance** | Identify causal obligations in regulatory documents |
 
 ---
@@ -222,22 +222,22 @@ Without API keys, everything runs **100% locally** with the heuristic evaluator.
 
 ```
 Lumisift/
-â”œâ”€â”€ app.py                     # Flask web server + API
-â”œâ”€â”€ pubmed_benchmark.py        # PubMed corpus benchmark
-â”œâ”€â”€ downstream_eval.py         # AI quality evaluation
-â”œâ”€â”€ core/
-â”‚   â”œâ”€â”€ axes_evaluator.py      # 8-axis evaluation (heuristic / LLM / NF4)
-â”‚   â”œâ”€â”€ nf4_loader.py          # NF4 quantization + embedding compression
-â”‚   â”œâ”€â”€ pipeline.py            # End-to-end orchestrator
-â”‚   â”œâ”€â”€ atom.py                # Atom data model
-â”‚   â”œâ”€â”€ surface.py             # Surface clustering
-â”‚   â”œâ”€â”€ finetuning.py          # Axis calibration + training export
-â”‚   â”œâ”€â”€ embeddings.py          # Sentence-transformer embeddings
-â”‚   â””â”€â”€ self_optimization.py   # Room splitting + tension monitoring
-â”œâ”€â”€ static/
-â”‚   â””â”€â”€ index.html             # Web UI
-â”œâ”€â”€ benchmark_data/            # Generated results
-â””â”€â”€ models/                    # Local models (optional)
+├── app.py                     # Flask web server + API
+├── pubmed_benchmark.py        # PubMed corpus benchmark
+├── downstream_eval.py         # AI quality evaluation
+├── core/
+│   ├── axes_evaluator.py      # 8-axis evaluation (heuristic / LLM / NF4)
+│   ├── nf4_loader.py          # NF4 quantization + embedding compression
+│   ├── pipeline.py            # End-to-end orchestrator
+│   ├── atom.py                # Atom data model
+│   ├── surface.py             # Surface clustering
+│   ├── finetuning.py          # Axis calibration + training export
+│   ├── embeddings.py          # Sentence-transformer embeddings
+│   └── self_optimization.py   # Room splitting + tension monitoring
+├── static/
+│   └── index.html             # Web UI
+├── benchmark_data/            # Generated results
+└── models/                    # Local models (optional)
 ```
 
 ---
@@ -253,27 +253,25 @@ Lumisift/
 
 ## License
 
-**AGPL-3.0** â€” see [LICENSE](LICENSE) for the full text.
+**AGPL-3.0** -- see [LICENSE](LICENSE) for the full text.
 
 This project is open source under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).
 
-- âœ… Free to use, modify, and distribute â€” keep the same license
-- âœ… Source code must be shared if you deploy a modified version (even as SaaS)
-- âœ… Attribution required
+- Free to use, modify, and distribute -- keep the same license
+- Source code must be shared if you deploy a modified version (even as SaaS)
+- Attribution required
 
 ### Commercial Licensing
 
-Want to use Lumisift in a **proprietary product** without AGPL obligations?  
+Want to use Lumisift in a **proprietary product** without AGPL obligations?
 A commercial license is available.
 
-ðŸ“§ **Saeed Moradtalab**  
-ðŸ”— [LinkedIn](https://www.linkedin.com/in/ben-moradtalab-9442a41a6)
+**Saeed Moradtalab**
+[LinkedIn](https://www.linkedin.com/in/ben-moradtalab-9442a41a6)
 
 ---
 
 <p align="center">
-  <strong>Lumisift</strong> â€” Not compression. Selection.<br>
-  <sub>Â© 2026 Saeed Moradtalab</sub>
+  <strong>Lumisift</strong> -- Not compression. Selection.<br>
+  <sub>Copyright 2026 Saeed Moradtalab</sub>
 </p>
-
-
