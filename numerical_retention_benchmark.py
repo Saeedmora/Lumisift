@@ -251,7 +251,7 @@ def main():
 
         # Print with color indicators
         lumi_better = "+" if lumi_rate > sim_rate else ("=" if lumi_rate == sim_rate else "-")
-        print(f"  [{i+1:2d}] {title}...")
+        print(f"  [{i+1:2d}] {title.encode('ascii', 'replace').decode()}...")
         print(f"       Facts: {len(all_facts):2d} | Similarity: {len(sim_retained):2d}/{len(all_facts)} ({sim_rate:5.1f}%) | Lumisift: {len(lumi_retained):2d}/{len(all_facts)} ({lumi_rate:5.1f}%) [{lumi_better}]")
 
     # ─── Summary ───────────────────────────────────────────────────────────

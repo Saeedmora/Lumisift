@@ -1,12 +1,14 @@
 """
-NCBI PubMed Benchmark for Logical Rooms
-=========================================
-Fetches 100 real protein engineering abstracts from PubMed,
-processes them through the 7-axis pipeline, and produces
+NCBI PubMed Benchmark for Lumisift
+====================================
+Fetches ~500 real scientific abstracts from PubMed across
+multiple domains (drug discovery, protein engineering,
+protein extraction, directed evolution, enzyme optimization).
+
+Processes through the 8-axis pipeline and produces
 scientifically valid benchmark metrics.
 
 Data Source: NCBI PubMed (https://pubmed.ncbi.nlm.nih.gov/)
-Query: "protein engineering AND directed evolution"
 """
 
 import os
@@ -23,6 +25,17 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # ─── Step 1: Fetch PubMed Article IDs ─────────────────────────────────────────
 
+# ─── PubMed Search Queries ─────────────────────────────────────────────────────
+
+SEARCH_QUERIES = [
+    ("protein engineering AND directed evolution", 150),
+    ("drug discovery AND IC50 AND inhibitor", 120),
+    ("protein extraction AND purification AND yield", 100),
+    ("enzyme optimization AND catalytic activity", 80),
+    ("lipid nanoparticle AND mRNA delivery", 80),
+]
+
+
 def search_pubmed(query: str, max_results: int = 100) -> list:
     """Search PubMed and return article IDs."""
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
@@ -33,14 +46,30 @@ def search_pubmed(query: str, max_results: int = 100) -> list:
         "retmode": "json",
         "sort": "relevance",
     }
-    print(f"[1/5] Searching PubMed: '{query}' ...")
+    print(f"  Searching: '{query}' (max {max_results})...")
     resp = requests.get(url, params=params, timeout=30)
     resp.raise_for_status()
     data = resp.json()
     ids = data["esearchresult"]["idlist"]
     total = data["esearchresult"]["count"]
-    print(f"       Found {total} total results, fetching top {len(ids)}")
+    print(f"  Found {total} total results, fetching top {len(ids)}")
     return ids
+
+
+def search_all_queries() -> list:
+    """Search PubMed with multiple queries and deduplicate by PMID."""
+    print("[1/5] Searching PubMed across 5 domains...")
+    all_ids = []
+    seen = set()
+    for query, max_results in SEARCH_QUERIES:
+        ids = search_pubmed(query, max_results)
+        new_ids = [pid for pid in ids if pid not in seen]
+        seen.update(new_ids)
+        all_ids.extend(new_ids)
+        print(f"       +{len(new_ids)} new IDs (total unique: {len(all_ids)})")
+        time.sleep(0.5)  # NCBI rate limit
+    print(f"\n  Total unique article IDs: {len(all_ids)}")
+    return all_ids
 
 
 # ─── Step 2: Fetch Abstracts in Batches ───────────────────────────────────────
@@ -389,13 +418,13 @@ def export_training_data(articles: list, results: list, output_dir: str = "bench
 
 def main():
     print("=" * 70)
-    print("  Logical Rooms — PubMed Benchmark")
-    print("  Protein Engineering & Directed Evolution")
+    print("  Lumisift -- PubMed Benchmark")
+    print("  Drug Discovery, Protein Engineering & Extraction")
     print("=" * 70)
     print()
 
-    # Step 1: Search
-    pmids = search_pubmed("protein engineering AND directed evolution", max_results=100)
+    # Step 1: Search across 5 domains
+    pmids = search_all_queries()
 
     # Step 2: Fetch
     articles = fetch_abstracts(pmids)

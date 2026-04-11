@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "date": "2026-04-11T14:34:14.650148",
+    "date": "2026-04-11T15:32:20.144930",
     "methodology": "Head-to-head: cosine similarity top-k vs Lumisift multi-axis with specificity boost",
     "selection_ratio": "top 50% of chunks",
     "query_strategy": "article title as query (simulates typical RAG)",
@@ -8,62 +8,82 @@
     "evaluator": "heuristic (8-axis with specificity boost)"
   },
   "summary": {
-    "articles_with_numerical_data": 28,
-    "total_numerical_facts": 77,
-    "similarity_retained": 28,
-    "similarity_rate_pct": 36.4,
-    "lumisift_retained": 68,
-    "lumisift_rate_pct": 88.3,
-    "delta_pct": 51.9,
-    "lumisift_wins": 17,
-    "similarity_wins": 1,
-    "ties": 10
+    "articles_with_numerical_data": 298,
+    "total_numerical_facts": 1249,
+    "similarity_retained": 498,
+    "similarity_rate_pct": 39.9,
+    "lumisift_retained": 1002,
+    "lumisift_rate_pct": 80.2,
+    "delta_pct": 40.4,
+    "lumisift_wins": 179,
+    "similarity_wins": 24,
+    "ties": 95
   },
   "by_fact_type": {
     "percentage": {
-      "total": 10,
-      "similarity_retained_pct": 60.0,
-      "lumisift_retained_pct": 80.0
+      "total": 274,
+      "similarity_retained_pct": 40.5,
+      "lumisift_retained_pct": 83.2
     },
     "fold_change": {
-      "total": 18,
-      "similarity_retained_pct": 22.2,
-      "lumisift_retained_pct": 88.9
+      "total": 78,
+      "similarity_retained_pct": 30.8,
+      "lumisift_retained_pct": 89.7
     },
     "scientific_notation": {
-      "total": 1,
-      "similarity_retained_pct": 0.0,
+      "total": 3,
+      "similarity_retained_pct": 33.3,
       "lumisift_retained_pct": 100.0
     },
     "duration": {
-      "total": 3,
-      "similarity_retained_pct": 33.3,
-      "lumisift_retained_pct": 66.7
+      "total": 40,
+      "similarity_retained_pct": 32.5,
+      "lumisift_retained_pct": 52.5
     },
     "large_number": {
-      "total": 20,
-      "similarity_retained_pct": 40.0,
-      "lumisift_retained_pct": 85.0
+      "total": 307,
+      "similarity_retained_pct": 45.6,
+      "lumisift_retained_pct": 73.0
     },
     "temperature": {
-      "total": 8,
-      "similarity_retained_pct": 50.0,
-      "lumisift_retained_pct": 87.5
+      "total": 57,
+      "similarity_retained_pct": 36.8,
+      "lumisift_retained_pct": 73.7
     },
     "concentration": {
-      "total": 7,
-      "similarity_retained_pct": 28.6,
-      "lumisift_retained_pct": 100.0
+      "total": 186,
+      "similarity_retained_pct": 38.7,
+      "lumisift_retained_pct": 83.9
     },
     "precise_decimal": {
-      "total": 9,
-      "similarity_retained_pct": 22.2,
-      "lumisift_retained_pct": 100.0
+      "total": 221,
+      "similarity_retained_pct": 37.1,
+      "lumisift_retained_pct": 85.5
     },
     "result_value": {
-      "total": 1,
+      "total": 20,
+      "similarity_retained_pct": 50.0,
+      "lumisift_retained_pct": 75.0
+    },
+    "range_with_unit": {
+      "total": 34,
+      "similarity_retained_pct": 35.3,
+      "lumisift_retained_pct": 85.3
+    },
+    "ic50_ec50": {
+      "total": 19,
+      "similarity_retained_pct": 36.8,
+      "lumisift_retained_pct": 84.2
+    },
+    "kinetic_constant": {
+      "total": 2,
       "similarity_retained_pct": 100.0,
       "lumisift_retained_pct": 100.0
+    },
+    "p_value": {
+      "total": 8,
+      "similarity_retained_pct": 37.5,
+      "lumisift_retained_pct": 87.5
     }
   },
   "per_article": [
@@ -503,6 +523,4688 @@
       "similarity_retained": 0,
       "lumisift_retained": 1,
       "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "12200541",
+      "title": "Improving the carboligase activity of benzoylformate decarbo",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "24684708",
+      "title": "Strategic manipulation of an industrial biocatalyst--evoluti",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "16862135",
+      "title": "High-throughput screening methodology for the directed evolu",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31602462",
+      "title": "Modifying a covarying protein-DNA interaction changes substr",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28241009",
+      "title": "Engineering of mCherry variants with long Stokes shift, red-",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 8,
+      "similarity_retained": 8,
+      "lumisift_retained": 8,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40347137",
+      "title": "Laboratory evolution of the bacterial genome structure throu",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "33567342",
+      "title": "Engineered FnCas12a with enhanced activity through direction",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "16212654",
+      "title": "Avidin related protein 2 shows unique structural and functio",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "25530200",
+      "title": "Design of hyperthermophilic lipase chimeras by key motif-dir",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 20.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33067389",
+      "title": "In vitro evolution of antibody affinity via insertional scan",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "25100861",
+      "title": "Improved calibration of the human mitochondrial clock using ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "11248037",
+      "title": "Reverse engineering the (beta/alpha )8 barrel fold.",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28957507",
+      "title": "Accelerated Evolution and Functional Divergence of the Dim L",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "17924438",
+      "title": "Properties and molecular evolution of human GLUD2 (neural an",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "32583369",
+      "title": "Co-evolution of β-glucosidase activity and product tolerance",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 15,
+      "similarity_retained": 11,
+      "lumisift_retained": 15,
+      "similarity_rate_pct": 73.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "temperature",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "9528005",
+      "title": "Molecular evolution by staggered extension process (StEP) in",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "15967977",
+      "title": "Directed evolution of D-sialic acid aldolase to L-3-deoxy-ma",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "37392996",
+      "title": "Increasing catalytic efficiency of SceCPR by semi-rational e",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 2,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 22.2,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24925096",
+      "title": "Novel biosensors based on optimized glycine oxidase.",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "concentration",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "29912468",
+      "title": "Effects of PSII Manganese-Stabilizing Protein Succinylation ",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 33.3,
+      "fact_types": [
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28264646",
+      "title": "Strain-dependent mutational effects for Pepino mosaic virus ",
+      "n_chunks": 11,
+      "n_selected": 5,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "40304496",
+      "title": "The Discovery and Characterization of HBS-101, a Novel Inhib",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 4,
+      "similarity_retained": 3,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 75.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40112214",
+      "title": "Leveraging-Induced Polarization for Drug Discovery: Efficien",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "26538432",
+      "title": "Discovery and Characterization of a Biologically Active Non-",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "24704437",
+      "title": "Assessment of Dengue virus helicase and methyltransferase as",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 3,
+      "similarity_retained": 1,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "27650168",
+      "title": "Comprehensive Modeling and Discovery of Mebendazole as a Nov",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "23899692",
+      "title": "Discovery of a potent and selective DDR1 receptor tyrosine k",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "24347635",
+      "title": "Covalent EGFR inhibitor analysis reveals importance of rever",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "28760529",
+      "title": "Discovery of a novel B-cell lymphoma 6 (BCL6)-corepressor in",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "temperature",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "22934575",
+      "title": "Discovery and preclinical pharmacology of a selective ATP-co",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28557458",
+      "title": "Design and Discovery of N-(2-Methyl-5'-morpholino-6'-((tetra",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29200206",
+      "title": "Discovery and characterization of highly potent and selectiv",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "31848333",
+      "title": "Discovery of a chemical probe for PRDM9.",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30893553",
+      "title": "Discovery of Branebrutinib (BMS-986195): A Strategy for Iden",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31159170",
+      "title": "Identification and Characterization of Approved Drugs and Dr",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "41441912",
+      "title": "AI-powered IC50 prediction for p53 inhibitors drug-target in",
+      "n_chunks": 13,
+      "n_selected": 6,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "31557229",
+      "title": "Discovery of novel West Nile Virus protease inhibitor based ",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "21873051",
+      "title": "Discovery of BI 99179, a potent and selective inhibitor of t",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "21678427",
+      "title": "Establishment of in vitro P-glycoprotein inhibition assay an",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "12750020",
+      "title": "Inhibitors of phosphopantetheine adenylyltransferase.",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "28951584",
+      "title": "Identification of neuraminidase inhibitors against dual H274",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29278273",
+      "title": "Hypoxia-inducible factor-1 (HIF-1) inhibitors from the last ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30359161",
+      "title": "Discovery of a Selective Inhibitor for the YEATS Domains of ",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 7,
+      "similarity_retained": 7,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 85.7,
+      "fact_types": [
+        "kinetic_constant",
+        "kinetic_constant",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "26040985",
+      "title": "Discovery and characterization of novel small-molecule inhib",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "25650310",
+      "title": "Computer-aided discovery of aminopyridines as novel JAK2 inh",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 4,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 80.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28032464",
+      "title": "Discovery of Macrocyclic Pyrimidines as MerTK-Specific Inhib",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "26908574",
+      "title": "Nanomolar Inhibitors of Trypanosoma brucei RNA Triphosphatas",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "31096156",
+      "title": "Discovery and synthesis of novel indole derivatives-containi",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "concentration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32586261",
+      "title": "Fragment-based Discovery of Potential Anticancer Lead: Compu",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 1,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 11.1,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "22203966",
+      "title": "High-resolution dose-response screening using droplet-based ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 9,
+      "similarity_retained": 1,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 11.1,
+      "lumisift_rate_pct": 55.6,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "concentration",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24911186",
+      "title": "Structure-based discovery of the first allosteric inhibitors",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "24675381",
+      "title": "Highly potent and selective 3-N-methylquinazoline-4(3H)-one ",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29775797",
+      "title": "Functional screening of selective mitochondrial inhibitors o",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "25430493",
+      "title": "Design, synthesis, and evaluation of non-ATP-competitive sma",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "23247173",
+      "title": "Natural-product-derived fragments for fragment-based ligand ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31305530",
+      "title": "NMR-Based Activity Assays for Determining Compound Inhibitio",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 83.3,
+      "fact_types": [
+        "fold_change",
+        "temperature",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "25231971",
+      "title": "Fragment-based screening in tandem with phenotypic screening",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29631126",
+      "title": "Activity of bromodomain protein inhibitors/binders against a",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30351002",
+      "title": "Structure-Activity Relationships in Metal-Binding Pharmacoph",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "28745975",
+      "title": "Identification of Chemical Compounds That Inhibit the Functi",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 7,
+      "similarity_retained": 3,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 42.9,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24632659",
+      "title": "Identification of Novel Polyphenolic Inhibitors of Shikimate",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 75.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "18834515",
+      "title": "Classification of drug molecules considering their IC50 valu",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31253937",
+      "title": "Discovery of novel CBP bromodomain inhibitors through TR-FRE",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32173197",
+      "title": "Lead discovery, chemical optimization, and biological evalua",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "26237069",
+      "title": "In Silico Exploration for New Antimalarials: Arylsulfonyloxy",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "25755265",
+      "title": "A High-Throughput Enzyme-Coupled Assay for SAMHD1 dNTPase.",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "concentration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24554444",
+      "title": "Virtual Screening of Some Active Human Macrophage Migration ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29466773",
+      "title": "Discovery of 2,4,6-trisubstitued pyrido[3,4-d]pyrimidine der",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 9,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 44.4,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32738984",
+      "title": "5,5-Difluoro- and 5-Fluoro-5-methyl-hexose-based C-Glucoside",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "33862375",
+      "title": "Discovery of 3,5-dimethylisoxazole derivatives as novel, pot",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 5,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32943412",
+      "title": "A Two-Tiered In Vitro Approach to De-Risk Drug Candidates fo",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 4,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 83.3,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "fold_change",
+        "concentration",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33291877",
+      "title": "Rational Design of 2-Chloroadenine Derivatives as Highly Sel",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 6,
+      "similarity_retained": 2,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "ic50_ec50",
+        "concentration",
+        "large_number",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "31899865",
+      "title": "Discovery of Compounds Inhibiting the ADP-Ribosyltransferase",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "29155568",
+      "title": "Discovery of a Novel Series of Tankyrase Inhibitors by a Hyb",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "28322292",
+      "title": "A structure- and chemical genomics-based approach for reposi",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "26428871",
+      "title": "Discovery and structure-activity analysis of 4-((5-nitropyri",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "27537371",
+      "title": "Computational Discovery and Experimental Confirmation of TLR",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "31329594",
+      "title": "Potent and selective inhibitors for M32 metallocarboxypeptid",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 1,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "24819961",
+      "title": "Identification and characterization of a novel small-molecul",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 7,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 57.1,
+      "lumisift_rate_pct": 57.1,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "concentration",
+        "duration",
+        "duration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "29979714",
+      "title": "Construction of an integrated database for hERG blocking sma",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "26189078",
+      "title": "Discovery, design, and synthesis of indole-based EZH2 inhibi",
+      "n_chunks": 2,
+      "n_selected": 1,
+      "total_facts": 9,
+      "similarity_retained": 0,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "27234887",
+      "title": "Discovery of new [1,4]dioxino[2,3-f]quinazoline-based inhibi",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 7,
+      "similarity_retained": 2,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 28.6,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "27476424",
+      "title": "Identification of potent, selective KDM5 inhibitors.",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "27043824",
+      "title": "Evaluating p97 Inhibitor Analogues for Potency against p97-p",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29495550",
+      "title": "Exploring N-acyl-4-azatetracyclo[5.3.2.0",
+      "n_chunks": 2,
+      "n_selected": 1,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24389478",
+      "title": "Discovery of a novel nicotinamide phosphoribosyl transferase",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 5,
+      "similarity_retained": 5,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "24771145",
+      "title": "Structure-based design, synthesis and biological evaluation ",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 1,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 20.0,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "range_with_unit",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31350520",
+      "title": "The influence of Echinacea purpurea leaf microbiota on chico",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 2,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "31626545",
+      "title": "Discovery of Second-Generation NLRP3 Inflammasome Inhibitors",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 75.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32349307",
+      "title": "Synthesis, Biological Evaluation and In Silico Studies of Ce",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 16,
+      "similarity_retained": 5,
+      "lumisift_retained": 15,
+      "similarity_rate_pct": 31.2,
+      "lumisift_rate_pct": 93.8,
+      "fact_types": [
+        "temperature",
+        "temperature",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39550914",
+      "title": "hERGBoost: A gradient boosting model for quantitative IC",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 80.0,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "concentration",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "31973227",
+      "title": "Discovery of Selective SIRT2 Inhibitors as Therapeutic Agent",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 12,
+      "similarity_retained": 5,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 41.7,
+      "lumisift_rate_pct": 58.3,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "23286196",
+      "title": "Discovery of 5-benzyl-3-phenyl-4,5-dihydroisoxazoles and 5-b",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "30485744",
+      "title": "Discovery and Characterization of Two Classes of Selective I",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 1,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 16.7,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "fold_change",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31411476",
+      "title": "Artificial Intelligence Approach To Investigate the Longevit",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "21516428",
+      "title": "Drug design and testing: profiling of antiproliferative agen",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "20462263",
+      "title": "Discovery of N-phenyl-4-(thiazol-5-yl)pyrimidin-2-amine auro",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "30696302",
+      "title": "Computationally driven discovery of phenyl(piperazin-1-yl)me",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "27054063",
+      "title": "In vitro anthelmintic efficacy of inhibitors of phosphoethan",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 12,
+      "similarity_retained": 5,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 41.7,
+      "lumisift_rate_pct": 58.3,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31043636",
+      "title": "Studies on Isoniazid Derivatives through a Medicinal Chemist",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 1,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 11.1,
+      "lumisift_rate_pct": 55.6,
+      "fact_types": [
+        "ic50_ec50",
+        "ic50_ec50",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "30763060",
+      "title": "Identifying New AMP-Activated Protein Kinase Inhibitors That",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33182255",
+      "title": "Discovery of 12O-A Novel Oral Multi-Kinase Inhibitor for the",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "34174194",
+      "title": "An automatic pipeline for the design of irreversible derivat",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "32554277",
+      "title": "Design, synthesis and biological evaluation of novel chroman",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 12,
+      "similarity_retained": 12,
+      "lumisift_retained": 8,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "31279605",
+      "title": "Mechanistic MALDI-TOF Cell-Based Assay for the Discovery of ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "19471122",
+      "title": "Discovery of a novel proteasome inhibitor selective for canc",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "22585504",
+      "title": "Extraction of proteins from gels: a brief review.",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39442102",
+      "title": "Methods to protein and peptide extraction from microalgae: a",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40617203",
+      "title": "Oat protein extraction: The role of oat flourcomposition on ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 11,
+      "similarity_retained": 5,
+      "lumisift_retained": 11,
+      "similarity_rate_pct": 45.5,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "33055450",
+      "title": "Effects of Pretreatment on the Yield of Peanut Oil and Prote",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 23,
+      "similarity_retained": 11,
+      "lumisift_retained": 15,
+      "similarity_rate_pct": 47.8,
+      "lumisift_rate_pct": 65.2,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "p_value",
+        "concentration",
+        "concentration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "29220051",
+      "title": "Improving extraction and post-purification concentration of ",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "fold_change",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "32069921",
+      "title": "Effect of Ultrasound Application on Protein Yield and Fate o",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 4,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "p_value",
+        "duration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "31691301",
+      "title": "Hemp (Cannabis sativa L.) Protein Extraction Conditions Affe",
+      "n_chunks": 11,
+      "n_selected": 5,
+      "total_facts": 9,
+      "similarity_retained": 4,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 44.4,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31018583",
+      "title": "Microwave-Assisted Extraction, Purification, Partial Charact",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 6,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "scientific_notation",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "28865613",
+      "title": "Protein and carbohydrate extraction from S. platensis biomas",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 11,
+      "similarity_retained": 7,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 63.6,
+      "lumisift_rate_pct": 81.8,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "duration",
+        "duration",
+        "result_value",
+        "range_with_unit",
+        "range_with_unit",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "38651259",
+      "title": "Phase separation methods for protein purification: A meta-an",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 15,
+      "similarity_retained": 4,
+      "lumisift_retained": 10,
+      "similarity_rate_pct": 26.7,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31766309",
+      "title": "Optimization of Scorpion Protein Extraction and Characteriza",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 4,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 44.4,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "duration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "27198121",
+      "title": "Extraction, composition, and functional properties of dried ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 8,
+      "similarity_retained": 2,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 25.0,
+      "lumisift_rate_pct": 62.5,
+      "fact_types": [
+        "temperature",
+        "duration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28865612",
+      "title": "Extraction and characterization of protein from Irish brown ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "concentration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "34257588",
+      "title": "Evaluation of Protein Purification Techniques and Effects of",
+      "n_chunks": 12,
+      "n_selected": 6,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "p_value",
+        "p_value",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39795181",
+      "title": "Optimization of Black Garlic Protein Extraction Process and ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 15,
+      "similarity_retained": 4,
+      "lumisift_retained": 12,
+      "similarity_rate_pct": 26.7,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "p_value",
+        "temperature",
+        "concentration",
+        "duration",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "27739088",
+      "title": "Increase of protein extraction yield from rapeseed meal thro",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 7,
+      "similarity_retained": 0,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "temperature",
+        "temperature",
+        "duration",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "27098501",
+      "title": "Reproducible Tissue Homogenization and Protein Extraction fo",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "result_value",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "25065975",
+      "title": "Extraction, purification, kinetic and thermodynamic properti",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 13,
+      "similarity_retained": 7,
+      "lumisift_retained": 12,
+      "similarity_rate_pct": 53.8,
+      "lumisift_rate_pct": 92.3,
+      "fact_types": [
+        "percentage",
+        "temperature",
+        "concentration",
+        "duration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39593313",
+      "title": "Leg muscles of migratory locust (Locusta migratoria) as a pr",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 15,
+      "similarity_retained": 0,
+      "lumisift_retained": 14,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 93.3,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "range_with_unit",
+        "range_with_unit",
+        "range_with_unit",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "23339088",
+      "title": "Improved protein extraction and protein identification from ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "39053391",
+      "title": "Effect of conventional and novel techniques on extraction yi",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 15,
+      "similarity_retained": 8,
+      "lumisift_retained": 13,
+      "similarity_rate_pct": 53.3,
+      "lumisift_rate_pct": 86.7,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature",
+        "duration",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "30426441",
+      "title": "Protein Extraction from Gels: A Brief Review.",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39849750",
+      "title": "Stabilization and extraction of alfalfa (Medicago sativa) pr",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "15754805",
+      "title": "Extraction, purification, and development of an enzyme-linke",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "21305021",
+      "title": "Successful protein extraction from over-fixed and long-term ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 3,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 60.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "duration",
+        "duration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "10630869",
+      "title": "Purification of protein and recycling of polymers in a new a",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 6,
+      "similarity_retained": 5,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 83.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "concentration",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "19067247",
+      "title": "Protein extraction and enzymatic hydrolysis of ammonia-treat",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 16,
+      "similarity_retained": 5,
+      "lumisift_retained": 12,
+      "similarity_rate_pct": 31.2,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "duration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "11570855",
+      "title": "Purification and characterization of the Sin Nombre virus nu",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "concentration",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33893910",
+      "title": "Separation of Storage Proteins (7S and 11S) from Soybean See",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 11,
+      "similarity_retained": 7,
+      "lumisift_retained": 11,
+      "similarity_rate_pct": 63.6,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "10036156",
+      "title": "Protein purification from polyacrylamide gels by sonication ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "22763810",
+      "title": "Rapid DNA, RNA and protein extraction protocols optimized fo",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "39147471",
+      "title": "Cassava leaves as an alternative protein source: Effect of a",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "41185457",
+      "title": "Lyophilization Improved Efficiency in 2-in-1 Metabolite and ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "duration",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "39096052",
+      "title": "Trends in extracting protein from microalgae ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "28188654",
+      "title": "Dry matter yield, chemical composition and estimated extract",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "10099276",
+      "title": "Protein sorption and recovery by hydrogels using principles ",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 7,
+      "similarity_retained": 2,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 28.6,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "15508181",
+      "title": "Effect of roasting history and buffer composition on peanut ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "range_with_unit",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "30133529",
+      "title": "Optimization of protein extraction and two-dimensional gel e",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "16739955",
+      "title": "Evaluating extraction and storage of a recombinant protein p",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 3,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "concentration",
+        "duration",
+        "duration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "40701084",
+      "title": "The multifaceted Sacha Inchi (Plukenetia volubilis L.) prote",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "9611777",
+      "title": "Purification and characterization of a human bradykinin bind",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 5,
+      "similarity_retained": 1,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 20.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31601107",
+      "title": "Proteomic and N-Terminomic TAILS Analyses of Human Alveolar ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40260786",
+      "title": "Comparative Assessment of Extraction Efficiency and Physical",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "18713639",
+      "title": "High-yield purification of fetal tau preserving its structur",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "9693068",
+      "title": "Expression, purification, and characterization of Sss1p, an ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "21627325",
+      "title": "Lunasin and Bowman-Birk protease inhibitor concentrations of",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 7,
+      "similarity_retained": 0,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "20126687",
+      "title": "The extraction of liquid, protein molecules and yeast cells ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "4156828",
+      "title": "Extraction, partial purification and properties of obelin, t",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 13,
+      "similarity_retained": 9,
+      "lumisift_retained": 10,
+      "similarity_rate_pct": 69.2,
+      "lumisift_rate_pct": 76.9,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "duration",
+        "range_with_unit",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39638165",
+      "title": "Optimized extraction, identification and characterization of",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 5,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 83.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "result_value",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39951852",
+      "title": "Protein extraction from detoxified cassava leaves using vari",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 15,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 13.3,
+      "lumisift_rate_pct": 13.3,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "result_value",
+        "range_with_unit",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "38786588",
+      "title": "Purified ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 1,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "7784397",
+      "title": "Amaranth seed proteins: effect of defatting on extraction yi",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "30722922",
+      "title": "Sesame bran as an unexploited by-product: Effect of enzyme a",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "temperature",
+        "duration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "34407290",
+      "title": "Extraction and deproteinization process of polysaccharide fr",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 7,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 28.6,
+      "lumisift_rate_pct": 57.1,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "duration",
+        "duration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39854853",
+      "title": "Large-scale protein extraction from oat hulls using two hydr",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 60.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "p_value",
+        "result_value",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "40811971",
+      "title": "The digestibility of rapeseed protein isolate prepared by sa",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "concentration",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "28452149",
+      "title": "Protein Extraction from Porcine Myocardium Using Ultrasonica",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "55033",
+      "title": "The extraction and partial purification of the deoxycholate-",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "27561651",
+      "title": "The effect of temperature and bacterial growth phase on prot",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "25062492",
+      "title": "Efficient method of protein extraction from Theobroma cacao ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30309523",
+      "title": "Comparative studies on the yield and characteristics of myof",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 10,
+      "similarity_retained": 6,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 60.0,
+      "lumisift_rate_pct": 60.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "p_value",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "17039245",
+      "title": "Optimized methodology for sequential extraction of RNA and p",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 3,
+      "similarity_retained": 2,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 33.3,
+      "fact_types": [
+        "concentration",
+        "result_value",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "41046092",
+      "title": "A novel Mfp-4 derived fusion tag enhances recombinant mussel",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "concentration",
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "39779090",
+      "title": "The use of green technologies for processing lupin seeds (Lu",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 16,
+      "similarity_retained": 10,
+      "lumisift_retained": 14,
+      "similarity_rate_pct": 62.5,
+      "lumisift_rate_pct": 87.5,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature",
+        "result_value",
+        "range_with_unit",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "40154032",
+      "title": "Simultaneous combination of subcritical water extraction and",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "26050895",
+      "title": "Combined effects of independent variables on yield and prote",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "39884237",
+      "title": "MicroNIR spectroscopy with chemometric analysis provides rap",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 7,
+      "similarity_retained": 4,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 57.1,
+      "lumisift_rate_pct": 42.9,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "range_with_unit",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "29247927",
+      "title": "Comparison of salting-out and sugaring-out liquid-liquid ext",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "25739320",
+      "title": "Impact of total solid content and extraction pH on enzyme-ai",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "17295508",
+      "title": "Qualitative and quantitative evaluation of protein extractio",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 13,
+      "similarity_retained": 10,
+      "lumisift_retained": 10,
+      "similarity_rate_pct": 76.9,
+      "lumisift_rate_pct": 76.9,
+      "fact_types": [
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "24530626",
+      "title": "Metaproteomics of soils from semiarid environment: functiona",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "34450115",
+      "title": "Allergen extraction: Factors influencing immunogenicity and ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "2743404",
+      "title": "Cardiac S-100a0 protein: purification by a simple procedure ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 7,
+      "similarity_retained": 1,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 14.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "concentration",
+        "range_with_unit",
+        "range_with_unit",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "10336865",
+      "title": "The in situ regeneration and extraction of recombinant aequo",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40628046",
+      "title": "A comprehensive insight into ultrasound-assisted protein ext",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 18,
+      "similarity_retained": 10,
+      "lumisift_retained": 8,
+      "similarity_rate_pct": 55.6,
+      "lumisift_rate_pct": 44.4,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "p_value",
+        "concentration",
+        "duration",
+        "result_value",
+        "range_with_unit",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "39541858",
+      "title": "A new method for protein extraction from sea lettuce (Ulva f",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "41352499",
+      "title": "Enzyme-assisted extraction of navy bean protein from whole a",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 9,
+      "similarity_retained": 3,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "result_value",
+        "result_value",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "32659672",
+      "title": "Cascade extraction of proteins and feruloylated arabinoxylan",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature",
+        "temperature",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "29859329",
+      "title": "Spectral comparisons of mammalian cells and intact organelle",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "26153614",
+      "title": "A High-Efficiency Cellular Extraction System for Biological ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "9570837",
+      "title": "Synthesis of a radiolabeled zwitterionic detergent and its u",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 8,
+      "similarity_retained": 3,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 37.5,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "29232935",
+      "title": "Extraction Optimization of Flavonoids from Hypericum formosa",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "temperature",
+        "duration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "18067947",
+      "title": "Protein extraction from activated sludge: an analytical appr",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39147983",
+      "title": "Optimizing the standardized assays for determining the catal",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "27871376",
+      "title": "Optimization of oligomeric enzyme activity in ionic liquids ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 10,
+      "similarity_retained": 2,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 20.0,
+      "lumisift_rate_pct": 60.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "temperature",
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "duration",
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "30910675",
+      "title": "Improving catalytic efficiency and maximum activity at low p",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "41168089",
+      "title": "Enhancement of Thermostability and Catalytic Activity of β-1",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 9,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 22.2,
+      "lumisift_rate_pct": 22.2,
+      "fact_types": [
+        "percentage",
+        "temperature",
+        "temperature",
+        "temperature",
+        "range_with_unit",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "40420816",
+      "title": "Bioinspired rational design of nanozymes.",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "15926885",
+      "title": "Porcine, mouse and human galactose 3-O-sulphotransferase-2 e",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "32396336",
+      "title": "Kinetics and Optimization of the Lysine-Isopeptide Bond Form",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 7,
+      "similarity_retained": 0,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "concentration",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "15736937",
+      "title": "Directed coevolution of stability and catalytic activity in ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38060173",
+      "title": "Regulating Enzyme Catalysis by Tailored Silver Nanocrystals ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "23212386",
+      "title": "Diminishing returns and tradeoffs constrain the laboratory o",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "result_value",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "16103370",
+      "title": "Sequence optimization and designability of enzyme active sit",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "29240229",
+      "title": "Thermoactivation of a cellobiohydrolase.",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "37682266",
+      "title": "Mechanism-Based Redesign of GAP to Activate Oncogenic Ras.",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "23056508",
+      "title": "Role of the NC-loop in catalytic activity and stability in l",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30074072",
+      "title": "Rational engineering of Cel5E from Clostridium thermocellum ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 21,
+      "similarity_retained": 1,
+      "lumisift_retained": 20,
+      "similarity_rate_pct": 4.8,
+      "lumisift_rate_pct": 95.2,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "6339228",
+      "title": "The role of glutathione in detoxication.",
+      "n_chunks": 11,
+      "n_selected": 5,
+      "total_facts": 3,
+      "similarity_retained": 2,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 66.7,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39799729",
+      "title": "Heterologous expression of calcium-independent mesophilic α-",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 6,
+      "similarity_retained": 0,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "temperature",
+        "temperature",
+        "duration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40294391",
+      "title": "AI.zymes: A Modular Platform for Evolutionary Enzyme Design.",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "33667559",
+      "title": "Enzyme mimics in-focus: Redefining the catalytic attributes ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33430075",
+      "title": "Immobilization of Soybean Lipoxygenase on Nanoporous Rice Hu",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 22.2,
+      "lumisift_rate_pct": 22.2,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "9154943",
+      "title": "Toward an efficient DNAzyme.",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "26530855",
+      "title": "Activity prediction of substrates in NADH-dependent carbonyl",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "11044441",
+      "title": "Human glutathione transferase T2-2 discloses some evolutiona",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "41043116",
+      "title": "Deep-Learning-Guided Mining and Clustering of Remote Amino A",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "23455344",
+      "title": "Fusion of an oligopeptide to the N terminus of an alkaline α",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 9,
+      "similarity_retained": 0,
+      "lumisift_retained": 9,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "fold_change",
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "temperature",
+        "temperature",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "22542853",
+      "title": "A differential behavior of α-amylase, in terms of catalytic ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 6,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 33.3,
+      "fact_types": [
+        "temperature",
+        "concentration",
+        "concentration",
+        "range_with_unit",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "33660099",
+      "title": "Preparation of cross-linked enzyme aggregates of lipase from",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 18,
+      "similarity_retained": 4,
+      "lumisift_retained": 13,
+      "similarity_rate_pct": 22.2,
+      "lumisift_rate_pct": 72.2,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "temperature",
+        "temperature",
+        "temperature",
+        "concentration",
+        "concentration",
+        "duration",
+        "duration",
+        "duration",
+        "range_with_unit",
+        "range_with_unit",
+        "range_with_unit",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "30303453",
+      "title": "Catalytic and thermodynamic properties of β-glucosidases pro",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 3,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature",
+        "temperature",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "4018080",
+      "title": "Properties of cytosolic epoxide hydrolase purified from the ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31079451",
+      "title": "Integrating Enzyme and Metabolic Engineering Tools for Enhan",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "36670328",
+      "title": "Stability of enzyme immobilized on the nanofluidic channel s",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31815263",
+      "title": "Advances in ultrahigh-throughput screening for directed enzy",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "26807652",
+      "title": "Cross-Species Analysis of Protein Dynamics Associated with H",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "8530523",
+      "title": "Dissociation of hexameric Escherichia coli inorganic pyropho",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 7,
+      "similarity_retained": 2,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 28.6,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38485940",
+      "title": "Supra-biological performance of immobilized enzymes enabled ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "25539048",
+      "title": "Dynamically achieved active site precision in enzyme catalys",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "27856300",
+      "title": "Hemin-utilizing G-quadruplex DNAzymes are strongly active in",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "210822",
+      "title": "Evidence for a role of sulfhydryl groups in catalytic activi",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "35267241",
+      "title": "Enhancing Enzyme Activity by the Modulation of Covalent Inte",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38538873",
+      "title": "Improving the Catalytic Properties of Xylanase from Alteromo",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 0,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "33713245",
+      "title": "Soluble Expression and Catalytic Properties of Codon-Optimiz",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 11,
+      "similarity_retained": 6,
+      "lumisift_retained": 11,
+      "similarity_rate_pct": 54.5,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "scientific_notation",
+        "temperature",
+        "concentration",
+        "concentration",
+        "range_with_unit",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "20352967",
+      "title": "[Improved expression and catalytic efficiency of (R)-carbony",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 9,
+      "similarity_retained": 3,
+      "lumisift_retained": 6,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage",
+        "concentration",
+        "result_value",
+        "result_value",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "29572146",
+      "title": "Catalytic characteristics and application of l-asparaginase ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 1,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 33.3,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "percentage",
+        "temperature",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "37196221",
+      "title": "Lipid Nanoparticle (LNP) Enables mRNA Delivery for Cancer Th",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40069324",
+      "title": "mRNA lipid nanoparticle formulation, characterization and ev",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "duration"
+      ]
+    },
+    {
+      "pmid": "38307296",
+      "title": "mRNA delivery systems for cancer immunotherapy: Lipid nanopa",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39578569",
+      "title": "Lipid nanoparticle-mediated mRNA delivery to CD34",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "large_number",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "26469188",
+      "title": "Optimization of Lipid Nanoparticle Formulations for mRNA Del",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "36988645",
+      "title": "",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "39875072",
+      "title": "Lipid nanoparticle-mediated intracameral mRNA delivery facil",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "37172950",
+      "title": "Induction of Bleb Structures in Lipid Nanoparticle Formulati",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39067551",
+      "title": "DNA aptamer-conjugated lipid nanoparticle for targeted PTEN ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "40317512",
+      "title": "Lipid Nanoparticles Enhance mRNA Delivery to the Central Ner",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 0,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "38980261",
+      "title": "Lipid Nanoparticle-Mediated Delivery of mRNA Into the Mouse ",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "duration"
+      ]
+    },
+    {
+      "pmid": "38325664",
+      "title": "Comparative analysis of lipid Nanoparticle-Mediated delivery",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "33649229",
+      "title": "Lipid nanoparticle-mediated codelivery of Cas9 mRNA and sing",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40087866",
+      "title": "CD47 peptide-cloaked lipid nanoparticles promote cell-specif",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "36642345",
+      "title": "Lipid nanoparticle-mediated mRNA delivery in lung fibrosis.",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "40187650",
+      "title": "Splenic B cell-targeting lipid nanoparticles for safe and ef",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "38604385",
+      "title": "Cardiac delivery of modified mRNA using lipid nanoparticles:",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38452271",
+      "title": "Fluorinated Lipid Nanoparticles for Enhancing mRNA Delivery ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "fold_change",
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39875076",
+      "title": "Role of PEGylated lipid in lipid nanoparticle formulation fo",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40759744",
+      "title": "A versatile antibody capture system drives specific in vivo ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38164140",
+      "title": "Bile acid-containing lipid nanoparticles enhance extrahepati",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "40504743",
+      "title": "Reengineering Endogenous Targeting Lipid Nanoparticles (ENDO",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "duration"
+      ]
+    },
+    {
+      "pmid": "37679571",
+      "title": "Enhancing the immunogenicity of lipid-nanoparticle mRNA vacc",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38513098",
+      "title": "IL7 increases targeted lipid nanoparticle-mediated mRNA expr",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "40802746",
+      "title": "Lipid nanoparticles for mRNA delivery in brain via systemic ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39899798",
+      "title": "Deciphering the Role of PEGylation on the Lipid Nanoparticle",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "35346768",
+      "title": "The replacement of helper lipids with charged alternatives i",
+      "n_chunks": 11,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "37567506",
+      "title": "Lipid nanoparticle-mediated messenger RNA delivery for ex vi",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "36064263",
+      "title": "Present and future of lipid nanoparticle-mRNA technology in ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "41811986",
+      "title": "Amino acid supplementation enhances in vivo efficacy of lipi",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "37741463",
+      "title": "Spray dried lipid nanoparticle formulations enable intratrac",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "41083009",
+      "title": "Hepatocyte-targeted lipid nanoparticle for full-length ATP7B",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "percentage",
+        "duration",
+        "result_value"
+      ]
+    },
+    {
+      "pmid": "40613352",
+      "title": "Nanobody-Decorated Lipid Nanoparticles for Enhanced mRNA Del",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "range_with_unit"
+      ]
+    },
+    {
+      "pmid": "41093009",
+      "title": "Music enhances lipid nanoparticle brain delivery and mRNA tr",
+      "n_chunks": 11,
+      "n_selected": 5,
+      "total_facts": 8,
+      "similarity_retained": 0,
+      "lumisift_retained": 8,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "36680477",
+      "title": "Unsaturated, Trialkyl Ionizable Lipids are Versatile Lipid-N",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "39663452",
+      "title": "Placenta-tropic VEGF mRNA lipid nanoparticles ameliorate mur",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "range_with_unit",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "34801660",
+      "title": "Lipid nanoparticle chemistry determines how nucleoside base ",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 4,
+      "similarity_retained": 1,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 25.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38965928",
+      "title": "An overview of lipid constituents in lipid nanoparticle mRNA",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
       "lumisift_rate_pct": 100.0,
       "fact_types": [
         "large_number"

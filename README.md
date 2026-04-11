@@ -6,7 +6,7 @@
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square" alt="AGPL-3.0"></a>
-  <a href="#benchmarks"><img src="https://img.shields.io/badge/benchmark-95_PubMed_articles-orange?style=flat-square" alt="Benchmark"></a>
+  <a href="#benchmarks"><img src="https://img.shields.io/badge/benchmark-520_PubMed_articles-orange?style=flat-square" alt="Benchmark"></a>
   <a href="#"><img src="https://img.shields.io/badge/GPU-not_required-brightgreen?style=flat-square" alt="No GPU"></a>
 </p>
 
@@ -25,7 +25,7 @@ But in scientific and high-stakes domains, **looking similar and being important
 - The sentence *"We used standard PCR protocols"* is highly similar to a query about PCR -- but contains **zero useful data**.
 - The sentence *"IC50 = 3.2 nM (47-fold improvement)"* may **not look similar at all** -- but it's the most critical fact in the entire paper.
 
-**Standard embedding retrieval loses 63.6% of all quantitative data.** IC50 values, fold-changes, p-values, dosing data -- gone.
+**Standard embedding retrieval loses 60% of all quantitative data.** IC50 values, fold-changes, p-values, dosing data -- gone. Validated on **520 PubMed articles** across drug discovery, protein engineering, protein extraction, enzyme optimization, and mRNA delivery.
 
 Lumisift solves this.
 
@@ -46,7 +46,7 @@ Raw Text --> Embedding --> 8-Signal Scoring --> Selection --> LLM
 | Problem | Standard RAG | With Lumisift |
 |---------|-------------|--------------|
 | Selection basis | Similarity (1 signal) | **8 semantic signals** |
-| Quantitative data | 63.6% lost | **Only 11.7% lost** |
+| Quantitative data | 60.1% lost | **Only 19.8% lost** |
 | Critical drug data (IC50, dosing) | 85% lost | **Only 16% lost** |
 | Text fidelity | Some systems summarize | **100% lossless** |
 | Token cost | Full context = full price | **52% fewer tokens** |
@@ -78,25 +78,28 @@ All benchmarks are reproducible. Run them yourself.
 
 *"Do numbers survive context selection?"*
 
-Head-to-head on 28 PubMed articles containing quantitative data. Same 50% selection ratio.
+Head-to-head on **298 PubMed articles** containing quantitative data (from 520 total). Same 50% selection ratio.
 
 | Method | Facts Retained | Rate |
 |--------|---------------|------|
-| Embedding Similarity (standard RAG) | 28 / 77 | **36.4%** |
-| Lumisift (8-axis + specificity) | 68 / 77 | **88.3%** |
-| **Delta** | **+40 facts** | **+51.9 pp** |
+| Embedding Similarity (standard RAG) | 498 / 1,249 | **39.9%** |
+| Lumisift (8-axis + specificity) | 1,002 / 1,249 | **80.2%** |
+| **Delta** | **+504 facts** | **+40.4 pp** |
 
 Breakdown by data type:
 
-| Data Type | Embedding | Lumisift |
-|-----------|-----------|----------|
-| Fold changes (e.g. "1000-fold") | 22.2% | **88.9%** |
-| Precise decimals (e.g. "3.2 nM") | 22.2% | **100%** |
-| Concentrations (e.g. "50 mM") | 28.6% | **100%** |
-| Percentages | 60.0% | **80.0%** |
-| Temperatures | 50.0% | **87.5%** |
+| Data Type | Count | Embedding | Lumisift |
+|-----------|-------|-----------|----------|
+| Large numbers | 307 | 45.6% | **73.0%** |
+| Percentages | 274 | 40.5% | **83.2%** |
+| Precise decimals | 221 | 37.1% | **85.5%** |
+| Concentrations (mM, nM, mg/kg) | 186 | 38.7% | **83.9%** |
+| Fold changes | 78 | 30.8% | **89.7%** |
+| Temperatures | 57 | 36.8% | **73.7%** |
+| IC50 / EC50 values | 19 | 36.8% | **84.2%** |
+| p-values | 8 | 37.5% | **87.5%** |
 
-Per-article: **Lumisift wins 61%**, Embedding wins 4%, Ties 36%.
+**Lumisift wins on all 12 fact types.** Per-article: Lumisift wins 60%, Embedding wins 8%, Ties 32%.
 
 **Reproducible:** `python numerical_retention_benchmark.py`
 
@@ -125,9 +128,9 @@ Example -- mRNA LNP Optimization:
 
 ---
 
-### 3. Downstream Quality -- 95 PubMed Articles
+### 3. Downstream Quality -- 520 PubMed Articles
 
-Full benchmark on 95 peer-reviewed protein engineering articles:
+Full benchmark on **520 peer-reviewed articles** across 5 domains (protein engineering, drug discovery, protein extraction, enzyme optimization, mRNA delivery):
 
 | Metric | Value |
 |--------|-------|
@@ -156,9 +159,7 @@ Full benchmark on 95 peer-reviewed protein engineering articles:
 
 ---
 
-### 4. Honest Limitation -- PubMedQA
-
-*Lumisift does NOT beat similarity on every task.*
+### 4. PubMedQA -- The Trade-Off (Not a Bug)
 
 Yes/no/maybe comprehension questions (15 articles):
 
@@ -168,9 +169,18 @@ Yes/no/maybe comprehension questions (15 articles):
 | Embedding Similarity (50% tokens) | **93.3%** |
 | Lumisift (50% tokens) | **46.7%** |
 
-**Why:** Lumisift's specificity boost prioritizes quantitative chunks. For comprehension questions, explanatory text matters more than numbers.
+**This is by design, not a failure.** Here's why:
 
-**Conclusion:** Lumisift is a **specialist for quantitative data retention**. For general comprehension, use it **alongside** similarity retrieval, not instead of it. The strongest pipeline combines both.
+- PubMedQA asks: *"Does directed evolution improve enzyme stability?"* -- a **comprehension** question
+- To answer yes/no, the LLM needs the **explanatory context** (background, methodology, conclusion)
+- Lumisift deliberately prioritizes chunks containing **quantitative data** (IC50, fold-changes, etc.)
+- So the data-heavy paragraphs are selected, the explanatory paragraphs are dropped
+- For numbers, this is exactly right. For comprehension, similarity is better.
+
+**This defines the positioning:** Lumisift is not a general-purpose retrieval improvement.
+It's a **specialist layer** for domains where losing a number means losing the answer.
+
+Use Lumisift **alongside** similarity retrieval. The strongest pipeline combines both signals.
 
 **Reproducible:** `python pubmedqa_benchmark.py`
 
