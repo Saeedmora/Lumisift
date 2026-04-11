@@ -28,11 +28,16 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # ─── PubMed Search Queries ─────────────────────────────────────────────────────
 
 SEARCH_QUERIES = [
-    ("protein engineering AND directed evolution", 150),
-    ("drug discovery AND IC50 AND inhibitor", 120),
-    ("protein extraction AND purification AND yield", 100),
-    ("enzyme optimization AND catalytic activity", 80),
-    ("lipid nanoparticle AND mRNA delivery", 80),
+    ("protein engineering AND directed evolution", 200),
+    ("drug discovery AND IC50 AND inhibitor", 150),
+    ("protein extraction AND purification AND yield", 120),
+    ("enzyme optimization AND catalytic activity", 100),
+    ("lipid nanoparticle AND mRNA delivery", 100),
+    ("antibody engineering AND affinity maturation", 100),
+    ("CRISPR AND gene editing AND efficiency", 100),
+    ("biocatalysis AND enantioselectivity AND enzyme", 80),
+    ("pharmacokinetics AND bioavailability AND oral", 80),
+    ("vaccine development AND immunogenicity AND efficacy", 80),
 ]
 
 

@@ -6,7 +6,7 @@
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square" alt="AGPL-3.0"></a>
-  <a href="#benchmarks"><img src="https://img.shields.io/badge/benchmark-520_PubMed_articles-orange?style=flat-square" alt="Benchmark"></a>
+  <a href="#benchmarks"><img src="https://img.shields.io/badge/benchmark-1077_PubMed_articles-orange?style=flat-square" alt="Benchmark"></a>
   <a href="#"><img src="https://img.shields.io/badge/GPU-not_required-brightgreen?style=flat-square" alt="No GPU"></a>
 </p>
 
@@ -25,7 +25,7 @@ But in scientific and high-stakes domains, **looking similar and being important
 - The sentence *"We used standard PCR protocols"* is highly similar to a query about PCR -- but contains **zero useful data**.
 - The sentence *"IC50 = 3.2 nM (47-fold improvement)"* may **not look similar at all** -- but it's the most critical fact in the entire paper.
 
-**Standard embedding retrieval loses 60% of all quantitative data.** IC50 values, fold-changes, p-values, dosing data -- gone. Validated on **520 PubMed articles** across drug discovery, protein engineering, protein extraction, enzyme optimization, and mRNA delivery.
+**Standard embedding retrieval loses 60% of all quantitative data.** IC50 values, fold-changes, p-values, dosing data -- gone. Validated on **1,077 PubMed articles** across 10 scientific domains.
 
 Lumisift solves this.
 
@@ -46,7 +46,7 @@ Raw Text --> Embedding --> 8-Signal Scoring --> Selection --> LLM
 | Problem | Standard RAG | With Lumisift |
 |---------|-------------|--------------|
 | Selection basis | Similarity (1 signal) | **8 semantic signals** |
-| Quantitative data | 60.1% lost | **Only 19.8% lost** |
+| Quantitative data | 59.6% lost | **Only 17.1% lost** |
 | Critical drug data (IC50, dosing) | 85% lost | **Only 16% lost** |
 | Text fidelity | Some systems summarize | **100% lossless** |
 | Token cost | Full context = full price | **52% fewer tokens** |
@@ -78,28 +78,27 @@ All benchmarks are reproducible. Run them yourself.
 
 *"Do numbers survive context selection?"*
 
-Head-to-head on **298 PubMed articles** containing quantitative data (from 520 total). Same 50% selection ratio.
+Head-to-head on **584 PubMed articles** containing quantitative data (from 1,077 total across 10 domains). Same 50% selection ratio.
 
 | Method | Facts Retained | Rate |
 |--------|---------------|------|
-| Embedding Similarity (standard RAG) | 498 / 1,249 | **39.9%** |
-| Lumisift (8-axis + specificity) | 1,002 / 1,249 | **80.2%** |
-| **Delta** | **+504 facts** | **+40.4 pp** |
+| Embedding Similarity (standard RAG) | 1,100 / 2,722 | **40.4%** |
+| Lumisift (8-axis + specificity) | 2,256 / 2,722 | **82.9%** |
+| **Delta** | **+1,156 facts** | **+42.5 pp** |
 
 Breakdown by data type:
 
 | Data Type | Count | Embedding | Lumisift |
 |-----------|-------|-----------|----------|
-| Large numbers | 307 | 45.6% | **73.0%** |
-| Percentages | 274 | 40.5% | **83.2%** |
-| Precise decimals | 221 | 37.1% | **85.5%** |
-| Concentrations (mM, nM, mg/kg) | 186 | 38.7% | **83.9%** |
-| Fold changes | 78 | 30.8% | **89.7%** |
-| Temperatures | 57 | 36.8% | **73.7%** |
-| IC50 / EC50 values | 19 | 36.8% | **84.2%** |
-| p-values | 8 | 37.5% | **87.5%** |
+| Large numbers | 775 | 46.2% | **76.4%** |
+| Percentages | 607 | 37.9% | **87.0%** |
+| Precise decimals | 495 | 40.6% | **88.9%** |
+| Concentrations (mM, nM, mg/kg) | 281 | 35.6% | **86.8%** |
+| Fold changes | 161 | 32.9% | **92.5%** |
+| IC50 / EC50 values | 24 | 29.2% | **87.5%** |
+| p-values | 32 | 34.4% | **90.6%** |
 
-**Lumisift wins on all 12 fact types.** Per-article: Lumisift wins 60%, Embedding wins 8%, Ties 32%.
+**Lumisift wins on all 13 fact types.** Per-article: Lumisift wins 61%, Embedding wins 8%, Ties 31%.
 
 **Reproducible:** `python numerical_retention_benchmark.py`
 
@@ -128,9 +127,11 @@ Example -- mRNA LNP Optimization:
 
 ---
 
-### 3. Downstream Quality -- 520 PubMed Articles
+### 3. Downstream Quality -- 1,077 PubMed Articles
 
-Full benchmark on **520 peer-reviewed articles** across 5 domains (protein engineering, drug discovery, protein extraction, enzyme optimization, mRNA delivery):
+Full benchmark on **1,077 peer-reviewed articles** across 10 domains (protein engineering, drug discovery,
+protein extraction, enzyme optimization, mRNA delivery, antibody engineering, CRISPR,
+biocatalysis, pharmacokinetics, vaccine development):
 
 | Metric | Value |
 |--------|-------|
@@ -366,7 +367,7 @@ We publish these limitations because transparency builds trust. This is early-st
 - [x] **Honest limitation testing** -- PubMedQA shows where it fails
 - [x] **Hybrid retrieval** -- combined specificity + similarity with configurable alpha
 - [ ] **Learned scoring models** -- replace regex with trained classifiers
-- [ ] **1000+ article validation** -- large-scale, multi-domain proof
+- [x] **1000+ article validation** -- 1,077 articles across 10 domains, 2,722 facts tested
 - [ ] **BM25 / ColBERT comparison** -- head-to-head with established baselines
 - [ ] **LangChain / LlamaIndex plugin** -- drop-in re-ranker for existing pipelines
 - [ ] **Human evaluation** -- expert ratings alongside AI judge
