@@ -1,5 +1,5 @@
 ﻿<p align="center">
-  <strong>ðŸ”¬ AxiSift</strong><br>
+  <strong>ðŸ”¬ Lumisift</strong><br>
   <em>Multi-Axis Semantic Intelligence for Scientific Text</em>
 </p>
 
@@ -17,12 +17,12 @@
 
 ---
 
-## What is AxiSift?
+## What is Lumisift?
 
-**AxiSift is a pre-analysis layer that evaluates scientific text across 8 semantic dimensions â€” before your AI ever sees it.**
+**Lumisift is a pre-analysis layer that evaluates scientific text across 8 semantic dimensions â€” before your AI ever sees it.**
 
 Standard RAG retrieves text by similarity.  
-AxiSift scores every passage on **Relevance, Risk, Trust, Causality, Temporality, Visibility, Ontology, and Specificity** â€” then selects only what matters.
+Lumisift scores every passage on **Relevance, Risk, Trust, Causality, Temporality, Visibility, Ontology, and Specificity** â€” then selects only what matters.
 
 ```
 Raw Text â†’ Embedding â†’ 8-Axis Evaluation â†’ Intelligent Selection â†’ LLM
@@ -38,9 +38,9 @@ Raw Text â†’ Embedding â†’ 8-Axis Evaluation â†’ Intelligent Sele
 
 ---
 
-## Why AxiSift?
+## Why Lumisift?
 
-| Problem | Without AxiSift | With AxiSift |
+| Problem | Without Lumisift | With Lumisift |
 |---------|----------------|--------------|
 | Context selection | Similarity only (1 dimension) | **8 semantic axes** |
 | Quantitative data | Often discarded | **Specificity boost** keeps numbers |
@@ -70,7 +70,7 @@ Benchmarked on **95 peer-reviewed PubMed protein engineering articles**. All num
 <summary><strong>How we measured (click to expand)</strong></summary>
 
 1. Generated scientific questions from full abstracts (Gemini 3 Flash Preview)
-2. Answered each question with full text and AxiSift-selected text
+2. Answered each question with full text and Lumisift-selected text
 3. Blind grading by AI judge on Accuracy, Completeness, Relevance, Conciseness (1â€“5)
 4. **Reproducible:** `python downstream_eval.py`
 
@@ -105,8 +105,8 @@ Chunks with mutation rates, IC50 values, fold-changes, and p-values get up to **
 
 ```bash
 # Clone
-git clone https://github.com/your-username/AxiSift.git
-cd AxiSift
+git clone https://github.com/your-username/Lumisift.git
+cd Lumisift
 
 # Setup
 python -m venv .venv
@@ -167,7 +167,7 @@ python downstream_eval.py         # AI quality evaluation (requires GEMINI_API_K
 
 ```
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                      AxiSift PIPELINE                         â”‚
+â”‚                      Lumisift PIPELINE                         â”‚
 â”‚                                                               â”‚
 â”‚  Raw Text â”€â”€â†’ Embedding â”€â”€â†’ 8-Axis Evaluation â”€â”€â†’ Atom       â”‚
 â”‚               (MiniLM)      (Heuristic / TinyLlama / NF4)    â”‚
@@ -221,7 +221,7 @@ Without API keys, everything runs **100% locally** with the heuristic evaluator.
 ## Project Structure
 
 ```
-AxiSift/
+Lumisift/
 â”œâ”€â”€ app.py                     # Flask web server + API
 â”œâ”€â”€ pubmed_benchmark.py        # PubMed corpus benchmark
 â”œâ”€â”€ downstream_eval.py         # AI quality evaluation
@@ -263,7 +263,7 @@ This project is open source under the [GNU Affero General Public License v3.0](h
 
 ### Commercial Licensing
 
-Want to use AxiSift in a **proprietary product** without AGPL obligations?  
+Want to use Lumisift in a **proprietary product** without AGPL obligations?  
 A commercial license is available.
 
 ðŸ“§ **Saeed Moradtalab**  
@@ -272,7 +272,8 @@ A commercial license is available.
 ---
 
 <p align="center">
-  <strong>AxiSift</strong> â€” Not compression. Selection.<br>
+  <strong>Lumisift</strong> â€” Not compression. Selection.<br>
   <sub>Â© 2026 Saeed Moradtalab</sub>
 </p>
+
 
