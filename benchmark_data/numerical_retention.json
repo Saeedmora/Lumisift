@@ -1,0 +1,512 @@
+{
+  "metadata": {
+    "date": "2026-04-11T14:34:14.650148",
+    "methodology": "Head-to-head: cosine similarity top-k vs Lumisift multi-axis with specificity boost",
+    "selection_ratio": "top 50% of chunks",
+    "query_strategy": "article title as query (simulates typical RAG)",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "evaluator": "heuristic (8-axis with specificity boost)"
+  },
+  "summary": {
+    "articles_with_numerical_data": 28,
+    "total_numerical_facts": 77,
+    "similarity_retained": 28,
+    "similarity_rate_pct": 36.4,
+    "lumisift_retained": 68,
+    "lumisift_rate_pct": 88.3,
+    "delta_pct": 51.9,
+    "lumisift_wins": 17,
+    "similarity_wins": 1,
+    "ties": 10
+  },
+  "by_fact_type": {
+    "percentage": {
+      "total": 10,
+      "similarity_retained_pct": 60.0,
+      "lumisift_retained_pct": 80.0
+    },
+    "fold_change": {
+      "total": 18,
+      "similarity_retained_pct": 22.2,
+      "lumisift_retained_pct": 88.9
+    },
+    "scientific_notation": {
+      "total": 1,
+      "similarity_retained_pct": 0.0,
+      "lumisift_retained_pct": 100.0
+    },
+    "duration": {
+      "total": 3,
+      "similarity_retained_pct": 33.3,
+      "lumisift_retained_pct": 66.7
+    },
+    "large_number": {
+      "total": 20,
+      "similarity_retained_pct": 40.0,
+      "lumisift_retained_pct": 85.0
+    },
+    "temperature": {
+      "total": 8,
+      "similarity_retained_pct": 50.0,
+      "lumisift_retained_pct": 87.5
+    },
+    "concentration": {
+      "total": 7,
+      "similarity_retained_pct": 28.6,
+      "lumisift_retained_pct": 100.0
+    },
+    "precise_decimal": {
+      "total": 9,
+      "similarity_retained_pct": 22.2,
+      "lumisift_retained_pct": 100.0
+    },
+    "result_value": {
+      "total": 1,
+      "similarity_retained_pct": 100.0,
+      "lumisift_retained_pct": 100.0
+    }
+  },
+  "per_article": [
+    {
+      "pmid": "40628259",
+      "title": "Advancing protein evolution with inverse folding models inte",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "percentage",
+        "fold_change",
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "40773556",
+      "title": "An orthogonal T7 replisome for continuous hypermutation and ",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 7,
+      "similarity_retained": 0,
+      "lumisift_retained": 7,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "scientific_notation",
+        "duration",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "30069054",
+      "title": "CRISPR-guided DNA polymerases enable diversification of all ",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 4,
+      "similarity_retained": 4,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "36562723",
+      "title": "Protein engineering via Bayesian optimization-guided evoluti",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage",
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "28255874",
+      "title": "Directed Evolution of Protein Thermal Stability Using Yeast ",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "28052191",
+      "title": "Engineering a Thermostable Keto Acid Decarboxylase Using Dir",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 2,
+      "lumisift_retained": 4,
+      "similarity_rate_pct": 40.0,
+      "lumisift_rate_pct": 80.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "temperature",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "17121498",
+      "title": "Directed evolution and structural analysis of N-carbamoyl-D-",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "31253675",
+      "title": "Secretory Expression Fine-Tuning and Directed Evolution of D",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 12,
+      "similarity_retained": 2,
+      "lumisift_retained": 11,
+      "similarity_rate_pct": 16.7,
+      "lumisift_rate_pct": 91.7,
+      "fact_types": [
+        "concentration",
+        "concentration",
+        "concentration",
+        "concentration",
+        "large_number",
+        "large_number",
+        "large_number",
+        "large_number",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "41066555",
+      "title": "Targeted protein evolution in the gut microbiome by diversit",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "34135887",
+      "title": "Evolutionary Comparative Analyses of DNA-Editing Enzymes of ",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "8377205",
+      "title": "Step-wise mutation of barnase to binase. A procedure for eng",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "28707884",
+      "title": "Rapid and Programmable Protein Mutagenesis Using Plasmid Rec",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "39261644",
+      "title": "Enriching productive mutational paths accelerates enzyme evo",
+      "n_chunks": 4,
+      "n_selected": 2,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "16439663",
+      "title": "Design and evolution of new catalytic activity with an exist",
+      "n_chunks": 3,
+      "n_selected": 1,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "38848839",
+      "title": "Utilization of low-stability variants in protein evolutionar",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 2,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "temperature",
+        "temperature"
+      ]
+    },
+    {
+      "pmid": "27129258",
+      "title": "Engineering Highly Potent and Selective Microproteins agains",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 5,
+      "similarity_retained": 5,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "concentration",
+        "concentration",
+        "result_value",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "32770961",
+      "title": "Recurrent sequence evolution after independent gene duplicat",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "percentage"
+      ]
+    },
+    {
+      "pmid": "35051222",
+      "title": "Deciphering the evolution of composite-type GSKIP in mitocho",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 2,
+      "similarity_retained": 2,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "temperature",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "31806708",
+      "title": "Rational engineering of 2-deoxyribose-5-phosphate aldolases ",
+      "n_chunks": 7,
+      "n_selected": 3,
+      "total_facts": 3,
+      "similarity_retained": 0,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 66.7,
+      "fact_types": [
+        "fold_change",
+        "precise_decimal",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "19683006",
+      "title": "Adaptive evolution of p53 thermodynamic stability.",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "duration"
+      ]
+    },
+    {
+      "pmid": "34647384",
+      "title": "From a dimer to a monomer: Construction of a chimeric monome",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "concentration"
+      ]
+    },
+    {
+      "pmid": "30692603",
+      "title": "Directed evolution of super-secreted variants from phage-dis",
+      "n_chunks": 5,
+      "n_selected": 2,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "37395787",
+      "title": "Evolutionary Shortcuts via Multinucleotide Substitutions and",
+      "n_chunks": 10,
+      "n_selected": 5,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 0,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 0.0,
+      "fact_types": [
+        "fold_change"
+      ]
+    },
+    {
+      "pmid": "17875334",
+      "title": "Cloning of an epoxide hydrolase-encoding gene from Aspergill",
+      "n_chunks": 9,
+      "n_selected": 4,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 3,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 75.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "large_number",
+        "large_number"
+      ]
+    },
+    {
+      "pmid": "9707558",
+      "title": "New enzyme lineages by subdomain shuffling.",
+      "n_chunks": 8,
+      "n_selected": 4,
+      "total_facts": 1,
+      "similarity_retained": 1,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 100.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "21827797",
+      "title": "Directed evolution of a thermostable l-aminoacylase biocatal",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 5,
+      "similarity_retained": 1,
+      "lumisift_retained": 5,
+      "similarity_rate_pct": 20.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "fold_change",
+        "fold_change",
+        "fold_change",
+        "temperature",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "40472524",
+      "title": "Soluble and pocket engineering of D-amino acid oxidase and i",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 4,
+      "similarity_retained": 2,
+      "lumisift_retained": 2,
+      "similarity_rate_pct": 50.0,
+      "lumisift_rate_pct": 50.0,
+      "fact_types": [
+        "percentage",
+        "fold_change",
+        "duration",
+        "precise_decimal"
+      ]
+    },
+    {
+      "pmid": "29813059",
+      "title": "Differential strengths of molecular determinants guide envir",
+      "n_chunks": 6,
+      "n_selected": 3,
+      "total_facts": 1,
+      "similarity_retained": 0,
+      "lumisift_retained": 1,
+      "similarity_rate_pct": 0.0,
+      "lumisift_rate_pct": 100.0,
+      "fact_types": [
+        "large_number"
+      ]
+    }
+  ]
+}
