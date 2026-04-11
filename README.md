@@ -186,6 +186,42 @@ Use Lumisift **alongside** similarity retrieval. The strongest pipeline combines
 
 ---
 
+### 5. The Solution -- Hybrid Mode (NEW)
+
+We solved the trade-off by **combining both signals** with a configurable blend:
+
+```
+hybrid_score = alpha * similarity + (1 - alpha) * lumisift
+```
+
+Alpha sweep across 517 articles (1,029 numerical facts):
+
+| Alpha | Approach | Numerical Retention |
+|-------|----------|-------------------|
+| 0.0 | Pure Lumisift | **81.0%** |
+| 0.3 | **Hybrid (recommended)** | **72.4%** |
+| 0.5 | Balanced 50/50 | 65.1% |
+| 1.0 | Pure Similarity | 40.8% |
+
+**At alpha=0.3:** 72.4% numerical retention (+31.6pp over pure similarity) while including
+similarity signals for comprehension. IC50/EC50 retention stays at **100%**.
+
+```python
+# Using hybrid mode in your pipeline:
+result = pipe.select_context(
+    texts, query="EGFR inhibitor IC50",
+    mode="hybrid", alpha=0.3, top_k=5
+)
+
+# Or pure modes:
+result = pipe.select_context(texts, mode="lumisift", top_k=5)    # Best for data
+result = pipe.select_context(texts, query=q, mode="similarity")  # Best for comprehension
+```
+
+**Reproducible:** `python hybrid_benchmark.py`
+
+---
+
 ## The 8 Semantic Signals
 
 | Signal | What It Measures | Range | Why It Matters |
@@ -328,7 +364,7 @@ We publish these limitations because transparency builds trust. This is early-st
 - [x] **Numerical retention benchmark** -- proved: 88.3% vs 36.4%
 - [x] **Drug discovery use case** -- proved: 84% vs 15% critical data retention
 - [x] **Honest limitation testing** -- PubMedQA shows where it fails
-- [ ] **Hybrid retrieval** -- combine specificity boost with similarity for best of both
+- [x] **Hybrid retrieval** -- combined specificity + similarity with configurable alpha
 - [ ] **Learned scoring models** -- replace regex with trained classifiers
 - [ ] **1000+ article validation** -- large-scale, multi-domain proof
 - [ ] **BM25 / ColBERT comparison** -- head-to-head with established baselines
@@ -356,6 +392,7 @@ Lumisift/
 |-- pubmed_benchmark.py                 # 95-article corpus benchmark
 |-- numerical_retention_benchmark.py    # Head-to-head vs embedding retrieval
 |-- drug_discovery_usecase.py           # Drug discovery use case (3 scenarios)
+|-- hybrid_benchmark.py                 # Hybrid alpha sweep (similarity + lumisift)
 |-- pubmedqa_benchmark.py              # PubMedQA-style yes/no/maybe benchmark
 |-- downstream_eval.py                  # AI quality evaluation
 |-- core/
@@ -408,6 +445,6 @@ A commercial license is available.
 ---
 
 <p align="center">
-  <strong>Lumisift</strong> -- Embedding retrieval loses 63.6% of your numbers. We don't.<br>
+  <strong>Lumisift</strong> -- Embedding retrieval loses 60% of your numbers. We don't.<br>
   <sub>Copyright 2026 Saeed Moradtalab</sub>
 </p>

@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "date": "2026-04-11T15:38:27.260742",
+    "articles_processed": 517,
+    "articles_with_facts": 281,
+    "total_numerical_facts": 1029,
+    "methodology": "Hybrid scoring: alpha * cosine_similarity + (1-alpha) * lumisift_normalized"
+  },
+  "alpha_sweep": [
+    {
+      "alpha": 0.0,
+      "retention_rate": 81.0,
+      "facts_retained": 833,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.1,
+      "retention_rate": 79.8,
+      "facts_retained": 821,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.2,
+      "retention_rate": 77.2,
+      "facts_retained": 794,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.3,
+      "retention_rate": 72.4,
+      "facts_retained": 745,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.4,
+      "retention_rate": 67.9,
+      "facts_retained": 699,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.5,
+      "retention_rate": 65.1,
+      "facts_retained": 670,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.6,
+      "retention_rate": 58.3,
+      "facts_retained": 600,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.7,
+      "retention_rate": 52.5,
+      "facts_retained": 540,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.8,
+      "retention_rate": 48.0,
+      "facts_retained": 494,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 0.9,
+      "retention_rate": 43.1,
+      "facts_retained": 444,
+      "total_facts": 1029
+    },
+    {
+      "alpha": 1.0,
+      "retention_rate": 40.8,
+      "facts_retained": 420,
+      "total_facts": 1029
+    }
+  ],
+  "optimal_alpha": 0.0,
+  "balanced_alpha": 0.3,
+  "comparison": {
+    "Pure Similarity (alpha=1.0)": {
+      "alpha": 1.0,
+      "retention_rate": 40.8,
+      "retained": 420,
+      "total": 1029
+    },
+    "Pure Lumisift (alpha=0.0)": {
+      "alpha": 0.0,
+      "retention_rate": 81.0,
+      "retained": 833,
+      "total": 1029
+    },
+    "Hybrid Balanced (alpha=0.3)": {
+      "alpha": 0.3,
+      "retention_rate": 72.4,
+      "retained": 745,
+      "total": 1029
+    },
+    "Hybrid Optimal (alpha=0.0)": {
+      "alpha": 0.0,
+      "retention_rate": 81.0,
+      "retained": 833,
+      "total": 1029
+    }
+  },
+  "fact_type_breakdown": {
+    "percentage": {
+      "total": 274,
+      "similarity_pct": 40.5,
+      "lumisift_pct": 83.6,
+      "hybrid_pct": 72.6
+    },
+    "fold_change": {
+      "total": 78,
+      "similarity_pct": 30.8,
+      "lumisift_pct": 91.0,
+      "hybrid_pct": 79.5
+    },
+    "large_number": {
+      "total": 307,
+      "similarity_pct": 45.6,
+      "lumisift_pct": 75.9,
+      "hybrid_pct": 67.1
+    },
+    "concentration": {
+      "total": 98,
+      "similarity_pct": 44.9,
+      "lumisift_pct": 81.6,
+      "hybrid_pct": 72.4
+    },
+    "precise_decimal": {
+      "total": 221,
+      "similarity_pct": 37.1,
+      "lumisift_pct": 85.1,
+      "hybrid_pct": 79.6
+    },
+    "duration": {
+      "total": 34,
+      "similarity_pct": 32.4,
+      "lumisift_pct": 47.1,
+      "hybrid_pct": 47.1
+    },
+    "kinetic_constant": {
+      "total": 2,
+      "similarity_pct": 100.0,
+      "lumisift_pct": 100.0,
+      "hybrid_pct": 100.0
+    },
+    "ic50_ec50": {
+      "total": 7,
+      "similarity_pct": 42.9,
+      "lumisift_pct": 100.0,
+      "hybrid_pct": 100.0
+    },
+    "p_value": {
+      "total": 8,
+      "similarity_pct": 37.5,
+      "lumisift_pct": 87.5,
+      "hybrid_pct": 75.0
+    }
+  }
+}

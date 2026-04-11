@@ -393,31 +393,38 @@ class LogicalRoomsPipeline:
         query: Optional[str] = None,
         domain: str = "general",
         top_k: int = 5,
+        mode: str = "hybrid",
+        alpha: float = 0.3,
     ) -> CompressedContext:
         """
-        Axes-driven SELECTION: use 7-axis scores to pick the most
-        relevant raw texts for LLM context, rather than replacing
-        text with compressed representations.
+        Multi-signal context selection with configurable blend.
 
         Args:
-            texts_or_atoms: Either List[str] (raw texts to process)
-                           or List[Atom] (pre-processed atoms).
+            texts_or_atoms: Either List[str] (raw texts) or List[Atom] (pre-processed).
+            query:  Optional query for similarity scoring.
+            domain: Domain tag for processing.
+            top_k:  Number of chunks to select.
+            mode:   'lumisift' (pure multi-axis), 'similarity' (pure embedding),
+                    or 'hybrid' (combined). Default: 'hybrid'.
+            alpha:  Blend weight for hybrid mode.
+                    0.0 = pure lumisift, 1.0 = pure similarity, 0.3 = recommended.
+                    Only used when mode='hybrid'.
 
-        Scoring: score = relevance * (1 + |risk|) * trust * temporal_boost
-
-        This approach achieves ~81% context reduction while preserving
-        full text fidelity for the selected passages.
+        Scoring:
+            lumisift:   score = relevance * (1+|risk|) * trust * temporal * specificity_boost
+            similarity: score = cosine(query_embedding, chunk_embedding)
+            hybrid:     score = alpha * similarity + (1-alpha) * lumisift_normalized
         """
         start = time.time()
 
         # Accept both strings and pre-processed atoms
         if texts_or_atoms and hasattr(texts_or_atoms[0], 'axes'):
-            atoms = texts_or_atoms  # Already Atom objects
+            atoms = texts_or_atoms
         else:
             atoms = self.process_batch(texts_or_atoms, domain=domain)
 
-        # Score each atom using multi-axis priority
-        scored = []
+        # ─── Compute Lumisift multi-axis scores ────────────────────────
+        lumi_scores = []
         for atom in atoms:
             rel = atom.axes.get("relevance", 0.5)
             risk = abs(atom.axes.get("risk", 0.0))
@@ -425,27 +432,50 @@ class LogicalRoomsPipeline:
             temporal = atom.axes.get("temporal", 0.0)
             specificity = atom.axes.get("specificity", 0.0)
 
-            # Temporal boost: recent info gets a multiplier
             t_boost = 1.0 + max(0, temporal) * 0.3
-
-            # Specificity boost: chunks with quantitative data get priority
-            # This prevents discarding exact numbers, rates, measurements
-            s_boost = 1.0 + specificity * 0.8  # 1.0x to 1.8x
+            s_boost = 1.0 + specificity * 0.8
 
             score = rel * (1 + risk) * (0.5 + trust * 0.5) * t_boost * s_boost
+            lumi_scores.append(score)
 
-            # If query provided, also factor in embedding similarity
-            if query:
-                query_emb = self.embedder.embed(query)
-                sim = float(np.dot(query_emb, atom.embedding) / (
+        lumi_scores = np.array(lumi_scores)
+
+        # Normalize to 0-1
+        lmin, lmax = lumi_scores.min(), lumi_scores.max()
+        if lmax - lmin > 1e-8:
+            lumi_norm = (lumi_scores - lmin) / (lmax - lmin)
+        else:
+            lumi_norm = np.ones_like(lumi_scores) * 0.5
+
+        # ─── Compute similarity scores ─────────────────────────────────
+        if query and mode in ("similarity", "hybrid"):
+            query_emb = self.embedder.embed(query)
+            sim_scores = np.array([
+                float(np.dot(query_emb, atom.embedding) / (
                     np.linalg.norm(query_emb) * np.linalg.norm(atom.embedding) + 1e-9
                 ))
-                score *= (0.5 + sim * 0.5)
+                for atom in atoms
+            ])
+            # Normalize to 0-1
+            smin, smax = sim_scores.min(), sim_scores.max()
+            if smax - smin > 1e-8:
+                sim_norm = (sim_scores - smin) / (smax - smin)
+            else:
+                sim_norm = np.ones_like(sim_scores) * 0.5
+        else:
+            sim_norm = np.zeros(len(atoms))
 
-            scored.append((atom, score))
+        # ─── Compute final scores based on mode ────────────────────────
+        if mode == "lumisift":
+            final_scores = lumi_norm
+        elif mode == "similarity":
+            final_scores = sim_norm
+        else:  # hybrid
+            final_scores = alpha * sim_norm + (1 - alpha) * lumi_norm
 
-        scored.sort(key=lambda x: -x[1])
-        selected = scored[:top_k]
+        # Select top-k
+        top_idx = np.argsort(final_scores)[::-1][:top_k]
+        selected = [(atoms[i], float(final_scores[i])) for i in top_idx]
 
         # Build context from selected raw texts
         selected_texts = [a.text for a, _ in selected]
