@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "date": "2026-04-11T18:14:19.452930",
+    "model": "InformationUtilityModel (384->192->96->1)",
+    "parameters": 93121,
+    "training_samples": 6463,
+    "val_samples": 969
+  },
+  "model_quality": {
+    "correlation": 0.5371,
+    "mae": 0.0832
+  },
+  "benchmark": {
+    "Utility Model": {
+      "mean_pct": 86.6,
+      "std_pct": 26.7
+    },
+    "Heuristic (Lumisift)": {
+      "mean_pct": 81.3,
+      "std_pct": 32.5
+    },
+    "Embedding Similarity": {
+      "mean_pct": 40.6,
+      "std_pct": 41.0
+    }
+  }
+}

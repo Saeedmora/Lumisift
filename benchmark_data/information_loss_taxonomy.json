@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "date": "2026-04-11T18:10:41.247259",
+    "articles": 1070,
+    "purpose": "Characterize systematic information loss patterns across retrieval methods",
+    "information_types": [
+      "Numerical Facts",
+      "Named Entities",
+      "Causal Statements",
+      "Uncertainty Markers",
+      "Methodological Details",
+      "Comparative Claims"
+    ],
+    "retrieval_methods": [
+      "Embedding",
+      "BM25",
+      "Lumisift",
+      "Hybrid"
+    ]
+  },
+  "results": {
+    "Numerical Facts": {
+      "total_items": 1109,
+      "n_articles": 405,
+      "retention_pct": {
+        "Embedding": 36.0,
+        "BM25": 41.8,
+        "Lumisift": 85.3,
+        "Hybrid": 75.4
+      },
+      "most_lost_by": "Embedding",
+      "best_retained_by": "Lumisift",
+      "loss_delta_pp": 49.3
+    },
+    "Named Entities": {
+      "total_items": 2992,
+      "n_articles": 849,
+      "retention_pct": {
+        "Embedding": 65.2,
+        "BM25": 67.1,
+        "Lumisift": 70.6,
+        "Hybrid": 69.9
+      },
+      "most_lost_by": "Embedding",
+      "best_retained_by": "Lumisift",
+      "loss_delta_pp": 5.3
+    },
+    "Causal Statements": {
+      "total_items": 920,
+      "n_articles": 541,
+      "retention_pct": {
+        "Embedding": 40.7,
+        "BM25": 44.1,
+        "Lumisift": 50.1,
+        "Hybrid": 46.3
+      },
+      "most_lost_by": "Embedding",
+      "best_retained_by": "Lumisift",
+      "loss_delta_pp": 9.4
+    },
+    "Uncertainty Markers": {
+      "total_items": 639,
+      "n_articles": 415,
+      "retention_pct": {
+        "Embedding": 45.9,
+        "BM25": 39.9,
+        "Lumisift": 48.5,
+        "Hybrid": 42.8
+      },
+      "most_lost_by": "BM25",
+      "best_retained_by": "Lumisift",
+      "loss_delta_pp": 8.6
+    },
+    "Methodological Details": {
+      "total_items": 419,
+      "n_articles": 346,
+      "retention_pct": {
+        "Embedding": 59.5,
+        "BM25": 59.8,
+        "Lumisift": 56.5,
+        "Hybrid": 59.1
+      },
+      "most_lost_by": "Lumisift",
+      "best_retained_by": "BM25",
+      "loss_delta_pp": 3.3
+    },
+    "Comparative Claims": {
+      "total_items": 136,
+      "n_articles": 106,
+      "retention_pct": {
+        "Embedding": 38.6,
+        "BM25": 40.5,
+        "Lumisift": 87.0,
+        "Hybrid": 81.5
+      },
+      "most_lost_by": "Embedding",
+      "best_retained_by": "Lumisift",
+      "loss_delta_pp": 48.4
+    }
+  },
+  "loss_ranking": [
+    {
+      "type": "Numerical Facts",
+      "embedding_retention": 36.0,
+      "lumisift_retention": 85.3,
+      "gain_pp": 49.3
+    },
+    {
+      "type": "Comparative Claims",
+      "embedding_retention": 38.6,
+      "lumisift_retention": 87.0,
+      "gain_pp": 48.4
+    },
+    {
+      "type": "Causal Statements",
+      "embedding_retention": 40.7,
+      "lumisift_retention": 50.1,
+      "gain_pp": 9.4
+    },
+    {
+      "type": "Named Entities",
+      "embedding_retention": 65.2,
+      "lumisift_retention": 70.6,
+      "gain_pp": 5.4
+    },
+    {
+      "type": "Uncertainty Markers",
+      "embedding_retention": 45.9,
+      "lumisift_retention": 48.5,
+      "gain_pp": 2.6
+    },
+    {
+      "type": "Methodological Details",
+      "embedding_retention": 59.5,
+      "lumisift_retention": 56.5,
+      "gain_pp": -3.0
+    }
+  ]
+}
