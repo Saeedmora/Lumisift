@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "date": "2026-04-11T17:06:12.862575",
+    "articles_processed": 1069,
+    "articles_with_facts": 559,
+    "total_facts": 2383,
+    "selection_ratio": "50% (top_k = len(chunks) // 2)",
+    "methods": [
+      "BM25",
+      "ColBERT",
+      "Embedding",
+      "Lumisift",
+      "Hybrid (a=0.3)"
+    ]
+  },
+  "results": {
+    "BM25": {
+      "retained": 995,
+      "total": 2383,
+      "rate_pct": 41.8,
+      "wins": 201
+    },
+    "ColBERT": {
+      "retained": 1039,
+      "total": 2383,
+      "rate_pct": 43.6,
+      "wins": 206
+    },
+    "Embedding": {
+      "retained": 980,
+      "total": 2383,
+      "rate_pct": 41.1,
+      "wins": 195
+    },
+    "Lumisift": {
+      "retained": 1972,
+      "total": 2383,
+      "rate_pct": 82.8,
+      "wins": 492
+    },
+    "Hybrid (a=0.3)": {
+      "retained": 1801,
+      "total": 2383,
+      "rate_pct": 75.6,
+      "wins": 407
+    }
+  },
+  "fact_types": {
+    "percentage": {
+      "BM25": 44.0,
+      "ColBERT": 46.3,
+      "Embedding": 37.9,
+      "Lumisift": 86.5,
+      "Hybrid (a=0.3)": 77.8
+    },
+    "fold_change": {
+      "BM25": 33.5,
+      "ColBERT": 37.3,
+      "Embedding": 32.9,
+      "Lumisift": 93.2,
+      "Hybrid (a=0.3)": 81.4
+    },
+    "large_number": {
+      "BM25": 43.5,
+      "ColBERT": 45.3,
+      "Embedding": 46.2,
+      "Lumisift": 77.7,
+      "Hybrid (a=0.3)": 70.2
+    },
+    "concentration": {
+      "BM25": 44.4,
+      "ColBERT": 45.5,
+      "Embedding": 40.7,
+      "Lumisift": 85.2,
+      "Hybrid (a=0.3)": 76.2
+    },
+    "precise_decimal": {
+      "BM25": 38.8,
+      "ColBERT": 40.4,
+      "Embedding": 40.6,
+      "Lumisift": 86.3,
+      "Hybrid (a=0.3)": 82.4
+    },
+    "duration": {
+      "BM25": 38.9,
+      "ColBERT": 38.0,
+      "Embedding": 39.8,
+      "Lumisift": 58.3,
+      "Hybrid (a=0.3)": 56.5
+    },
+    "kinetic_constant": {
+      "BM25": 100.0,
+      "ColBERT": 75.0,
+      "Embedding": 75.0,
+      "Lumisift": 100.0,
+      "Hybrid (a=0.3)": 100.0
+    },
+    "ic50_ec50": {
+      "BM25": 27.3,
+      "ColBERT": 45.5,
+      "Embedding": 27.3,
+      "Lumisift": 100.0,
+      "Hybrid (a=0.3)": 90.9
+    },
+    "p_value": {
+      "BM25": 34.4,
+      "ColBERT": 37.5,
+      "Embedding": 34.4,
+      "Lumisift": 90.6,
+      "Hybrid (a=0.3)": 84.4
+    },
+    "scientific_notation": {
+      "BM25": 100.0,
+      "ColBERT": 0.0,
+      "Embedding": 100.0,
+      "Lumisift": 0.0,
+      "Hybrid (a=0.3)": 0.0
+    }
+  },
+  "ranking": [
+    "Lumisift",
+    "Hybrid (a=0.3)",
+    "ColBERT",
+    "BM25",
+    "Embedding"
+  ]
+}

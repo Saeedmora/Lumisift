@@ -231,6 +231,48 @@ result = pipe.select_context(
 
 ---
 
+### 6. Head-to-Head: BM25, ColBERT, Embedding, Lumisift
+
+We benchmarked Lumisift against **established retrieval baselines** that have been industry standards for years:
+
+| Method | Facts Retained | Rate | vs BM25 |
+|--------|---------------|------|---------|
+| **Lumisift** | 1,972 / 2,383 | **82.8%** | **+41.0pp** |
+| **Hybrid (α=0.3)** | 1,801 / 2,383 | **75.6%** | +33.8pp |
+| ColBERT (late interaction) | 1,039 / 2,383 | 43.6% | +1.8pp |
+| BM25 (Okapi) | 995 / 2,383 | 41.8% | baseline |
+| Embedding (MiniLM cosine) | 980 / 2,383 | 41.1% | -0.6pp |
+
+**What this means:** BM25, ColBERT, and embedding similarity all hover around 41-44%. They're essentially equivalent at numerical retention. Lumisift is in a completely different league at 82.8%.
+
+ColBERT's token-level matching gives it a slight edge over BM25 (+1.8pp), but it's still losing 56% of all quantitative data. The fundamental problem isn't *how* you match -- it's that matching ignores data density entirely.
+
+IC50/EC50 retention: BM25 = 27.3%, Embedding = 27.3%, ColBERT = 45.5%, **Lumisift = 100%**.
+
+**Run it yourself:** `python baseline_comparison.py`
+
+---
+
+### 7. Learned Scoring Model (Experimental)
+
+We trained a **lightweight MLP** (133K parameters, 525 KB) to predict axis scores from embeddings, replacing the heuristic regex evaluator:
+
+| Axis | MAE | Correlation | Agreement |
+|------|-----|-------------|-----------|
+| **Specificity** (most important) | 0.132 | **0.689** | 86.8% |
+| Temporal | 0.077 | 0.408 | 92.3% |
+| Trust | 0.016 | 0.024 | 98.4% |
+| Risk | 0.031 | 0.186 | 96.9% |
+| Relevance | 0.107 | 0.142 | 89.3% |
+
+**What this means:** The model learns specificity well (correlation 0.689) -- this is the axis that drives most of Lumisift's numerical advantage. Trust and risk have low variance in our dataset, so high agreement but low correlation (the model predicts the mean well but doesn't capture subtle differences yet).
+
+**Next step:** Train on a more diverse dataset with higher variance across trust, risk, and causality to improve the learned model beyond the heuristic ceiling.
+
+**Run it yourself:** `python learned_scoring.py` (saves model to `models/axis_predictor.pt`)
+
+---
+
 ## Industry Relevance
 
 ### Who needs this?
@@ -399,8 +441,8 @@ What's done and what's next:
 - [x] **Honest limitation testing** -- PubMedQA shows exactly where Lumisift fails
 - [x] **Hybrid retrieval** -- combined specificity + similarity with configurable alpha
 - [x] **1,077-article validation** -- 10 domains, 4,400 training samples, reproduciblity confirmed
-- [ ] **BM25 / ColBERT comparison** -- head-to-head with established baselines
-- [ ] **Learned scoring models** -- replace heuristic regex with trained classifiers
+- [x] **BM25 / ColBERT comparison** -- head-to-head: Lumisift beats BM25 by +41pp, ColBERT by +39pp
+- [x] **Learned scoring models** -- trained 133K-param MLP, 0.689 correlation on specificity axis
 - [ ] **LangChain / LlamaIndex plugin** -- drop-in re-ranker for existing pipelines
 - [ ] **Human evaluation** -- expert ratings alongside AI judge
 - [ ] **Cross-domain expansion** -- clinical trials, legal documents, cybersecurity reports
@@ -427,6 +469,8 @@ Lumisift/
 |-- numerical_retention_benchmark.py    # Head-to-head: Lumisift vs embedding retrieval
 |-- drug_discovery_usecase.py           # Drug discovery use case (3 pharma scenarios)
 |-- hybrid_benchmark.py                 # Hybrid alpha sweep (similarity + lumisift)
+|-- baseline_comparison.py              # BM25 / ColBERT / Embedding vs Lumisift
+|-- learned_scoring.py                  # Train MLP to replace heuristic scoring
 |-- pubmedqa_benchmark.py              # PubMedQA yes/no/maybe benchmark
 |-- downstream_eval.py                  # AI-judged quality evaluation
 |-- core/

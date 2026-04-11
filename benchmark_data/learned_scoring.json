@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "date": "2026-04-11T17:09:35.926462",
+    "training_samples": 4400,
+    "val_samples": 660,
+    "model_architecture": "MLP 384->256->128->8 (GELU, LayerNorm, Dropout)",
+    "model_size_kb": 524.7,
+    "parameters": 133256
+  },
+  "per_axis_results": {
+    "temporal": {
+      "mae": 0.0769,
+      "correlation": 0.4078,
+      "true_mean": -0.0476,
+      "pred_mean": -0.039
+    },
+    "relevance": {
+      "mae": 0.1069,
+      "correlation": 0.1424,
+      "true_mean": 0.3691,
+      "pred_mean": 0.3675
+    },
+    "risk": {
+      "mae": 0.0308,
+      "correlation": 0.1859,
+      "true_mean": -0.0117,
+      "pred_mean": -0.0049
+    },
+    "ontology": {
+      "mae": 0.188,
+      "correlation": 0.2996,
+      "true_mean": 0.4355,
+      "pred_mean": 0.4344
+    },
+    "causality": {
+      "mae": 0.1166,
+      "correlation": 0.205,
+      "true_mean": 0.0368,
+      "pred_mean": 0.0518
+    },
+    "visibility": {
+      "mae": 0.0234,
+      "correlation": 0.1437,
+      "true_mean": 0.503,
+      "pred_mean": 0.5076
+    },
+    "trust": {
+      "mae": 0.0164,
+      "correlation": 0.0242,
+      "true_mean": 0.5057,
+      "pred_mean": 0.5022
+    },
+    "specificity": {
+      "mae": 0.1324,
+      "correlation": 0.6887,
+      "true_mean": 0.1596,
+      "pred_mean": 0.1745
+    }
+  },
+  "overall_mae": 0.0864
+}
