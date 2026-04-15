@@ -224,25 +224,25 @@ To eliminate circular validation, we tested Lumisift on **official, peer-reviewe
 
 ### PubMedQA (Jin et al., ACL 2019)
 
-**Task:** Answer 1,000 expert-annotated biomedical yes/no/maybe questions at 50% context compression.
+**Task:** 779 expert-annotated biomedical yes/no/maybe questions at 50% context compression.
 
 | Method | Accuracy | Tokens Used | vs Full Context |
 |--------|:--------:|:-----------:|:---------------:|
-| Full Context | **78.0%** | 100% | baseline |
-| **Lumisift (50%)** | **68.0%** | 50% | **87% retained** |
-| Hybrid (50%) | 64.0% | 50% | 82% retained |
-| Embedding Similarity (50%) | 26.0% | 50% | 33% retained |
+| Full Context | **71.5%** | 100% | baseline |
+| **Hybrid (50%)** | **66.4%** | 50% | **93% retained** |
+| **Lumisift (50%)** | **65.2%** | 50% | **91% retained** |
+| Embedding Similarity (50%) | 37.2% | 50% | 52% retained |
 
-> **Lumisift retains 87% of full-context accuracy with 50% fewer tokens.** Standard embedding similarity retains only 33% — a **2.6x improvement** in accuracy preservation. Ground truth: human expert annotations (Jin et al., ACL 2019).
+> **Lumisift retains 91% of full-context accuracy with 50% fewer tokens.** Standard embedding similarity retains only 52%. Hybrid mode (embedding + Lumisift) performs best at 93% retention. Evaluated on 779 instances with human expert ground truth (Jin et al., ACL 2019).
 
 ### SciFact (Wadden et al., EMNLP 2020)
 
-**Task:** Verify 300 scientific claims against abstracts — does 50% compression preserve enough evidence for correct verdict (SUPPORTS/REFUTES/NOT_ENOUGH_INFO)?
+**Task:** Verify 290 scientific claims against abstracts — does 50% compression preserve enough evidence for correct verdict (SUPPORTS/REFUTES/NOT_ENOUGH_INFO)?
 
 | Claims Evaluated | Lumisift Verdict Agreement |
 |:----------------:|:--------------------------:|
-| 50 | 64.0% |
-| 150 | 64.0% |
+| 100 | 62.0% |
+| 200 | 65.5% |
 | 290 | **69.0%** |
 
 > Lumisift achieves **69% verdict agreement** with full-context judgments using only 50% of abstract sentences. Agreement rate increases monotonically — stable, not driven by outliers.
@@ -289,7 +289,7 @@ python information_loss_taxonomy.py
 |-----------|--------|
 | **One mechanism** | Specificity alone outperforms the full system. You're adopting a data density detector, not "multi-axis intelligence." |
 | **IC50 sample size** | "100% IC50 retention" is n=24. Could be dataset-specific. We report sample size with every claim. |
-| **Comprehension drops** | PubMedQA: 46.7% vs 93.3% full text. Data chunks ≠ explanation chunks. Use hybrid mode for mixed queries. |
+| **Comprehension trade-off** | PubMedQA (n=779): 65.2% vs 71.5% full text at 50% compression (91% retained). Hybrid mode closes to 93%. |
 | **Methods text** | Lumisift deprioritizes procedural text by -3pp. Design trade-off: data wins over methods. |
 | **Biomedical focus** | Trained on PubMed. Legal/financial text needs retraining via the learned model. |
 | **No human validation** | AI-judged quality only. Expert evaluation planned. |
