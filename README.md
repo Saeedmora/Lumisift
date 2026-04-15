@@ -1,6 +1,6 @@
 <p align="center">
   <strong>Lumisift</strong><br>
-  <em>Your RAG pipeline loses 64% of scientific data. Lumisift keeps 87%.</em>
+  <em>Your RAG pipeline loses 64% of scientific data. Lumisift retains 91%.</em>
 </p>
 
 <p align="center">
@@ -60,7 +60,7 @@ result = pipe.select_context(
     mode="hybrid", alpha=0.3, top_k=5
 )
 # result.selected_chunks → send to your LLM
-# 49% fewer tokens, 85% of data preserved
+# 50% fewer tokens, 91% accuracy retained (PubMedQA n=779)
 ```
 
 **Diagnose your own pipeline:**
@@ -410,7 +410,7 @@ python information_loss_taxonomy.py   # verify results
 
 <p align="center">
   <strong>Lumisift</strong><br>
-  Standard retrieval loses 64% of scientific data. Lumisift keeps 87%.<br>
-  Validated on PubMedQA (ACL 2019) and SciFact (EMNLP 2020). 1,077 articles. 6 baselines. Every result reproducible.<br>
+  Standard retrieval loses 64% of scientific data. Lumisift retains 91%.<br>
+  Validated on PubMedQA (n=779, ACL 2019) and SciFact (n=290, EMNLP 2020). Hybrid mode: 93% retention. Every result reproducible.<br>
   <sub>© 2026 Saeed Moradtalab</sub>
 </p>
