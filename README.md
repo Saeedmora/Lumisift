@@ -306,9 +306,8 @@ python information_loss_taxonomy.py
 | ✅ | 6-method baseline comparison (+42pp over cross-encoder) | Done |
 | ✅ | Drug discovery validation (84% vs 15%) | Done |
 | ✅ | Reproducibility kit (200 articles, verifiable) | Done |
-| ✅ | PubMedQA standard benchmark (87% accuracy retained, ACL 2019) | Done |
-| ✅ | SciFact standard benchmark (69% evidence preservation, EMNLP 2020) | Done |
-| 🔜 | Full PubMedQA (1,000 instances) | Next |
+| ✅ | PubMedQA standard benchmark (n=999, 92% accuracy retained, ACL 2019) | Done |
+| ✅ | SciFact standard benchmark (n=290, 69% evidence preservation, EMNLP 2020) | Done |
 | 🔜 | LangChain / LlamaIndex drop-in plugin | Next |
 | 🔜 | Cross-domain transfer (legal, financial, clinical) | Planned |
 | 🔜 | Multi-objective learning (separate targets per axis) | Planned |

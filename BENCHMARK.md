@@ -418,7 +418,7 @@ The benchmark is fully deterministic given the same dataset versions. Standard d
 |------|---------|-------|
 | `pubmedqa_official_benchmark.py` | PubMedQA (1,000 expert-annotated) | Jin et al., ACL 2019 |
 | `scifact_benchmark.py` | SciFact (1,109 claims + 5,183 corpus) | Wadden et al., EMNLP 2020 |
-| `benchmark_data/pubmedqa_official.json` | PubMedQA results (50 instances) | |
+| `benchmark_data/pubmedqa_official.json` | PubMedQA results (999 instances) | |
 | `benchmark_data/scifact_benchmark.json` | SciFact results (290 claims) | |
 
 ### Baseline Comparisons
