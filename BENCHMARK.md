@@ -245,7 +245,7 @@ To eliminate circular validation and establish external credibility, we benchmar
 | Parameter | Value |
 |-----------|-------|
 | Dataset | `qiaojin/PubMedQA` (pqa_labeled split) |
-| Instances evaluated | **779** of 1,000 expert-annotated (1 skipped) |
+| Instances evaluated | **999** of 1,000 expert-annotated (1 skipped) |
 | Ground truth | Human expert annotations (yes/no/maybe) |
 | Model judge | Groq / Llama 3.1 8B Instant |
 | Selection ratio | 50% of context sentences |
@@ -254,39 +254,51 @@ To eliminate circular validation and establish external credibility, we benchmar
 
 **Methodology:** For each expert-annotated question, we split the abstract's context sentences and select 50% using each method. A judge LLM answers the question using each subset, and we compare against the human-expert ground truth (yes/no/maybe). The benchmark ran continuously with checkpoint/resume across API rate-limit boundaries.
 
-#### Accuracy Results (n=779)
+#### Accuracy Results (n=999)
 
 | Method | Correct | Total | Accuracy | vs Full Context |
 |--------|---------|-------|----------|-----------------|
-| **Full Context (100%)** | 557 | 779 | **71.5%** | — (baseline) |
-| **Hybrid (50%)** | 517 | 779 | **66.4%** | 92.8% retained |
-| **Lumisift (50%)** | 508 | 779 | **65.2%** | 91.2% retained |
-| **Embedding Similarity (50%)** | 290 | 779 | **37.2%** | 52.0% retained |
+| **Full Context (100%)** | 713 | 999 | **71.4%** | — (baseline) |
+| **Hybrid (50%)** | 661 | 999 | **66.2%** | 92.7% retained |
+| **Lumisift (50%)** | 656 | 999 | **65.7%** | 92.0% retained |
+| **Embedding Similarity (50%)** | 363 | 999 | **36.3%** | 50.8% retained |
 
 #### Efficiency Analysis
 
 | Metric | Value |
 |--------|-------|
-| Lumisift accuracy loss | **-6.3 pp** (percentage points) |
-| Embedding accuracy loss | **-34.3 pp** |
-| **Lumisift advantage over embedding** | **+28.0 pp** |
-| Lumisift accuracy retention | **91.2%** of full context |
-| Embedding accuracy retention | 52.0% of full context |
+| Lumisift accuracy loss | **-5.7 pp** (percentage points) |
+| Embedding accuracy loss | **-35.0 pp** |
+| **Lumisift advantage over embedding** | **+29.3 pp** |
+| Lumisift accuracy retention | **92.0%** of full context |
+| Hybrid accuracy retention | **92.7%** of full context |
+| Embedding accuracy retention | 50.8% of full context |
+
+#### Answer Type Breakdown
+
+| Gold Answer | Count | Full Context | Lumisift (50%) | Embedding (50%) |
+|------------|-------|-------------|----------------|-----------------|
+| **yes** | 551 | 96.0% (529/551) | **83.7%** (461/551) | 32.7% (180/551) |
+| **no** | 338 | 54.4% (184/338) | **53.8%** (182/338) | 45.9% (155/338) |
+| **maybe** | 110 | 0.0% (0/110) | 11.8% (13/110) | 25.5% (28/110) |
+
+**Note:** The "maybe" category is inherently difficult — even full context scores 0%. The LLM judge tends to commit to yes/no rather than expressing uncertainty.
 
 #### Convergence Analysis
 
-The benchmark ran from 15 to 780 instances with consistent performance, confirming statistical stability:
+The benchmark ran from 15 to 999 instances with consistent performance, confirming statistical stability:
 
 | Instances | Full Context | Lumisift (50%) | Embedding (50%) |
 |-----------|-------------|----------------|-----------------|
 | 100 | 67.0% | 59.0% | — |
 | 250 | 68.0% | 63.2% | — |
 | 500 | 70.5% | 64.1% | — |
-| 779 | **71.5%** | **65.2%** | **37.2%** |
+| 750 | 71.7% | 65.4% | — |
+| **999** | **71.4%** | **65.7%** | **36.3%** |
 
 All methods converge smoothly — no volatility, no anomalies. The accuracy gap between Lumisift and Embedding is stable across the entire evaluation, confirming the result is not an artifact of sample selection.
 
-**Key finding:** At scale (n=779), Lumisift retains **91% of full-context accuracy** with **50% fewer tokens**, while standard embedding similarity retains only **52%**. The Hybrid method (30% embedding + 70% Lumisift) slightly outperforms pure Lumisift at 66.4%, suggesting that combining semantic similarity with information density scoring yields the best results.
+**Key finding:** At full scale (n=999), Lumisift retains **92% of full-context accuracy** with **50% fewer tokens**, while standard embedding similarity retains only **51%**. The Hybrid method (30% embedding + 70% Lumisift) slightly outperforms pure Lumisift at 66.2%, suggesting that combining semantic similarity with information density scoring yields the best results.
 
 ---
 
@@ -327,17 +339,17 @@ This tests a fundamentally different capability than PubMedQA:
 
 | Benchmark | Task | Evaluated | Lumisift (50%) | Embedding (50%) | Advantage |
 |-----------|------|-----------|----------------|-----------------|-----------|
-| **PubMedQA** | Biomedical QA | 779 instances | **65.2%** acc (91% retained) | 37.2% acc | **+28.0 pp** |
+| **PubMedQA** | Biomedical QA | 999 instances | **65.7%** acc (92% retained) | 36.3% acc | **+29.3 pp** |
 | **SciFact** | Claim verification | 290 claims | **69.0%** agreement | — | Stable convergence |
 
 ### Why These Results Matter
 
 1. **No circular validation.** PubMedQA uses human-expert ground truth from Jin et al. (ACL 2019), not LLM-generated questions.
-2. **Scale.** 779 PubMedQA instances + 290 SciFact claims = over 1,000 evaluations on independent datasets. These are not cherry-picked examples.
-3. **Query-blind selection works.** Lumisift selects content without knowing the downstream question — yet achieves 91% of full-context accuracy. This validates the core hypothesis that multi-axis heuristic scoring captures intrinsic information value.
+2. **Full-scale evaluation.** 999 PubMedQA instances + 290 SciFact claims = 1,289 evaluations on independent datasets. These are not cherry-picked examples.
+3. **Query-blind selection works.** Lumisift selects content without knowing the downstream question — yet achieves 92% of full-context accuracy. This validates the core hypothesis that multi-axis heuristic scoring captures intrinsic information value.
 4. **Evidence preservation confirmed.** SciFact shows Lumisift preserves enough scientific evidence for claim verification in 69% of cases at 50% compression.
-5. **Embedding similarity fails at compression.** Standard cosine similarity retrieval (the backbone of most RAG systems) drops to 37% accuracy at 50% compression — demonstrating that semantic similarity alone is insufficient for context selection.
-6. **Hybrid outperforms.** The combination of embedding similarity and Lumisift (Hybrid mode) achieves the best results at 66.4%, confirming the methods are complementary.
+5. **Embedding similarity fails at compression.** Standard cosine similarity retrieval (the backbone of most RAG systems) drops to 36% accuracy at 50% compression — demonstrating that semantic similarity alone is insufficient for context selection.
+6. **Hybrid outperforms.** The combination of embedding similarity and Lumisift (Hybrid mode) achieves the best results at 66.2%, confirming the methods are complementary.
 7. **Fully reproducible.** All scripts, datasets, and API configurations are included. Results are deterministic given the same dataset versions.
 
 ### Honest Limitations

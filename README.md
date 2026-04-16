@@ -1,6 +1,6 @@
 <p align="center">
   <strong>Lumisift</strong><br>
-  <em>Your RAG pipeline loses 64% of scientific data. Lumisift retains 91%.</em>
+  <em>Your RAG pipeline loses 64% of scientific data. Lumisift retains 92%.</em>
 </p>
 
 <p align="center">
@@ -60,7 +60,7 @@ result = pipe.select_context(
     mode="hybrid", alpha=0.3, top_k=5
 )
 # result.selected_chunks → send to your LLM
-# 50% fewer tokens, 91% accuracy retained (PubMedQA n=779)
+# 50% fewer tokens, 92% accuracy retained (PubMedQA n=999)
 ```
 
 **Diagnose your own pipeline:**
@@ -224,16 +224,16 @@ To eliminate circular validation, we tested Lumisift on **official, peer-reviewe
 
 ### PubMedQA (Jin et al., ACL 2019)
 
-**Task:** 779 expert-annotated biomedical yes/no/maybe questions at 50% context compression.
+**Task:** 999 expert-annotated biomedical yes/no/maybe questions at 50% context compression.
 
 | Method | Accuracy | Tokens Used | vs Full Context |
 |--------|:--------:|:-----------:|:---------------:|
-| Full Context | **71.5%** | 100% | baseline |
-| **Hybrid (50%)** | **66.4%** | 50% | **93% retained** |
-| **Lumisift (50%)** | **65.2%** | 50% | **91% retained** |
-| Embedding Similarity (50%) | 37.2% | 50% | 52% retained |
+| Full Context | **71.4%** | 100% | baseline |
+| **Hybrid (50%)** | **66.2%** | 50% | **93% retained** |
+| **Lumisift (50%)** | **65.7%** | 50% | **92% retained** |
+| Embedding Similarity (50%) | 36.3% | 50% | 51% retained |
 
-> **Lumisift retains 91% of full-context accuracy with 50% fewer tokens.** Standard embedding similarity retains only 52%. Hybrid mode (embedding + Lumisift) performs best at 93% retention. Evaluated on 779 instances with human expert ground truth (Jin et al., ACL 2019).
+> **Lumisift retains 92% of full-context accuracy with 50% fewer tokens.** Standard embedding similarity retains only 51%. Hybrid mode (embedding + Lumisift) performs best at 93% retention. Evaluated on 999 instances with human expert ground truth (Jin et al., ACL 2019).
 
 ### SciFact (Wadden et al., EMNLP 2020)
 
@@ -289,7 +289,7 @@ python information_loss_taxonomy.py
 |-----------|--------|
 | **One mechanism** | Specificity alone outperforms the full system. You're adopting a data density detector, not "multi-axis intelligence." |
 | **IC50 sample size** | "100% IC50 retention" is n=24. Could be dataset-specific. We report sample size with every claim. |
-| **Comprehension trade-off** | PubMedQA (n=779): 65.2% vs 71.5% full text at 50% compression (91% retained). Hybrid mode closes to 93%. |
+| **Comprehension trade-off** | PubMedQA (n=999): 65.7% vs 71.4% full text at 50% compression (92% retained). Hybrid mode closes to 93%. |
 | **Methods text** | Lumisift deprioritizes procedural text by -3pp. Design trade-off: data wins over methods. |
 | **Biomedical focus** | Trained on PubMed. Legal/financial text needs retraining via the learned model. |
 | **No human validation** | AI-judged quality only. Expert evaluation planned. |
@@ -410,7 +410,7 @@ python information_loss_taxonomy.py   # verify results
 
 <p align="center">
   <strong>Lumisift</strong><br>
-  Standard retrieval loses 64% of scientific data. Lumisift retains 91%.<br>
-  Validated on PubMedQA (n=779, ACL 2019) and SciFact (n=290, EMNLP 2020). Hybrid mode: 93% retention. Every result reproducible.<br>
+  Standard retrieval loses 64% of scientific data. Lumisift retains 92%.<br>
+  Validated on PubMedQA (n=999, ACL 2019) and SciFact (n=290, EMNLP 2020). Hybrid mode: 93% retention. Every result reproducible.<br>
   <sub>© 2026 Saeed Moradtalab</sub>
 </p>
