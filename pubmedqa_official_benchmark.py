@@ -55,7 +55,7 @@ if GROQ_API_KEY:
     # Groq: free tier with thousands of requests/day, ultra-fast inference
     from groq import Groq
     api_client = Groq(api_key=GROQ_API_KEY)
-    MODEL_NAME = "llama-3.3-70b-versatile"
+    MODEL_NAME = "llama-3.1-8b-instant"
     API_PROVIDER = "Groq"
     print(f"  API: Using Groq ({MODEL_NAME})", flush=True)
 elif XAI_API_KEY:
@@ -76,7 +76,7 @@ else:
 
 # Number of test instances to evaluate (PubMedQA has 1,000 labeled)
 # Set to None to use all. Lower for faster testing.
-MAX_INSTANCES = 50  # Set to None for full 1,000
+MAX_INSTANCES = None  # Full 1,000 instances
 
 
 def ask_llm(prompt: str, max_retries: int = 5) -> str:
